@@ -1,0 +1,12 @@
+{
+  "plugins": ["relay", "@babel/plugin-transform-runtime"],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry"
+      }
+    ],
+    "@babel/preset-react"
+  ]
+}
