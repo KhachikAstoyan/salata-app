@@ -8,6 +8,7 @@ const webpackMiddleware = require("webpack-dev-middleware");
 const webpack = require("webpack");
 const webpackConfig = require("../webpack.config.js");
 
+const connect = require('./db');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -15,6 +16,7 @@ app.listen(PORT, () => {
    console.log("Listening...");
 });
 
+connect();
 app.use(express.json());
 app.use(
    "/graphql",
