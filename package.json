@@ -7,16 +7,17 @@
     "relay-watch": "npm run update-schema && relay-compiler --src ./ --schema ./server/schema/schema.graphql --watch"
   },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "graphql": "^15.5.1",
     "html-webpack-plugin": "^5.3.2",
     "mongoose": "^5.13.3",
-    "webpack": "^5.46.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-relay": "^11.0.2",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "webpack": "^5.46.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
