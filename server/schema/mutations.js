@@ -1,5 +1,6 @@
 //@ts-check
 const graphql = require("graphql");
+const ClientType = require("./ClientType");
 const { GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLList } = graphql;
 const ItemType = require('./ItemType');
 const OrderType = require("./OrderType");
@@ -11,11 +12,21 @@ const mutation = new GraphQLObjectType({
     addOrder: {
       type: OrderType,
       args: {
-        dueDate: { type: GraphQLString },
-        isTakeout: { type: GraphQLBoolean }
+        input: {
+          type: new graphql.GraphQLInputObjectType({
+            name: "input",
+            fields: {
+              clientID: { type: GraphQLString },
+              clientName: { type: GraphQLString },
+              clientNumber: { type: GraphQLString },
+              dueDate: { type: GraphQLString },
+              isTakeout: { type: GraphQLBoolean }
+            }
+          })
+        }
       },
       resolve(parentValue, args) {
-        return;
+        return
       },
     },
     addItems: {
