@@ -6,7 +6,9 @@
     "relay": "npm run update-schema && relay-compiler --src ./ --schema ./server/schema/schema.graphql",
     "relay-watch": "npm run update-schema && relay-compiler --src ./ --schema ./server/schema/schema.graphql --watch"
   },
-  "engines" : { "node" : "10.16.3" },
+  "engines": {
+    "node": "10.16.3"
+  },
   "engineStrict": true,
   "dependencies": {
     "dotenv": "^10.0.0",
