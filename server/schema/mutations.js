@@ -1,10 +1,13 @@
 //@ts-check
 const graphql = require("graphql");
+const mongoose = require("mongoose");
 const ClientType = require("./ClientType");
-const { GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLList } = graphql;
-const ItemType = require('./ItemType');
+const { GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLList } =
+  graphql;
+const ItemType = require("./ItemType");
 const OrderType = require("./OrderType");
-const StatusType = require('./StatusType');
+const StatusType = require("./StatusType");
+const Order = mongoose.model("order");
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -20,13 +23,14 @@ const mutation = new GraphQLObjectType({
               clientName: { type: GraphQLString },
               clientNumber: { type: GraphQLString },
               dueDate: { type: GraphQLString },
-              isTakeout: { type: GraphQLBoolean }
-            }
-          })
-        }
+              isTakeout: { type: GraphQLBoolean },
+            },
+          }),
+        },
       },
       resolve(parentValue, args) {
-        return
+        const newOrder = new Order({ isTakeout: true });
+        newOrder.save();
       },
     },
     addItems: {
