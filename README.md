@@ -2,10 +2,10 @@
 
 ## [Figma mockup](https://www.figma.com/file/gvYTd9ZsGkEaEjTgtt7LyD/Untitled?node-id=0%3A1)
 
-> Before making any changes
+> Before making any changes click the button `Fetch upstream`, then write in terminal:
 
 ```
-git pull https://github.com/KhachikAstoyan/salata-app.git master
+git pull
 ```
 
 > How to set up mongodb
