@@ -118,3 +118,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 {"mode":"full","isActive":false}
+
+# schema file
+server/schema/schema.graphql
