@@ -1,5 +1,7 @@
 # Init project
 
+[Figma mockup](https://www.figma.com/file/gvYTd9ZsGkEaEjTgtt7LyD/Untitled?node-id=0%3A1)
+
 > Before making any changes
 
 ```
