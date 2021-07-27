@@ -26,10 +26,8 @@ MONGO_URI=mongodb+srv://<username>:<password>@cluster0.1o8xa.mongodb.net/myFirst
 
 > Install packages
 
-`npm ci is like npm install`
-
 ```
-npm ci
+npm i
 ```
 
 > Compile files and watch them
