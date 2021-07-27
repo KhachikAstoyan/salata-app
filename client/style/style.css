@@ -1,0 +1,10 @@
+.main{
+display:flex;
+background-color: #f8fff6;
+margin: 50px;
+height: 800px;
+}
+.main-item{
+    margin-left:50px;
+    margin-top: 100px;
+}
