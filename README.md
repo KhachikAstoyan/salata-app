@@ -36,7 +36,7 @@ npm ci
 npm run dev
 ```
 
-> Run this command after change schema
+> Run this command after changing the schema
 
 ```
 npm run relay
