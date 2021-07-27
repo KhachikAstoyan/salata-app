@@ -3,10 +3,17 @@ const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
 
 const itemSchema = new Schema({
-  ingredients: {
-    type: [String],
-    required: true,
+  order: {
+    type: Schema.Types.ObjectId,
+    ref: "order"
   },
+  ingredients: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "ingredient",
+      required: true
+    }
+  ],
   extra: {
     type: [String],
   },
@@ -26,6 +33,6 @@ const itemSchema = new Schema({
   },
 });
 
-const Item = Mongoose.model("Item", itemSchema);
+const Item = Mongoose.model("item", itemSchema);
 
 module.exports = Item;

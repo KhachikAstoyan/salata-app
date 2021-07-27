@@ -11,8 +11,14 @@ const clientSchema = new Schema({
     type: String,
     required: true,
   },
+  orders: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "order"
+    }
+  ]
 });
 
-const Client = Mongoose.model("Client", clientSchema);
+const Client = Mongoose.model("client", clientSchema);
 
 module.exports = Client;

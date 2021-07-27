@@ -7,8 +7,12 @@ const ingredientSchema = new Schema({
     type: String,
     required: true,
   },
+  item: {
+    type: Schema.Types.ObjectId,
+    ref: "item"
+  }
 });
 
-const Ingredient = Mongoose.model("Ingredient", ingredientSchema);
+const Ingredient = Mongoose.model("ingredient", ingredientSchema);
 
 module.exports = Ingredient;
