@@ -10,7 +10,7 @@ const RootQuery = new GraphQLObjectType({
     orders: {
       type: new GraphQLList(OrderType),
       resolve: async () => {
-        return await Order.find();
+        return await Order.find({ status: { $ne: 2 } });
       },
     },
   }),
