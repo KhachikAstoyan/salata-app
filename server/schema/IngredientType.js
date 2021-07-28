@@ -1,17 +1,13 @@
 const graphql = require('graphql');
-const { GraphQLEnumType } = graphql;
+const { GraphQLObjectType, GraphQLID, GraphQLString } = graphql;
 
 // add more from website
-const IngredientType = new GraphQLEnumType({
-    name: 'IngredientType',
-    values: {
-      SALATA_MIX: { value: 0 },
-      ROMAINE_HEARTS: { value: 1 },
-      ARCADIAN: { value: 2 },
-      SPINACH: { value: 3 },
-      CUCUMBER: { value: 4 },
-      TOMATO: { value: 5 },
-    }
-  });
+const IngredientType = new GraphQLObjectType({
+    name: "IngredientType",
+    fields: () => ({
+        id: { type: GraphQLID },
+        name: { type: GraphQLString }
+    })
+});
 
-  module.exports = IngredientType;
+module.exports = IngredientType;
