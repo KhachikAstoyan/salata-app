@@ -14,6 +14,7 @@ const IngredientType = require("./IngredientType");
 const StatusType = require("./StatusType");
 const mongoose = require("mongoose");
 const Order = require("../models/Order");
+const Item = require("../models/Item");
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -52,7 +53,7 @@ const mutation = new GraphQLObjectType({
       type: OrderType,
       args: {
         id: { type: GraphQLString},
-        ingredients: { type: new GraphQLList(IngredientType)},
+        ingredients: { type: new GraphQLList(GraphQLID)},
         extra: { type: GraphQLString},
         additionalInformation: {type: GraphQLString},
         name: {type: GraphQLString },
@@ -61,6 +62,17 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, args) {
         return Order.addItems(args.id, args.ingredients, args.extra, args.additionalInformation, args.name, args.audio, args.quantity);
+      },
+    },
+    addIngredients: {
+      type: OrderType,
+      args: {
+        id: { type: GraphQLString},
+        name: {type: GraphQLString},
+        items: {type: new GraphQLList(GraphQLID)},
+      },
+      resolve(parentValue, args) {
+        return Item.addIngredients(args.id, args.name, args.items);
       },
     },
     updateOrderStatus: {

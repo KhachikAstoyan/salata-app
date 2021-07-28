@@ -33,6 +33,18 @@ const itemSchema = new Schema({
   },
 });
 
+itemSchema.statics.addIngredients = function (id, name, items){
+  const Ingredient = require("../models/Ingredient");
+  
+  return this.findById(id).then((item) => {
+    const ingredient = new Ingredient({name, id, items});
+      item.ingredients.push(ingredient);
+      return Promise.all([ingredient.save(), item.save()]).then(
+        ([ingredient, item]) => item
+      );
+  })
+ } 
+
 const Item = Mongoose.model("item", itemSchema);
 
 module.exports = Item;
