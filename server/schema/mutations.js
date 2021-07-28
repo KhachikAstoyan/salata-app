@@ -58,7 +58,7 @@ const mutation = new GraphQLObjectType({
       type: OrderType,
       args: {
         id: {
-          type: GraphQLID,
+          type: GraphQLString,
         },
         status: {
           type: StatusType,

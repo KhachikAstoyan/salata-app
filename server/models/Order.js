@@ -23,10 +23,15 @@ const OrderSchema = new Schema({
     status: { type: Number }
 });
 
-// OrderSchema.statics.createOrder = function (clientID, clientName, clientNumber, dueDate, isTakeout) {
-//   const client = Client.findByIdAndUpdate(clientID, { name: clientName, phoneNumber: clientNumber });
-//   const order = new Order()
-// }
+OrderSchema.statics.findItems = function (id) {
+    console.log(id);
+    const items = this.findById(id)
+        .populate("items");
+    return items.then(order => {
+        console.log('order', order);
+        return order.items;
+    });
+}
 
 const Order = Mongoose.model("order", OrderSchema);
 

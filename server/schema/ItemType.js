@@ -10,12 +10,18 @@ const {
 } = graphql;
 const AudioType = require('./AudioType');
 const IngredientType = require("./IngredientType");
+const Item = require("../models/Item");
 
 const ItemType = new GraphQLObjectType({
   name: "ItemType",
   fields: () => ({
     id: { type: GraphQLID },
-    ingredients: { type: new GraphQLList(IngredientType) },
+    ingredients: {
+      type: new GraphQLList(IngredientType),
+      resolve: (parentValue, args) => {
+
+      }
+    },
     extra: { type: new GraphQLList(IngredientType) },
     additionalInformation: { type: GraphQLString },
     name: { type: GraphQLString },
