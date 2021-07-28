@@ -4,23 +4,23 @@ const Client = require("./Client");
 const Schema = Mongoose.Schema;
 
 const OrderSchema = new Schema({
-  client: {
-    type: Schema.Types.ObjectId,
-    ref: "client",
-  },
-  dueTime: {
-    type: Date,
-  },
-  isTakeout: { type: Boolean, required: true },
-  items: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "item",
+    client: {
+        type: Schema.Types.ObjectId,
+        ref: "client",
     },
-  ],
-  orderNumber: { type: Number },
-  startTime: { type: String },
-  status: { type: Number },
+    dueTime: {
+        type: Date,
+    },
+    isTakeout: { type: Boolean, required: true },
+    items: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "item",
+        },
+    ],
+    orderNumber: { type: Number },
+    startTime: { type: String },
+    status: { type: Number }
 });
 
 // OrderSchema.statics.createOrder = function (clientID, clientName, clientNumber, dueDate, isTakeout) {

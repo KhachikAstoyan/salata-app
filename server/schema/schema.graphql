@@ -63,7 +63,11 @@ type Mutation {
 }
 
 input input {
+<<<<<<< HEAD
   clientId: ID
+=======
+  clientId: String
+>>>>>>> 229423f34f071ec3c876b4815904556950e16262
   dueTime: String
   isTakeout: Boolean
   itemsId: [ID]

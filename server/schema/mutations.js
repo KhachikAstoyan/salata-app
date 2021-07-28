@@ -24,7 +24,7 @@ const mutation = new GraphQLObjectType({
           type: new graphql.GraphQLInputObjectType({
             name: "input",
             fields: {
-              clientId: { type: GraphQLID },
+              clientId: { type: GraphQLString },
               dueTime: { type: GraphQLString },
               isTakeout: { type: GraphQLBoolean },
               itemsId: { type: GraphQLList(GraphQLID) },
@@ -45,7 +45,7 @@ const mutation = new GraphQLObjectType({
           status: args.input.status,
         });
         return newOrder.save();
-      },
+      }
     },
     addItems: {
       type: OrderType,
