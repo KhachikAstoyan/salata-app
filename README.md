@@ -29,7 +29,7 @@ git checkout master
 > Merge branches
 
 ```
-git merge upstream/master
+git rebase upstream/master
 ```
 
 > How to set up mongodb
