@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "salata-app",
+  "private_key_id": "8791ea1f2e0930edb1bf66546b70014361a29ee1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCwgn6TWAViotwh\nQz5INMzTc3sI7v/MLUW08Fy/baSMbI0Jyn53SB7soM4bR+USL3wLYfyOIzoROKQV\nncN16TZGnOLSYlxaDyA1lFl4PVDCzG9C/qi84B+KrhhhJDEZtoHSMNA0GvTu1n4E\nzPzZitDWgDyneYYaLDS8xIdkoEP5BD8uhZmPkBkfOpVQfQnFagoOKz6xK22ZEp2A\nQo+6mchRJoCrVfquFIsT08tVkr3V0UY2tfZGzV4IeQh6TFJKR/u4mjJT1Rnyo4tx\npK16aCYkZeh5z/TTUU2wijReVc0gdvq6Nh97/GiW41ejrTgXZQjoBr7vAfbF9pSs\nEH6nzih3AgMBAAECggEAIXCXilKiso0oJyUWJ5fZNjYqmQaub4AkNKNU7u9WvUPT\ndIdobjC7qxjL818rhsZ4Oa/WqRcDaT/R1kaNQUltfvM6BaGc3XMAJyZzzNPQ+RbB\n/W9BiIbtctiIxd6Vbsmkzq1wxG5W+Oip9z7eqFgkOH8S/qeHQG4fj6OsAuRZ/FMA\nuzVf/aun3z/qMptZWalj1696IBrfxhGWWaslBU79ZF13TW2kc5vCLZP16DqSKxwv\nKq8kkAIJ+IfykYxNuLLO8MtMGuzsd+BOJJe6qLx6ZXLAjXxSLTNTpak65wpYNiiF\nsIuO2zH73FnuHPFM29Ff5UrZbhFvCBB+TlFgmhmUAQKBgQDp8adKxd/OKmKDWYhP\n/lwDPYZtLq/gOeJK46IkVgRyj2Ot7BSdoXeN8p3thzHDk35+GbUVoPg82DJNVTfF\nG0usRViXbkrmI6FCV+BC9aOhLRwx4HonhPH3BI1pCUrTwIgb7mir+Mk/g1qluOnG\n+v+RdBO3+9HIR1Tswn8hc1JfhQKBgQDBJqOvYoVKu0gKUzZ1YrWqa/TyLZiV7gGN\nGfTmb2Mijb5LQ8WdBgLOwGyOtaBu7On+EyQxKP7SIBJg4x/Idjt+OKdG+Xo3AjWg\nF6qzFhrjRtoVmrgeQ7PGUlHlY3M8qdCa+vO7SnC0qDK0vpHBVdW4Th6Zkfl6gUfK\n5+zEjlXiywKBgQCiZq4Cm0CVRxkiI6ocFfBcE37ZFnrjRmuQH1u0q73kpSPGXcel\n8awj7xOxC5QBN8es1D3AKQGKg27P/mN7wkoS6gTpApieEIfmnUhCU3Fm9wDGoxVJ\nj+HE3/UmwFugidwyv5sMHuXd4FqyBp7LEf0ORS1XIEnuJY6P2SkV2I+LXQKBgFqc\nnuOTa4agj25QlVbCZQk7NiE65L9Jda7VQ3+rN62pI2G5vIYqoLyPpx3X9Ri0yh0o\nq6zoV4sKArUzN+DaHpTbTRZNyVjvD2s4TxtOvnRq87p45/FCv57FVagwXIpT/AoI\nurjddjw6P/dtA4HYm7en5lETGx+ucJiu7vNS9tW7AoGBAK8UJ2UrRsP9l0hwQNGb\nalFTCeqz5aI5QkHC3tbAqQo+u/+7jsHVJ4zHvwVVMH2AnGHxaaR+UU0VkVXHaXL2\ndx9ybeHI8i2t06zDMUTjHtqXO9ep0B5vchMaAmfV1vGprky3c/R3jYdAZEF7JpxY\nouIuLgHIY5tHZOYbutH8uPT0\n-----END PRIVATE KEY-----\n",
+  "client_email": "salata-app@salata-app.iam.gserviceaccount.com",
+  "client_id": "114497530471285122266",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/salata-app%40salata-app.iam.gserviceaccount.com"
+}
