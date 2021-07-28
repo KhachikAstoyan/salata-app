@@ -1,49 +1,53 @@
 //@ts-check
-const graphql = require("graphql");
-const ClientType = require("./ClientType");
-const { GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLList } = graphql;
+const graphql = require('graphql');
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLBoolean,
+  GraphQLList,
+  GraphQLID
+} = graphql;
 const ItemType = require('./ItemType');
-const OrderType = require("./OrderType");
+const OrderType = require('./OrderType');
 const StatusType = require('./StatusType');
+const mongoose = require('mongoose');
+const Order = require('../models/Order');
 
 const mutation = new GraphQLObjectType({
-  name: "Mutation",
+  name: 'Mutation',
   fields: {
     addOrder: {
       type: OrderType,
       args: {
-        input: {
-          type: new graphql.GraphQLInputObjectType({
-            name: "input",
-            fields: {
-              clientID: { type: GraphQLString },
-              clientName: { type: GraphQLString },
-              clientNumber: { type: GraphQLString },
-              dueDate: { type: GraphQLString },
-              isTakeout: { type: GraphQLBoolean }
-            }
-          })
-        }
+        dueDate: { type: GraphQLString },
+        isTakeout: { type: GraphQLBoolean }
       },
       resolve(parentValue, args) {
-        return
-      },
+        return;
+      }
     },
     addItems: {
       type: OrderType,
       args: {},
       resolve(parentValue, args) {
         return;
-      },
+      }
     },
     updateOrderStatus: {
       type: OrderType,
-      args: {},
-      resolve(parentValue, args) {
-        return;
+      args: {
+        id: {
+          type: GraphQLID
+        },
+        status: {
+          type: StatusType
+        }
       },
-    },
-  },
+      async resolve(parentValue, { id, status }) {
+        return await Order.findByIdAndUpdate(id, { status });
+      }
+    }
+  }
 });
 
 module.exports = mutation;
