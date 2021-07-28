@@ -20,10 +20,10 @@ const mutation = new GraphQLObjectType({
       type: OrderType,
       args: {
         dueDate: { type: GraphQLString },
-        isTakeout: { type: GraphQLBoolean }
+        isTakeOut: { type: GraphQLBoolean }
       },
-      resolve(parentValue, args) {
-        return;
+      resolve(parentValue, { dueDate, isTakeOut }) {
+        return Order.create({ dueDate, isTakeOut })
       }
     },
     addItems: {

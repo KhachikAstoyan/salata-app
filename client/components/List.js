@@ -1,16 +1,20 @@
 import React from "react";
-import {graphql ,useFragemnt} from "react-relay";
+import { graphql, useLazyLoadQuery } from "react-relay";
 
-const query  = graphql`
-query OrderType
- orders{
-     id
- }
+const query = graphql`
+    query OrderType {
+        orders{
+            id
+            dueTime
+        }
+    }
+    
 `;
-function List (){
+function List() {
+    const { data } = useLazyLoadQuery(query);
     return (
-        <div className = "main">
-            <h1 className = "main-item">Orders</h1>
+        <div className="main">
+            <h1 className="main-item">Orders</h1>
         </div>
     )
 }
