@@ -1,13 +1,17 @@
 //@ts-check
 const graphql = require("graphql");
 const ClientType = require("./ClientType");
-const { GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLList } =
-  graphql;
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLBoolean,
+  GraphQLList,
+  GraphQLID,
+} = graphql;
 const ItemType = require("./ItemType");
 const OrderType = require("./OrderType");
 const StatusType = require("./StatusType");
 const mongoose = require("mongoose");
-const { GraphQLID } = require("graphql");
 const Order = mongoose.model("order");
 
 const mutation = new GraphQLObjectType({
@@ -52,9 +56,16 @@ const mutation = new GraphQLObjectType({
     },
     updateOrderStatus: {
       type: OrderType,
-      args: {},
-      resolve(parentValue, args) {
-        return;
+      args: {
+        id: {
+          type: GraphQLID,
+        },
+        status: {
+          type: StatusType,
+        },
+      },
+      async resolve(parentValue, { id, status }) {
+        return await Order.findByIdAndUpdate(id, { status });
       },
     },
   },
