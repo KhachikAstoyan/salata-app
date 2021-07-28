@@ -1,9 +1,10 @@
 import React, {Suspense} from "react";
 import ReactDOM from "react-dom";
-import ItemList from "./components/ItemList";
 import {RelayEnvironmentProvider} from "react-relay";
 import Environment from "./relay/environment";
 import {HashRouter as Router,Switch,Route} from "react-router-dom";
+import OrderComponent from "../client/OrderList/OrderComponent"
+import "../client/OrderList/style.css"
 
 const Root = () => {
    return <RelayEnvironmentProvider environment = {Environment}>
@@ -12,7 +13,7 @@ const Root = () => {
        <Router>
          <Switch>
            <Route path = "/">
-             <ItemList />
+             <OrderComponent />
            </Route>
          </Switch>
        </Router>
