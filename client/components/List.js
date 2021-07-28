@@ -7,7 +7,7 @@ const query  = graphql`
 query List_Query{
     orders{
         id
-        ...ItemList_order
+        ...OrderComponent_order
     }
 }
  

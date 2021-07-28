@@ -1,8 +1,17 @@
+//@ts-check
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {graphql,useFragment} from "react-relay";
+import ItemList from "../components/ItemList";
 
 
-function OrderComponent() {
+function OrderComponent(props) {
+    const order = useFragment(graphql`
+    fragment OrderComponent_order on OrderType{
+        ...ItemList_order
+
+    }
+    `,props.order);
     const [selected, setSelected] = useState("1");
     let className = "";
     if (selected === "1") {
@@ -15,8 +24,9 @@ function OrderComponent() {
         className = "option3"   
     }
 
-    return (<div className="ordersList">
-                
+    return (
+        <div>
+        <div className="ordersList">
                 <div className="icon">
                     <i className="material-icons">chevron_right</i>
                 </div>
@@ -34,6 +44,8 @@ function OrderComponent() {
                         <option value="3" className="option3">In progress</option>
                     </select>
                 </div>
+            </div>
+               <ItemList order={order} />
         </div>
     );
 
