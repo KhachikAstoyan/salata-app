@@ -71,7 +71,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
 .env.test
 .env.production
 
@@ -118,5 +117,4 @@ dist
 .yarn/install-state.gz
 
 .pnp.*
-{"mode":"full","isActive":false}
 schema.graphql

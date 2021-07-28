@@ -21,14 +21,16 @@ body {
     align-items: center;
 }
 
+.DueCont{
+    margin-left: 100px
+}
+
 
 .optionCont {
-    margin-left: 600px;
+    margin-left: 400px;
 }
 
 .browser-default{
-    /* position: absolute; */
-
   width: 150px;
   height: 30px;
   padding: 5px;

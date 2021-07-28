@@ -15,20 +15,21 @@ function OrderComponent() {
     else if (selected === "3") {
         className = "option3"
     }
-    
-    return (
-        <div className="ordersList">
-            <div className="listContainer">
-                <div className="icon">
-                    <i className="material-icons">chevron_right</i>
+
+    return (<div>
+                <div className="optionCont">
+                    <div className="icon">
+                        <i className="material-icons">chevron_right</i>
+                    </div>
+                    <div className="orderInfo">
+                        <div className="orderID">Order #23651325 - 2 items</div>
+                        <div className="orderName">For Khachik Astoyan</div>
+                    </div>
                 </div>
 
-                <div className="orderInfo">
-                    <div className="orderID">Order #23651325 - 2 items</div>
-                    <div className="orderName">For Khachik Astoyan</div>
-                </div>
 
                 <div className="optionCont">
+                    <div>Due by 12:00 pm</div>
                     <div className="input-field col s12">
                         <select className={`browser-default ${className}`} onChange={(event) => {
                             setSelected(event.target.value);
@@ -41,24 +42,8 @@ function OrderComponent() {
 
 
                 </div>
-
-
-
-
-
-
             </div>
-
-
-
-
-
-
-
-            <Link to="/">
-            </Link>
-        </div>
-    )
+    );
 
 }
 
