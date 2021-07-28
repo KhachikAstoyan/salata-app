@@ -57,15 +57,7 @@ enum StatusType {
 }
 
 type Mutation {
-  addOrder(input: input): OrderType
+  addOrder(dueDate: String, isTakeout: Boolean): OrderType
   addItems: OrderType
-  updateOrderStatus: OrderType
-}
-
-input input {
-  clientID: String
-  clientName: String
-  clientNumber: String
-  dueDate: String
-  isTakeout: Boolean
+  updateOrderStatus(id: ID, status: StatusType): OrderType
 }
