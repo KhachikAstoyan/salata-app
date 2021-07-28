@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const MONGO_URI = 'mongodb+srv://admin:4oevkXjQVi8f3XgU@cluster0.pmw4e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const MONGO_URI = 'mongodb+srv://hakak:test@cluster0.qej0e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 if (!MONGO_URI) {
   throw new Error('Must provide');
 }
