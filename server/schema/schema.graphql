@@ -34,13 +34,9 @@ type ItemType {
   quantity: Int
 }
 
-enum IngredientType {
-  SALATA_MIX
-  ROMAINE_HEARTS
-  ARCADIAN
-  SPINACH
-  CUCUMBER
-  TOMATO
+type IngredientType {
+  id: ID
+  name: String
 }
 
 type AudioType {
@@ -58,7 +54,8 @@ enum StatusType {
 
 type Mutation {
   addOrder(input: input): OrderType
-  addItems: OrderType
+  addItems(id: String, ingredients: [ID], extra: String, additionalInformation: String, name: String, audio: String, quantity: Int): OrderType
+  addIngredients(id: String, name: String, items: [ID]): OrderType
   updateOrderStatus(id: ID, status: StatusType): OrderType
 }
 

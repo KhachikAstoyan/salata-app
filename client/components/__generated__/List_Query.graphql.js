@@ -8,12 +8,12 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type ItemList_order$ref = any;
+type OrderComponent_order$ref = any;
 export type List_QueryVariables = {||};
 export type List_QueryResponse = {|
   +orders: ?$ReadOnlyArray<?{|
     +id: ?string,
-    +$fragmentRefs: ItemList_order$ref,
+    +$fragmentRefs: OrderComponent_order$ref,
   |}>
 |};
 export type List_Query = {|
@@ -27,15 +27,25 @@ export type List_Query = {|
 query List_Query {
   orders {
     id
-    ...ItemList_order
+    ...OrderComponent_order
   }
 }
 
 fragment ItemList_order on OrderType {
   items {
+    ...Item_item
     id
-    name
   }
+}
+
+fragment Item_item on ItemType {
+  id
+  name
+  quantity
+}
+
+fragment OrderComponent_order on OrderType {
+  ...ItemList_order
 }
 */
 
@@ -66,7 +76,7 @@ return {
           {
             "args": null,
             "kind": "FragmentSpread",
-            "name": "ItemList_order"
+            "name": "OrderComponent_order"
           }
         ],
         "storageKey": null
@@ -105,6 +115,13 @@ return {
                 "kind": "ScalarField",
                 "name": "name",
                 "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "quantity",
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -115,16 +132,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "c71d13ec4927f6d39780b37418569a4a",
+    "cacheID": "b985b1651e8bfb5200899362b86b5d94",
     "id": null,
     "metadata": {},
     "name": "List_Query",
     "operationKind": "query",
-    "text": "query List_Query {\n  orders {\n    id\n    ...ItemList_order\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    id\n    name\n  }\n}\n"
+    "text": "query List_Query {\n  orders {\n    id\n    ...OrderComponent_order\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    ...Item_item\n    id\n  }\n}\n\nfragment Item_item on ItemType {\n  id\n  name\n  quantity\n}\n\nfragment OrderComponent_order on OrderType {\n  ...ItemList_order\n}\n"
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c13b5fe4494cad271aec166c267b36fe';
+(node/*: any*/).hash = '079c533fac1fb192cb92aa1bcb9c5ae5';
 
 module.exports = node;

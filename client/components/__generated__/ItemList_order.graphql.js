@@ -8,13 +8,13 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
+type Item_item$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ItemList_order$ref: FragmentReference;
 declare export opaque type ItemList_order$fragmentType: ItemList_order$ref;
 export type ItemList_order = {|
   +items: ?$ReadOnlyArray<?{|
-    +id: ?string,
-    +name: ?string,
+    +$fragmentRefs: Item_item$ref
   |}>,
   +$refType: ItemList_order$ref,
 |};
@@ -42,18 +42,9 @@ const node/*: ReaderFragment*/ = {
       "plural": true,
       "selections": [
         {
-          "alias": null,
           "args": null,
-          "kind": "ScalarField",
-          "name": "id",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "name",
-          "storageKey": null
+          "kind": "FragmentSpread",
+          "name": "Item_item"
         }
       ],
       "storageKey": null
@@ -63,6 +54,6 @@ const node/*: ReaderFragment*/ = {
   "abstractKey": null
 };
 // prettier-ignore
-(node/*: any*/).hash = '88e24ad9100bd87d02e595645bfd8a9c';
+(node/*: any*/).hash = '17c8dcf608b57004629f4d0738520b0a';
 
 module.exports = node;
