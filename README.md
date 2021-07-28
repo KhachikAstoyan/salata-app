@@ -2,7 +2,7 @@
 
 ## [Figma mockup](https://www.figma.com/file/gvYTd9ZsGkEaEjTgtt7LyD/Untitled?node-id=0%3A1)
 
-> Before making any changes click the button `Fetch upstream`, then write in terminal:
+> Before making any changes click the button `Fetch upstream` in your repo, then write in terminal:
 
 ```
 git pull

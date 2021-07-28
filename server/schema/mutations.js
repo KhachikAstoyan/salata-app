@@ -12,7 +12,7 @@ const ItemType = require("./ItemType");
 const OrderType = require("./OrderType");
 const StatusType = require("./StatusType");
 const mongoose = require("mongoose");
-const Order = mongoose.model("order");
+const Order = require("../models/Order");
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",

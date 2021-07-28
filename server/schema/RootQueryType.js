@@ -56,7 +56,7 @@ const RootQuery = new GraphQLObjectType({
             isTakeout: true,
             items: [
               {
-                id: "6100148cad08a28f2ffa57c5",
+                id: "6100148cad08a28f2ffa57c9",
                 ingredients: [1, 2, 4, 5],
                 extra: [0],
                 additionalInformation: "Extra napkins, thanks",
@@ -65,7 +65,7 @@ const RootQuery = new GraphQLObjectType({
                 quantity: 1,
               },
               {
-                id: "6100148cad08a28f2ffa57c6",
+                id: "6100148cad08a28f2ffa57d1",
                 ingredients: [2, 3, 5],
                 extra: [4],
                 additionalInformation: "Extra dressing",
