@@ -17,12 +17,7 @@ function List (){
 
     const orders = data.orders.map(
         (order) => order && 
-        (<div className="ordersList">
-            <div className="listContainer">
-                <OrderComponent order={order} key={order.id} />
-            </div>
-        </div>)
-    );
+        (<OrderComponent order={order} key={order.id} />));
 
     return (
         <div className = "main">

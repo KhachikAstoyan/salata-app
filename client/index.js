@@ -5,6 +5,7 @@ import {RelayEnvironmentProvider} from "react-relay";
 import Environment from "./relay/environment";
 import {HashRouter as Router,Switch,Route} from "react-router-dom";
 import "../client/OrderList/style.css"
+import "./style/style.css"
 
 const Root = () => {
    return <RelayEnvironmentProvider environment = {Environment}>
@@ -19,6 +20,7 @@ const Root = () => {
        </Router>
      </div>
      </Suspense>
- </RelayEnvironmentProvider>;};
+ </RelayEnvironmentProvider>;
+};
 
 ReactDOM.render(<Root />, document.querySelector("#root"));

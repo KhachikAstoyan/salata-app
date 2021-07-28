@@ -1,14 +1,86 @@
 .main{
-display:flex;
 background-color: #f8fff6;
-margin: 50px;
-height: 800px;
+margin: 0 25px;
+flex-grow: 1;
 }
 .main-item{
-    margin-left:50px;
-    margin-top: 100px;
+    color: black;
 }
-.main-item{
-    color: aquamarine;
-    
+
+.collection {
+    border: 0;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    border: white;
+}
+
+.RightPart{
+    display: flex;
+}
+
+.item{
+    background: #F5F5F5;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    display: flex;
+    width: 1200px;
+    height: 100px;
+    align-items: center;
+    background: #F5F5F5;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    margin: 5px auto;
+}
+
+.itemsNames{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+}
+
+.itemsNames h4 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.item_place{
+    font-size: 24px;
+    color: #5A5A5A;
+
+}
+
+.item_name{
+    color: #2CBB3A;
+}
+
+.AudioPlayers{
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    margin-left: 250px;
+}
+
+.ArrowIcon{
+    margin-top: 20px;
+}
+
+.playerButtons{
+    margin-left: 50px;
+}
+
+.ingredients h4{
+    margin-top: 40px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 16px;
+    color: #2CBB3A;
 }

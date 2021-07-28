@@ -1,53 +1,47 @@
 body {
-    background-color: #F8FFF6;
+  background-color: #f8fff6;
 }
 
 .ordersList {
-    margin-top: 100px;
-    height: 100px;
-    background-color: #FFFFFF;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
-    width: 1100px;
-
+  background-color: #ffffff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+  margin-bottom: 20px;
 }
 
+.orderInfo {
+  flex-grow: 1;
+}
 
 .listContainer {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.DueCont{
-    margin-left: 100px
-}
-
-
-.optionCont {
-    margin-left: 400px;
-}
-
-.browser-default{
-  width: 150px;
-  height: 30px;
-  padding: 5px;
-  background-color: green;
+.browser-default {
+    height: 35px;
+  border-radius: 5px;
+  background-color: #6be87f;
 }
 
 .option1 {
-    background-color: #C0C0C0;
+  background-color: #F5F5F5;
 }
 
 .option2 {
-    background-color: #6BE87F;
+  background-color: #6be87f;
 }
- 
-.option3 {
-    background-color: #F3D052;
-}
- 
- 
 
+.option3 {
+  background-color: #f3d052;
+}
+
+.dueDate {
+    padding-right: 20px;
+}
+.input-field {
+    margin-top: 0;
+}
