@@ -2,6 +2,7 @@
 import React from "react";
 import {graphql ,useLazyLoadQuery} from "react-relay";
 import ItemList from "./ItemList";
+import OrderComponent from "../OrderList/OrderComponent";
 const query  = graphql`
 query List_Query{
     orders{
@@ -15,8 +16,8 @@ function List (){
     const data = useLazyLoadQuery(query, {});
 
     const orders = data.orders.map(
-        (order) => order && <ItemList order={order} key={order.id} />
-    );
+        (order) => order && 
+        (<OrderComponent order={order} key={order.id} />));
 
     return (
         <div className = "main">
