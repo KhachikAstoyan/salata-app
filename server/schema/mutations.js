@@ -1,12 +1,13 @@
 //@ts-check
 const graphql = require("graphql");
-const mongoose = require("mongoose");
 const ClientType = require("./ClientType");
 const { GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLList } =
   graphql;
 const ItemType = require("./ItemType");
 const OrderType = require("./OrderType");
 const StatusType = require("./StatusType");
+const mongoose = require("mongoose");
+const { GraphQLID } = require("graphql");
 const Order = mongoose.model("order");
 
 const mutation = new GraphQLObjectType({
@@ -19,18 +20,27 @@ const mutation = new GraphQLObjectType({
           type: new graphql.GraphQLInputObjectType({
             name: "input",
             fields: {
-              clientID: { type: GraphQLString },
-              clientName: { type: GraphQLString },
-              clientNumber: { type: GraphQLString },
-              dueDate: { type: GraphQLString },
+              clientId: { type: GraphQLID },
+              dueTime: { type: GraphQLString },
               isTakeout: { type: GraphQLBoolean },
+              itemsId: { type: GraphQLList(GraphQLID) },
+              startTime: { type: GraphQLString },
+              status: { type: StatusType },
             },
           }),
         },
       },
       resolve(parentValue, args) {
-        const newOrder = new Order({ isTakeout: true });
-        newOrder.save();
+        console.log(args.input.itemsId);
+        const newOrder = new Order({
+          client: args.input.clientId,
+          dueTime: args.input.dueTime,
+          isTakeout: args.input.isTakeout,
+          items: args.input.itemsId,
+          startTime: args.input.startTime,
+          status: args.input.status,
+        });
+        return newOrder.save();
       },
     },
     addItems: {
