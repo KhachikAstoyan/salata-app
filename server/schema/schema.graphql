@@ -1,0 +1,77 @@
+schema {
+  query: RootQueryType
+  mutation: Mutation
+}
+
+type RootQueryType {
+  orders: [OrderType]
+}
+
+type OrderType {
+  id: ID
+  client: ClientType
+  dueTime: Int
+  isTakeout: Boolean
+  items: [ItemType]
+  orderNumber: Int
+  startTime: Int
+  status: StatusType
+}
+
+type ClientType {
+  id: ID
+  name: String
+  phoneNumber: String
+}
+
+type ItemType {
+  id: ID
+  ingredients: [IngredientType]
+  extra: [IngredientType]
+  additionalInformation: String
+  name: String
+  audio: [AudioType]
+  quantity: Int
+}
+
+enum IngredientType {
+  SALATA_MIX
+  ROMAINE_HEARTS
+  ARCADIAN
+  SPINACH
+  CUCUMBER
+  TOMATO
+}
+
+type AudioType {
+  id: ID
+  data: String
+  language: String
+  delay: Int
+}
+
+enum StatusType {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+type Mutation {
+<<<<<<< HEAD
+  addOrder(input: input): OrderType
+  addItems: OrderType
+  updateOrderStatus: OrderType
+}
+
+input input {
+  clientID: String
+  clientName: String
+  clientNumber: String
+  dueDate: String
+  isTakeout: Boolean
+=======
+  addOrder(dueDate: String, isTakeout: Boolean): OrderType
+  addItems: OrderType
+  updateOrderStatus(id: ID, status: StatusType): OrderType
+>>>>>>> b351d14de1b945dbffe87560ba0fd90c78e1ae67
+}
