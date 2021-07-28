@@ -1,4 +1,3 @@
-//@ts-check
 const graphql = require("graphql");
 const ClientType = require("./ClientType");
 const {
@@ -6,10 +5,12 @@ const {
   GraphQLString,
   GraphQLBoolean,
   GraphQLList,
+  GraphQLInt,
   GraphQLID,
 } = graphql;
 const ItemType = require("./ItemType");
 const OrderType = require("./OrderType");
+const IngredientType = require("./IngredientType");
 const StatusType = require("./StatusType");
 const mongoose = require("mongoose");
 const Order = require("../models/Order");
@@ -49,9 +50,17 @@ const mutation = new GraphQLObjectType({
     },
     addItems: {
       type: OrderType,
-      args: {},
+      args: {
+        id: { type: GraphQLString},
+        ingredients: { type: new GraphQLList(IngredientType)},
+        extra: { type: GraphQLString},
+        additionalInformation: {type: GraphQLString},
+        name: {type: GraphQLString },
+        audio: {type: GraphQLString},
+        quantity: {type: GraphQLInt}
+      },
       resolve(parentValue, args) {
-        return;
+        return Order.addItems(args.id, args.ingredients, args.extra, args.additionalInformation, args.name, args.audio, args.quantity);
       },
     },
     updateOrderStatus: {
