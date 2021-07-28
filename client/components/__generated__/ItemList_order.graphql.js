@@ -9,19 +9,19 @@
 /*::
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type ItemList_item$ref: FragmentReference;
-declare export opaque type ItemList_item$fragmentType: ItemList_item$ref;
-export type ItemList_item = {|
+declare export opaque type ItemList_order$ref: FragmentReference;
+declare export opaque type ItemList_order$fragmentType: ItemList_order$ref;
+export type ItemList_order = {|
   +items: ?$ReadOnlyArray<?{|
     +id: ?string,
     +name: ?string,
   |}>,
-  +$refType: ItemList_item$ref,
+  +$refType: ItemList_order$ref,
 |};
-export type ItemList_item$data = ItemList_item;
-export type ItemList_item$key = {
-  +$data?: ItemList_item$data,
-  +$fragmentRefs: ItemList_item$ref,
+export type ItemList_order$data = ItemList_order;
+export type ItemList_order$key = {
+  +$data?: ItemList_order$data,
+  +$fragmentRefs: ItemList_order$ref,
   ...
 };
 */
@@ -31,7 +31,7 @@ const node/*: ReaderFragment*/ = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "ItemList_item",
+  "name": "ItemList_order",
   "selections": [
     {
       "alias": null,
@@ -63,6 +63,6 @@ const node/*: ReaderFragment*/ = {
   "abstractKey": null
 };
 // prettier-ignore
-(node/*: any*/).hash = '8fae2684a91014826d59f104895d71ba';
+(node/*: any*/).hash = '88e24ad9100bd87d02e595645bfd8a9c';
 
 module.exports = node;

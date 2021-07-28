@@ -3,19 +3,16 @@ import { graphql, useFragment } from "react-relay";
 
 
 function ItemList(props) {
-    const data = useFragment(graphql`
-    fragment ItemList_item on OrderType{
+    const {items} = useFragment(graphql`
+    fragment ItemList_order on OrderType{
         items{
             id
             name
         }
     }
-    `, props.item);
-    if (data == null) {
-        return <h1>Empty</h1>;
-    }
+    `,props.order);
 
-    const OrderItems = data.items.map((item, index) => {
+    const OrderItems = items.map((item, index) => {
         return <li key={item.id} className="collection-item">
             <div>
                 <i className="material-icons">
