@@ -5,7 +5,7 @@ const { GraphQLObjectType, GraphQLID, GraphQLString } = graphql;
 const IngredientType = new GraphQLObjectType({
     name: "IngredientType",
     fields: () => ({
-        id: { type: GraphQLID },
+        id: { type: GraphQLString },
         name: { type: GraphQLString }
     })
 });
