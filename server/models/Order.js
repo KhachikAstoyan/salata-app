@@ -23,10 +23,17 @@ const OrderSchema = new Schema({
     status: { type: Number }
 });
 
-// OrderSchema.statics.createOrder = function (clientID, clientName, clientNumber, dueDate, isTakeout) {
-//   const client = Client.findByIdAndUpdate(clientID, { name: clientName, phoneNumber: clientNumber });
-//   const order = new Order()
-// }
+OrderSchema .statics.addItems = function (id, ingredients, extra, additionalInformation, name, audio, quantity){
+  const Item = require("../models/Item");
+  
+  return this.findById(id).then((order) => {
+    const item = new Item({order, ingredients, extra, additionalInformation, name, audio, quantity });
+      order.items.push(item);
+      return Promise.all([item.save(), order.save()]).then(
+        ([item, order]) => order
+      );
+  })
+ } 
 
 const Order = Mongoose.model("order", OrderSchema);
 
