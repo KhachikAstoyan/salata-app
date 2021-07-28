@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { graphql, useFragment } from "react-relay";
 
-
 function ItemList(props) {
     const {items} = useFragment(graphql`
     fragment ItemList_order on OrderType{
@@ -12,25 +11,35 @@ function ItemList(props) {
     }
     `,props.order);
 
-    const OrderItems = items.map((item, index) => {
-        return <li key={item.id} className="collection-item">
-            <div>
-                <i className="material-icons">
-                    chevron_right
-                </i>
-            </div>
-            <h3>item {index + 1} out of {items.length}</h3>
-            {item.name}
+    const OrderItems = items.map((item,index) => {
+       
+            return <div className="container">
+                <li key={item.id} className="item">
+                    <div className="RightPart">
+                        <div className="ArrowIcon">
+                            <i className="material-icons">
+                                chevron_right
+                            </i>
+                        </div>
+                        <div className="itemsNames">
+                            <h4 className="item_place">item {index + 1} out of {items.length}-</h4>
+                            <h4 className="item_name">{item.name}</h4>
+                        </div>
+                        <div className = "ingredients">
+                            <h4>INGREDIENTS</h4>
+                        </div>
+                    </div>
 
-            <div className="AudioPlayers">
-                <div className="AudioPlayer">
-                    <h5>Listen in English</h5>
-                    <i className="material-icons">skip_previous</i>
-                    <i className="material-icons">play_circle</i>
-                    <i className="material-icons">skip_next</i>
-                </div>
+                    <div className="AudioPlayers">
+                        <div className="AudioPlayer">
+                            <div className="playerButtons">
+                                <i className="material-icons">play_circle</i>
+                                <i className="material-icons">replay</i>
+                            </div>
+                        </div>
+                    </div>
+                </li>
             </div>
-        </li>
     })
     return <ul className="collection">{OrderItems}</ul>;
 }
