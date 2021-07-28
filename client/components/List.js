@@ -2,7 +2,7 @@ import React from "react";
 import { graphql, useLazyLoadQuery } from "react-relay";
 
 const query = graphql`
-    query OrderType {
+    query ListQuery {
         orders{
             id
             dueTime

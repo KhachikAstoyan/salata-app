@@ -28,39 +28,39 @@ export type ItemList_item$key = {
 
 
 const node/*: ReaderFragment*/ = {
-    "argumentDefinitions": [],
-    "kind": "Fragment",
-    "metadata": null,
-    "name": "ItemList_item",
-    "selections": [
+  "argumentDefinitions": [],
+  "kind": "Fragment",
+  "metadata": null,
+  "name": "ItemList_item",
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "ItemType",
+      "kind": "LinkedField",
+      "name": "items",
+      "plural": true,
+      "selections": [
         {
-            "alias": null,
-            "args": null,
-            "concreteType": "ItemType",
-            "kind": "LinkedField",
-            "name": "items",
-            "plural": true,
-            "selections": [
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "id",
-                    "storageKey": null
-                },
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "name",
-                    "storageKey": null
-                }
-            ],
-            "storageKey": null
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "id",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "name",
+          "storageKey": null
         }
-    ],
-    "type": "OrderType",
-    "abstractKey": null
+      ],
+      "storageKey": null
+    }
+  ],
+  "type": "OrderType",
+  "abstractKey": null
 };
 // prettier-ignore
 (node/*: any*/).hash = '8fae2684a91014826d59f104895d71ba';
