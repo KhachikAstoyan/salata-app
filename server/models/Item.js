@@ -38,7 +38,6 @@ itemSchema.statics.findIngredients = function (itemId) {
     .populate("ingredients");
 
   return ingredients.then(item => {
-    console.log('item', item);
     return item.ingredients
   })
 }

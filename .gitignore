@@ -117,7 +117,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 
-salata-app-8791ea1f2e09.json
+gcp-*.json
 
 .pnp.*
 schema.graphql

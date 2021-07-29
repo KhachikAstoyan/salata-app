@@ -10,6 +10,7 @@ const {
 const AudioType = require('./AudioType');
 const IngredientType = require("./IngredientType");
 const Item = require("../models/Item");
+const generateAudio = require('../utils/generateAudio');
 
 const ItemType = new GraphQLObjectType({
   name: "ItemType",
@@ -19,7 +20,6 @@ const ItemType = new GraphQLObjectType({
       type: new GraphQLList(IngredientType),
       resolve: async (parentValue, args) => {
         const ingredients = Item.findIngredients(parentValue._id)
-        console.log("INGREDIENTS:", ingredients);
         return ingredients;
       }
     },
@@ -27,8 +27,10 @@ const ItemType = new GraphQLObjectType({
     additionalInformation: { type: GraphQLString },
     name: { type: GraphQLString },
     audio: {
-      type: new GraphQLList(AudioType), resolve(parentValue, args) {
-        // this is where we call Google cloud, and conver to audio, then return a AudiotType array
+      type: AudioType, resolve(parentValue, args) {
+        console.log(parentValue);
+        return generateAudio(parentValue)
+
       }
     },
     quantity: { type: GraphQLInt }

@@ -15,6 +15,7 @@ const mongoose = require("mongoose");
 const Order = require("../models/Order");
 const Item = require("../models/Item");
 const Client = require("../models/Client");
+const AudioType = require("./AudioType");
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -62,7 +63,6 @@ const mutation = new GraphQLObjectType({
         extra: { type: GraphQLString },
         additionalInformation: { type: GraphQLString },
         name: { type: GraphQLString },
-        audio: { type: GraphQLString },
         quantity: { type: GraphQLInt }
       },
       resolve(parentValue, args) {

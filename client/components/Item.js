@@ -1,6 +1,6 @@
 //@ts-check
-import React,{useState} from "react";
-import {graphql,useFragment} from "react-relay";
+import React, { useState } from "react";
+import { graphql, useFragment } from "react-relay";
 import ItemList from "./ItemList";
 function Item(props) {
     const [showItem, toogleItem] = useState(false);
@@ -12,9 +12,8 @@ function Item(props) {
             quantity
         
     }
-    `,props.item);
-    console.log(item);
-    
+    `, props.item);
+
     return <div className="container">
         <li key={item.id} className="item">
             <div className="RightPart">
@@ -23,7 +22,7 @@ function Item(props) {
                         toogleItem(!showItem);
                     }}>
                         {!showItem ? 'chevron_right' : 'expand_more'}
-                </i>
+                    </i>
                 </div>
                 <div className="itemsNames">
                     <h4 className="item_place">item {props.index + 1} out of {props.length}-</h4>

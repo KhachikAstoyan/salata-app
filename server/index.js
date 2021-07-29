@@ -3,6 +3,7 @@
 const express = require('express');
 const schema = require("./schema/schema");
 const { graphqlHTTP } = require("express-graphql");
+const path = require('path');
 
 const webpackMiddleware = require("webpack-dev-middleware");
 const webpack = require("webpack");
@@ -13,18 +14,18 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
-  console.log("Listening...");
+    console.log("Listening...");
 });
 
 connect();
 app.use(express.json());
-app.use(express.static('static'));
+app.use('/static', express.static(path.resolve(__dirname, 'static')));
 app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema,
-    graphiql: true,
-  })
+    "/graphql",
+    graphqlHTTP({
+        schema,
+        graphiql: true,
+    })
 );
 
 // @ts-ignore
