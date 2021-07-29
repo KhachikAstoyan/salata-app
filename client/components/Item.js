@@ -24,7 +24,7 @@ function Item(props) {
             <div className="topDiv">
                 <div className="RightPart">
                     <div className="ArrowIcon">
-                        <i className="material-icons" onClick={() => {
+                        <i className="material-icons" style={{ cursor: "pointer" }} onClick={() => {
                             toogleItem(!showItem);
                         }}>
                             {!showItem ? 'chevron_right' : 'expand_more'}

@@ -6,6 +6,8 @@ import ItemList from "../components/ItemList";
 
 
 function OrderComponent(props) {
+    const [showItems, setShowItems] = useState(false);
+
     const order = useFragment(graphql`
     fragment OrderComponent_order on OrderType{
         ...ItemList_order
@@ -28,7 +30,7 @@ function OrderComponent(props) {
         <div>
             <div className="ordersList">
                 <div className="icon">
-                    <i className="material-icons">chevron_right</i>
+                    <i onClick={() => setShowItems(!showItems)} style={{ cursor: "pointer" }} className="material-icons">{showItems ? "expand_more" : "chevron_right"}</i>
                 </div>
                 <div className="orderInfo">
                     <div className="orderID">Order #23651325 - 2 items</div>
@@ -45,7 +47,7 @@ function OrderComponent(props) {
                     </select>
                 </div>
             </div>
-            <ItemList order={order} />
+            {showItems && <ItemList order={order} />}
         </div>
     );
 
