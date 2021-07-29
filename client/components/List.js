@@ -15,6 +15,7 @@ query List_Query{
 function List (){
     const data = useLazyLoadQuery(query, {});
 
+    // @ts-ignore
     const orders = data.orders.map(
         (order) => order && 
         (<OrderComponent order={order} key={order.id} />));

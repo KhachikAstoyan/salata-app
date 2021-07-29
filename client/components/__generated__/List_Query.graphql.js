@@ -31,10 +31,17 @@ query List_Query {
   }
 }
 
+fragment IngredientList_items on ItemType {
+  ingredients {
+    id
+    name
+  }
+}
+
 fragment ItemList_order on OrderType {
   items {
-    ...Item_item
     id
+    ...Item_item
   }
 }
 
@@ -42,6 +49,7 @@ fragment Item_item on ItemType {
   id
   name
   quantity
+  ...IngredientList_items
 }
 
 fragment OrderComponent_order on OrderType {
@@ -134,6 +142,19 @@ return {
                 "kind": "ScalarField",
                 "name": "quantity",
                 "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "IngredientType",
+                "kind": "LinkedField",
+                "name": "ingredients",
+                "plural": true,
+                "selections": [
+                  (v0/*: any*/),
+                  (v1/*: any*/)
+                ],
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -178,12 +199,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "5f3bd53005a2e1bb01c5517cc24d9e6a",
+    "cacheID": "24c08a2468947004dbb68a1cf989b60b",
     "id": null,
     "metadata": {},
     "name": "List_Query",
     "operationKind": "query",
-    "text": "query List_Query {\n  orders {\n    id\n    ...OrderComponent_order\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    ...Item_item\n    id\n  }\n}\n\nfragment Item_item on ItemType {\n  id\n  name\n  quantity\n}\n\nfragment OrderComponent_order on OrderType {\n  ...ItemList_order\n  id\n  client {\n    name\n    id\n  }\n  orderNumber\n  items {\n    id\n  }\n  dueTime\n  status\n}\n"
+    "text": "query List_Query {\n  orders {\n    id\n    ...OrderComponent_order\n  }\n}\n\nfragment IngredientList_items on ItemType {\n  ingredients {\n    id\n    name\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment Item_item on ItemType {\n  id\n  name\n  quantity\n  ...IngredientList_items\n}\n\nfragment OrderComponent_order on OrderType {\n  ...ItemList_order\n  id\n  client {\n    name\n    id\n  }\n  orderNumber\n  items {\n    id\n  }\n  dueTime\n  status\n}\n"
   }
 };
 })();

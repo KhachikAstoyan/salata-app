@@ -7,6 +7,7 @@ function ItemList(props) {
     const {items} = useFragment(graphql`
     fragment ItemList_order on OrderType{
         items{
+            id
             ...Item_item
         }
     }

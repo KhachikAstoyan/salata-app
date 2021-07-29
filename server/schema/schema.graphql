@@ -54,9 +54,10 @@ enum StatusType {
 
 type Mutation {
   addOrder(input: input): OrderType
-  addItems(id: String, ingredients: [ID], extra: String, additionalInformation: String, name: String, audio: String, quantity: Int): OrderType
+  addItems(orderId: ID, ingredients: [ID], extra: String, additionalInformation: String, name: String, audio: String, quantity: Int): OrderType
   addIngredients(id: String, name: String, items: [ID]): OrderType
   updateOrderStatus(id: String, status: StatusType): OrderType
+  addClient(name: String, phoneNumber: String): ClientType
 }
 
 input input {
