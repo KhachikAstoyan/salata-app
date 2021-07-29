@@ -8,13 +8,13 @@ type RootQueryType {
 }
 
 type OrderType {
-  id: ID
+  id: String
   client: ClientType
-  dueTime: Int
+  dueTime: Float
   isTakeout: Boolean
   items: [ItemType]
   orderNumber: Int
-  startTime: Int
+  startTime: Float
   status: StatusType
 }
 
@@ -35,12 +35,12 @@ type ItemType {
 }
 
 type IngredientType {
-  id: ID
+  id: String
   name: String
 }
 
 type AudioType {
-  id: ID
+  id: String
   data: String
   language: String
   delay: Int
@@ -56,7 +56,7 @@ type Mutation {
   addOrder(input: input): OrderType
   addItems(id: String, ingredients: [ID], extra: String, additionalInformation: String, name: String, audio: String, quantity: Int): OrderType
   addIngredients(id: String, name: String, items: [ID]): OrderType
-  updateOrderStatus(id: ID, status: StatusType): OrderType
+  updateOrderStatus(id: String, status: StatusType): OrderType
 }
 
 input input {
