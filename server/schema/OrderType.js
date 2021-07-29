@@ -2,7 +2,7 @@ const { GraphQLString } = require("graphql");
 const graphql = require("graphql");
 const {
   GraphQLObjectType,
-  GraphQLID,
+  GraphQLFloat,
   GraphQLInt,
   GraphQLBoolean,
   GraphQLList
@@ -24,7 +24,7 @@ const OrderType = new GraphQLObjectType({
         return await Client.findById(parentValue.client)
       }
     },
-    dueTime: { type: GraphQLInt },
+    dueTime: { type: GraphQLFloat },
     isTakeout: { type: GraphQLBoolean },
     items: {
       type: new GraphQLList(ItemType),
@@ -33,7 +33,7 @@ const OrderType = new GraphQLObjectType({
       }
     },
     orderNumber: { type: GraphQLInt },
-    startTime: { type: GraphQLInt },
+    startTime: { type: GraphQLFloat },
     status: { type: StatusType },
   }),
 });
