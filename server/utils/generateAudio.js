@@ -34,13 +34,14 @@ module.exports = async function (item, language = "en-US") {
                 ${quantity} ${name}
                 <break time="1s" />
                 ${ingredientString}
+                Extra Information <break time="1s" />
                 ${extra.join(' ')}
             </speak>
             `
         const request = {
             input: { ssml: text },
             // LANGUAGE HAS TO BE IN THIS FORMAT - [en-US]
-            voice: { languageCode: language, ssmlGender: 'NEUTRAL' },
+            voice: { languageCode: language, ssmlGender: 'FEMALE' },
             audioConfig: { audioEncoding: 'MP3' },
         };
 

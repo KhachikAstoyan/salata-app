@@ -121,3 +121,9 @@ gcp-*.json
 
 .pnp.*
 schema.graphql
+
+# exclude everything
+static/*
+
+# exception to the rule
+!static/.gitkeep 
