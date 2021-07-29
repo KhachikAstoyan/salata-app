@@ -13,6 +13,15 @@ module.exports = async function (item, language = "en-US") {
         const { _id: id, ingredients, extra, name, quantity } = item;
         const audioName = String(id) + '.mp3';
         const audioPath = path.resolve(__dirname, '..', 'static', `${audioName}`);
+        const returnObject = { data: path.join('static', audioName) };
+
+        if (fs.existsSync(audioPath)) {
+            console.log("IT EXISTS!!!!!!!!!!!!!");
+            return returnObject;
+        };
+
+        console.log('-------------------------')
+
 
         const ingredientData = await Item.findIngredients(id);
         const ingredientString = ingredientData.map(ingredient => `${ingredient.name} <break time="1s" />`).join(' ');
@@ -26,23 +35,8 @@ module.exports = async function (item, language = "en-US") {
                 <break time="1s" />
                 ${ingredientString}
                 ${extra.join(' ')}
-                
             </speak>
             `
-
-        let doesExist = false;
-
-        fs.access(audioPath, fs.F_OK, (err) => {
-            if (err) {
-                console.error("err")
-                return
-            }
-
-            doesExist = true
-        })
-
-        if (doesExist) return path.join('static', audioName);
-
         const request = {
             input: { ssml: text },
             // LANGUAGE HAS TO BE IN THIS FORMAT - [en-US]
@@ -56,7 +50,7 @@ module.exports = async function (item, language = "en-US") {
         await writeFile(audioPath, response.audioContent, 'binary');
         console.log(`Saved to ${audioPath}`);
 
-        return { data: path.join('static', audioName) };
+        return returnObject;
     } catch (e) {
         console.log(e)
     }
