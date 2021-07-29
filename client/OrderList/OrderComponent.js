@@ -1,4 +1,4 @@
-//@ts-check
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {graphql,useFragment} from "react-relay";
@@ -6,6 +6,7 @@ import ItemList from "../components/ItemList";
 
 
 function OrderComponent(props) {
+    const [showItem, toogleItem] = useState(false);
     const order = useFragment(graphql`
     fragment OrderComponent_order on OrderType{
         ...ItemList_order
@@ -26,9 +27,13 @@ function OrderComponent(props) {
 
     return (
         <div>
+            <div className="orderlist-itemlist">
         <div className="ordersList">
                 <div className="icon">
-                    <i className="material-icons">chevron_right</i>
+                    <i className="material-icons" onClick={() => {
+                        toogleItem(!showItem);
+                    }}>{!showItem ? 'chevron_right' : 'expand_more'}
+                    </i>
                 </div>
                 <div className="orderInfo">
                     <div className="orderID">Order #23651325 - 2 items</div>
@@ -44,8 +49,11 @@ function OrderComponent(props) {
                         <option value="3" className="option3">In progress</option>
                     </select>
                 </div>
+                
             </div>
-               <ItemList order={order} />
+                {showItem && <ItemList order={order} /> }
+               </div>
+                
         </div>
     );
 
