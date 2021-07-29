@@ -30,7 +30,7 @@ type ItemType {
   extra: [IngredientType]
   additionalInformation: String
   name: String
-  audio: [AudioType]
+  audio: AudioType
   quantity: Int
 }
 
@@ -40,10 +40,7 @@ type IngredientType {
 }
 
 type AudioType {
-  id: String
   data: String
-  language: String
-  delay: Int
 }
 
 enum StatusType {
@@ -54,7 +51,7 @@ enum StatusType {
 
 type Mutation {
   addOrder(input: input): OrderType
-  addItems(orderId: ID, ingredients: [ID], extra: String, additionalInformation: String, name: String, audio: String, quantity: Int): OrderType
+  addItems(orderId: ID, ingredients: [ID], extra: String, additionalInformation: String, name: String, quantity: Int): OrderType
   addIngredients(id: String, name: String, items: [ID]): OrderType
   updateOrderStatus(id: String, status: StatusType): OrderType
   addClient(name: String, phoneNumber: String): ClientType
