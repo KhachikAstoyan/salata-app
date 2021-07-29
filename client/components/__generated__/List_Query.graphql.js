@@ -46,6 +46,17 @@ fragment Item_item on ItemType {
 
 fragment OrderComponent_order on OrderType {
   ...ItemList_order
+  id
+  client {
+    name
+    id
+  }
+  orderNumber
+  items {
+    id
+  }
+  dueTime
+  status
 }
 */
 
@@ -55,6 +66,13 @@ var v0 = {
   "args": null,
   "kind": "ScalarField",
   "name": "id",
+  "storageKey": null
+},
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
   "storageKey": null
 };
 return {
@@ -109,13 +127,7 @@ return {
             "plural": true,
             "selections": [
               (v0/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "name",
-                "storageKey": null
-              },
+              (v1/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -125,6 +137,40 @@ return {
               }
             ],
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "ClientType",
+            "kind": "LinkedField",
+            "name": "client",
+            "plural": false,
+            "selections": [
+              (v1/*: any*/),
+              (v0/*: any*/)
+            ],
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "orderNumber",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "dueTime",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "status",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -132,12 +178,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b985b1651e8bfb5200899362b86b5d94",
+    "cacheID": "5f3bd53005a2e1bb01c5517cc24d9e6a",
     "id": null,
     "metadata": {},
     "name": "List_Query",
     "operationKind": "query",
-    "text": "query List_Query {\n  orders {\n    id\n    ...OrderComponent_order\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    ...Item_item\n    id\n  }\n}\n\nfragment Item_item on ItemType {\n  id\n  name\n  quantity\n}\n\nfragment OrderComponent_order on OrderType {\n  ...ItemList_order\n}\n"
+    "text": "query List_Query {\n  orders {\n    id\n    ...OrderComponent_order\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    ...Item_item\n    id\n  }\n}\n\nfragment Item_item on ItemType {\n  id\n  name\n  quantity\n}\n\nfragment OrderComponent_order on OrderType {\n  ...ItemList_order\n  id\n  client {\n    name\n    id\n  }\n  orderNumber\n  items {\n    id\n  }\n  dueTime\n  status\n}\n"
   }
 };
 })();
