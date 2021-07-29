@@ -31,10 +31,17 @@ query List_Query {
   }
 }
 
+fragment IngredientList_items on ItemType {
+  ingredients {
+    id
+    name
+  }
+}
+
 fragment ItemList_order on OrderType {
   items {
-    ...Item_item
     id
+    ...Item_item
   }
 }
 
@@ -42,6 +49,10 @@ fragment Item_item on ItemType {
   id
   name
   quantity
+  audio {
+    data
+  }
+  ...IngredientList_items
 }
 
 fragment OrderComponent_order on OrderType {
@@ -55,6 +66,13 @@ var v0 = {
   "args": null,
   "kind": "ScalarField",
   "name": "id",
+  "storageKey": null
+},
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
   "storageKey": null
 };
 return {
@@ -109,18 +127,43 @@ return {
             "plural": true,
             "selections": [
               (v0/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "name",
-                "storageKey": null
-              },
+              (v1/*: any*/),
               {
                 "alias": null,
                 "args": null,
                 "kind": "ScalarField",
                 "name": "quantity",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "AudioType",
+                "kind": "LinkedField",
+                "name": "audio",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "data",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "IngredientType",
+                "kind": "LinkedField",
+                "name": "ingredients",
+                "plural": true,
+                "selections": [
+                  (v0/*: any*/),
+                  (v1/*: any*/)
+                ],
                 "storageKey": null
               }
             ],
@@ -132,12 +175,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b985b1651e8bfb5200899362b86b5d94",
+    "cacheID": "974035df9715a5a479ed6da94496f3c8",
     "id": null,
     "metadata": {},
     "name": "List_Query",
     "operationKind": "query",
-    "text": "query List_Query {\n  orders {\n    id\n    ...OrderComponent_order\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    ...Item_item\n    id\n  }\n}\n\nfragment Item_item on ItemType {\n  id\n  name\n  quantity\n}\n\nfragment OrderComponent_order on OrderType {\n  ...ItemList_order\n}\n"
+    "text": "query List_Query {\n  orders {\n    id\n    ...OrderComponent_order\n  }\n}\n\nfragment IngredientList_items on ItemType {\n  ingredients {\n    id\n    name\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment Item_item on ItemType {\n  id\n  name\n  quantity\n  audio {\n    data\n  }\n  ...IngredientList_items\n}\n\nfragment OrderComponent_order on OrderType {\n  ...ItemList_order\n}\n"
   }
 };
 })();

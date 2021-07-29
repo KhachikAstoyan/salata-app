@@ -14,7 +14,8 @@ declare export opaque type ItemList_order$ref: FragmentReference;
 declare export opaque type ItemList_order$fragmentType: ItemList_order$ref;
 export type ItemList_order = {|
   +items: ?$ReadOnlyArray<?{|
-    +$fragmentRefs: Item_item$ref
+    +id: ?string,
+    +$fragmentRefs: Item_item$ref,
   |}>,
   +$refType: ItemList_order$ref,
 |};
@@ -42,6 +43,13 @@ const node/*: ReaderFragment*/ = {
       "plural": true,
       "selections": [
         {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "id",
+          "storageKey": null
+        },
+        {
           "args": null,
           "kind": "FragmentSpread",
           "name": "Item_item"
@@ -54,6 +62,6 @@ const node/*: ReaderFragment*/ = {
   "abstractKey": null
 };
 // prettier-ignore
-(node/*: any*/).hash = '17c8dcf608b57004629f4d0738520b0a';
+(node/*: any*/).hash = 'bd3b595e79ff250cde0b9f53e2ab769f';
 
 module.exports = node;
