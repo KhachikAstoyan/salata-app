@@ -40,7 +40,7 @@ body {
 }
 
 .option3 {
-  background-color: #f3d052;
+  background-color: #fff45a;
 }
 
 .dueDate {
@@ -48,4 +48,8 @@ body {
 }
 .input-field {
     margin-top: 0;
+}
+
+.orderID {
+    font-weight: bold;
 }

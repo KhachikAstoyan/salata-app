@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {graphql,useFragment} from "react-relay";
+import { graphql, useFragment } from "react-relay";
 import ItemList from "../components/ItemList";
 
 
@@ -12,7 +12,7 @@ function OrderComponent(props) {
         ...ItemList_order
 
     }
-    `,props.order);
+    `, props.order);
     const [selected, setSelected] = useState("1");
     let className = "";
     if (selected === "1") {
@@ -22,7 +22,7 @@ function OrderComponent(props) {
     }
 
     else if (selected === "3") {
-        className = "option3"   
+        className = "option3"
     }
 
     return (
