@@ -23,36 +23,27 @@ function OrderComponent(props) {
         status
     }
     `,props.order);
-    const [showItemList, toggleItemList] = useState(false);
-    const [selected, setSelected] = useState("1");
+    const [selected, setSelected] = useState(order.status);
     let className = "";
-    if (selected === "1") {
+    if (selected === "NOT_STARTED") {
         className = "option1";
-    } else if (selected === "2") {
+    } else if (selected === "IN_PROGRESS") {
         className = "option2"
-    }
-
-    else if (selected === "3") {
+    } else if (selected === "COMPLETED") {
         className = "option3"
     }
 
 
     let clientName = "";
     let orderNumber = "";
-    let status = "";
-    let status2 = "";
-    let status3 = "";
     let duetime;
 
     if(order.dueTime){
         duetime = order.dueTime;
     }
 
-    const time = duetime;
     const event2 = new Date(); 
-    event2.setTime(time);
-
-    console.log(event2.toLocaleTimeString());
+    event2.setTime(duetime);
 
 
     if(order.client) {
@@ -61,21 +52,6 @@ function OrderComponent(props) {
     if(order.orderNumber){
         orderNumber = order.orderNumber;
     }
-    if(order.status == "NOT_STARTED"){
-        status = "Not Started";
-        status2 = "Completed";
-        status3 = "In progress";
-    }
-    if(order.status == "IN_PROGRESS"){
-        status = "In Progress";
-        status2 = "Not Started";
-        status3 = "Completed";
-    }
-    if(order.status == "COMPLETED"){
-        status = "Completed";
-        status2 = "Not Started";
-        status3 = "In progress";
-    }
 
 
     return (
@@ -83,9 +59,9 @@ function OrderComponent(props) {
         <div className="ordersList">
                 <div className="icon">
                     <i className="material-icons" onClick={() =>{
-                        toggleItemList(!showItemList);
+                        toogleItem(!showItem);
                     }}>
-                        {!showItemList ? 'chevron_right' : 'expand_more'}
+                        {!showItem ? 'chevron_right' : 'expand_more'}
                     </i>
                 </div>
                 <div className="orderInfo">
@@ -96,15 +72,15 @@ function OrderComponent(props) {
                 <div className="input-field col s12">
                     <select className={`browser-default ${className}`} onChange={(event) => {
                         setSelected(event.target.value);
-                    }} defaultValue="1">
-                        <option value="1" className="option1">{status}</option>
-                        <option value="2" className="option2">{status2}</option>
-                        <option value="3" className="option3">{status3}</option>
+                    }} defaultValue={selected}>
+                        <option value="NOT_STARTED" className="option1">Not Started</option>
+                        <option value="IN_PROGRESS" className="option2">In Progress</option>
+                        <option value="COMPLETED" className="option3">Completed</option>
                     </select>
                 </div>
                 
             </div>
-               {showItemList && <ItemList order={order} />}
+               {showItem && <ItemList order={order} />}
         </div>
     );
 
