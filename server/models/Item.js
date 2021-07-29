@@ -33,17 +33,27 @@ const itemSchema = new Schema({
   },
 });
 
-itemSchema.statics.addIngredients = function (id, name, items){
-  const Ingredient = require("../models/Ingredient");
-  
-  return this.findById(id).then((item) => {
-    const ingredient = new Ingredient({name, id, items});
-      item.ingredients.push(ingredient);
-      return Promise.all([ingredient.save(), item.save()]).then(
-        ([ingredient, item]) => item
-      );
+itemSchema.statics.findIngredients = function (itemId) {
+  const ingredients = this.findById(itemId)
+    .populate("ingredients");
+
+  return ingredients.then(item => {
+    console.log('item', item);
+    return item.ingredients
   })
- } 
+}
+
+itemSchema.statics.addIngredients = function (id, name, items) {
+  const Ingredient = require("../models/Ingredient");
+
+  return this.findById(id).then((item) => {
+    const ingredient = new Ingredient({ name, id, items });
+    item.ingredients.push(ingredient);
+    return Promise.all([ingredient.save(), item.save()]).then(
+      ([ingredient, item]) => item
+    );
+  })
+}
 
 const Item = Mongoose.model("item", itemSchema);
 

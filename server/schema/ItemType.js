@@ -1,4 +1,3 @@
-//@ts-check
 const graphql = require("graphql");
 const { ids } = require("webpack");
 const {
@@ -18,8 +17,10 @@ const ItemType = new GraphQLObjectType({
     id: { type: GraphQLID },
     ingredients: {
       type: new GraphQLList(IngredientType),
-      resolve: (parentValue, args) => {
-
+      resolve: async (parentValue, args) => {
+        const ingredients = Item.findIngredients(parentValue._id)
+        console.log("INGREDIENTS:", ingredients);
+        return ingredients;
       }
     },
     extra: { type: new GraphQLList(IngredientType) },

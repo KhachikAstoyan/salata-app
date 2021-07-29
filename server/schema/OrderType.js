@@ -14,8 +14,6 @@ const Client = require("../models/Client");
 const Item = require("../models/Item");
 const Order = require('../models/Order');
 
-
-
 const OrderType = new GraphQLObjectType({
   name: "OrderType",
   fields: () => ({
@@ -31,7 +29,6 @@ const OrderType = new GraphQLObjectType({
     items: {
       type: new GraphQLList(ItemType),
       resolve: async (parentValue, args) => {
-        console.log(parentValue);
         return Order.findItems(parentValue._id)
       }
     },
