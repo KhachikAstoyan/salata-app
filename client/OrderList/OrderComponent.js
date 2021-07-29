@@ -1,12 +1,13 @@
-//@ts-check
+
+// @ts-check
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 // @ts-ignore
-import {graphql,useFragment} from "react-relay";
+import { graphql, useFragment } from "react-relay";
 import ItemList from "../components/ItemList";
 
 
 function OrderComponent(props) {
+    const [showItem, toogleItem] = useState(false);
     const order = useFragment(graphql`
     fragment OrderComponent_order on OrderType{
         ...ItemList_order
@@ -32,7 +33,7 @@ function OrderComponent(props) {
     }
 
     else if (selected === "3") {
-        className = "option3"   
+        className = "option3"
     }
 
 
@@ -78,7 +79,7 @@ function OrderComponent(props) {
 
 
     return (
-        <div>
+            <div className="orderlist-itemlist">
         <div className="ordersList">
                 <div className="icon">
                     <i className="material-icons" onClick={() =>{
@@ -101,6 +102,7 @@ function OrderComponent(props) {
                         <option value="3" className="option3">{status3}</option>
                     </select>
                 </div>
+                
             </div>
                {showItemList && <ItemList order={order} />}
         </div>

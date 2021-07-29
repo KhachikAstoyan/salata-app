@@ -24,11 +24,9 @@ const OrderSchema = new Schema({
 });
 
 OrderSchema.statics.findItems = function (id) {
-    console.log(id);
     const items = this.findById(id)
         .populate("items");
     return items.then(order => {
-        console.log('order', order);
         return order.items;
     });
 }

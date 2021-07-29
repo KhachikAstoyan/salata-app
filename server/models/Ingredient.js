@@ -7,10 +7,10 @@ const ingredientSchema = new Schema({
         type: String,
         required: true,
     },
-    items: [{
+    items: {
         type: Schema.Types.ObjectId,
         ref: "item"
-    }]
+    }
 });
 
 const Ingredient = Mongoose.model("ingredient", ingredientSchema);
