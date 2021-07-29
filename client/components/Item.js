@@ -1,7 +1,8 @@
 //@ts-check
 import React,{useState} from "react";
 import {graphql,useFragment} from "react-relay";
-import ItemList from "./ItemList";
+import IngredientList from "./IngredientList";
+
 function Item(props) {
     const [showItem, toogleItem] = useState(false);
     const item = useFragment(graphql`
@@ -10,10 +11,10 @@ function Item(props) {
             id
             name
             quantity
+            ...IngredientList_items     
         
-    }
+    },
     `,props.item);
-    console.log(item);
     
     return <div className="container">
         <li key={item.id} className="item">
@@ -31,6 +32,10 @@ function Item(props) {
                 </div>
                 <div className="ingredients">
                     <h4>INGREDIENTS</h4>
+                    <div >
+                        
+                    {showItem && <div><IngredientList items = {item}/></div>}
+                    </div>
                 </div>
             </div>
 
@@ -43,7 +48,7 @@ function Item(props) {
                 </div>
             </div>
         </li>
-        {showItem && <div>More Info</div>}
+        
     </div>
 }
 
