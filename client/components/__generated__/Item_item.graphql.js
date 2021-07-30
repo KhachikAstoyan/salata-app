@@ -32,7 +32,16 @@ export type Item_item$key = {
 
 
 const node/*: ReaderFragment*/ = {
-  "argumentDefinitions": [],
+  "argumentDefinitions": [
+    {
+      "kind": "RootArgument",
+      "name": "delay"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "language"
+    }
+  ],
   "kind": "Fragment",
   "metadata": null,
   "name": "Item_item",
@@ -60,7 +69,18 @@ const node/*: ReaderFragment*/ = {
     },
     {
       "alias": null,
-      "args": null,
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "delay",
+          "variableName": "delay"
+        },
+        {
+          "kind": "Variable",
+          "name": "language",
+          "variableName": "language"
+        }
+      ],
       "concreteType": "AudioType",
       "kind": "LinkedField",
       "name": "audio",
@@ -86,6 +106,6 @@ const node/*: ReaderFragment*/ = {
   "abstractKey": null
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a5373572740ee80b7b2e39773fd21754';
+(node/*: any*/).hash = '14ecb153317b1404f7a5eec21eb0387d';
 
 module.exports = node;
