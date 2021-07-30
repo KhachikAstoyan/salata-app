@@ -9,7 +9,7 @@ const {
 } = graphql;
 const ItemType = require("./ItemType");
 const OrderType = require("./OrderType");
-const ClientType = require("./ClientType")
+const ClientType = require("./ClientType");
 const StatusType = require("./StatusType");
 const mongoose = require("mongoose");
 const Order = require("../models/Order");
@@ -53,7 +53,28 @@ const mutation = new GraphQLObjectType({
           status: args.input.status,
         });
         return await newOrder.save();
-      }
+      },
+    },
+    addClient: {
+      type: ClientType,
+      args: {
+        input: {
+          type: new graphql.GraphQLInputObjectType({
+            name: "input",
+            fields: {
+              name: { type: GraphQLString },
+              phoneNumber: { type: GraphQLString },
+            },
+          }),
+        },
+      },
+      async resolve(parentValue, args) {
+        const newClient = new Client({
+          name: args.input.name,
+          phoneNumber: args.input.phoneNumber,
+        });
+        return await newClient.save();
+      },
     },
     addItems: {
       type: OrderType,
@@ -63,10 +84,18 @@ const mutation = new GraphQLObjectType({
         extra: { type: GraphQLString },
         additionalInformation: { type: GraphQLString },
         name: { type: GraphQLString },
-        quantity: { type: GraphQLInt }
+        quantity: { type: GraphQLInt },
       },
       resolve(parentValue, args) {
-        return Order.addItems(args.orderId, args.ingredients, args.extra, args.additionalInformation, args.name, args.audio, args.quantity);
+        return Order.addItems(
+          args.orderId,
+          args.ingredients,
+          args.extra,
+          args.additionalInformation,
+          args.name,
+          args.audio,
+          args.quantity
+        );
       },
     },
     addIngredients: {
@@ -98,14 +127,13 @@ const mutation = new GraphQLObjectType({
       type: ClientType,
       args: {
         name: { type: GraphQLString },
-        phoneNumber: { type: GraphQLString }
+        phoneNumber: { type: GraphQLString },
       },
       async resolve(parentValue, { name, phoneNumber }) {
         return await Client.create({ name, phoneNumber });
-      }
-    }
+      },
+    },
   },
-
 });
 
 module.exports = mutation;

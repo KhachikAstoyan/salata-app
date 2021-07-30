@@ -5,14 +5,14 @@ const {
   GraphQLFloat,
   GraphQLInt,
   GraphQLBoolean,
-  GraphQLList
+  GraphQLList,
 } = graphql;
 const ClientType = require("./ClientType");
 const ItemType = require("./ItemType");
 const StatusType = require("./StatusType");
 const Client = require("../models/Client");
 const Item = require("../models/Item");
-const Order = require('../models/Order');
+const Order = require("../models/Order");
 
 const OrderType = new GraphQLObjectType({
   name: "OrderType",
@@ -21,19 +21,19 @@ const OrderType = new GraphQLObjectType({
     client: {
       type: ClientType,
       resolve: async (parentValue, args) => {
-        return await Client.findById(parentValue.client)
-      }
+        return await Client.findById(parentValue.client);
+      },
     },
     dueTime: { type: GraphQLFloat },
     isTakeout: { type: GraphQLBoolean },
     items: {
       type: new GraphQLList(ItemType),
       resolve: async (parentValue, args) => {
-        return Order.findItems(parentValue._id)
-      }
+        return Order.findItems(parentValue._id);
+      },
     },
     orderNumber: { type: GraphQLInt },
-    startTime: { type: GraphQLFloat },
+    startTime: { type: GraphQLString },
     status: { type: StatusType },
   }),
 });
