@@ -57,6 +57,17 @@ fragment Item_item on ItemType {
 
 fragment OrderComponent_order on OrderType {
   ...ItemList_order
+  id
+  client {
+    name
+    id
+  }
+  orderNumber
+  items {
+    id
+  }
+  dueTime
+  status
 }
 */
 
@@ -168,6 +179,40 @@ return {
               }
             ],
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "ClientType",
+            "kind": "LinkedField",
+            "name": "client",
+            "plural": false,
+            "selections": [
+              (v1/*: any*/),
+              (v0/*: any*/)
+            ],
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "orderNumber",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "dueTime",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "status",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -175,12 +220,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "974035df9715a5a479ed6da94496f3c8",
+    "cacheID": "fa3a6b710e11b861e5f0e75e7b4c947b",
     "id": null,
     "metadata": {},
     "name": "List_Query",
     "operationKind": "query",
-    "text": "query List_Query {\n  orders {\n    id\n    ...OrderComponent_order\n  }\n}\n\nfragment IngredientList_items on ItemType {\n  ingredients {\n    id\n    name\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment Item_item on ItemType {\n  id\n  name\n  quantity\n  audio {\n    data\n  }\n  ...IngredientList_items\n}\n\nfragment OrderComponent_order on OrderType {\n  ...ItemList_order\n}\n"
+    "text": "query List_Query {\n  orders {\n    id\n    ...OrderComponent_order\n  }\n}\n\nfragment IngredientList_items on ItemType {\n  ingredients {\n    id\n    name\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment Item_item on ItemType {\n  id\n  name\n  quantity\n  audio {\n    data\n  }\n  ...IngredientList_items\n}\n\nfragment OrderComponent_order on OrderType {\n  ...ItemList_order\n  id\n  client {\n    name\n    id\n  }\n  orderNumber\n  items {\n    id\n  }\n  dueTime\n  status\n}\n"
   }
 };
 })();
