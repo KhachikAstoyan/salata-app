@@ -10,18 +10,17 @@ function IngredientList(props) {
             name
         }
     }
-    `,props.items);
-    console.log(data);
-    if(!data) {
+    `, props.items);
+    if (!data) {
         return null;
     }
     const IngredientList = data.ingredients.map(
-        (ingredient) =>  ingredient && <li key= {ingredient.id}>{ingredient.name}</li>
+        (ingredient) => ingredient && <li key={ingredient.id}>{ingredient.name}</li>
     );
     return (
-    <div>
-    <ul className="collection">{IngredientList}</ul>
-    </div>
+        <div>
+            <ul className="collection">{IngredientList}</ul>
+        </div>
     )
 }
 

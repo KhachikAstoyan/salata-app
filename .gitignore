@@ -83,6 +83,8 @@ web_modules/
 .next
 out
 
+static/
+
 # Nuxt.js build / generate output
 .nuxt
 dist
@@ -123,7 +125,7 @@ gcp-*.json
 schema.graphql
 
 # exclude everything
-static/*
+
 
 # exception to the rule
 !static/.gitkeep 
