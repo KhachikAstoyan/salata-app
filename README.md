@@ -1,4 +1,4 @@
-# Init project
+# Project init
 
 ## [Figma mockup](https://www.figma.com/file/gvYTd9ZsGkEaEjTgtt7LyD/Untitled?node-id=0%3A1)
 
