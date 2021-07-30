@@ -157,3 +157,6 @@ body {
     align-items: center;
     justify-content: space-around;
 }
+.input-field.Delay{
+    padding-left: 10px;
+}

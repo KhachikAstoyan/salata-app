@@ -9,7 +9,10 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type OrderComponent_order$ref = any;
-export type List_QueryVariables = {||};
+export type List_QueryVariables = {|
+  language?: ?string,
+  delay?: ?number,
+|};
 export type List_QueryResponse = {|
   +orders: ?$ReadOnlyArray<?{|
     +id: ?string,
@@ -24,7 +27,10 @@ export type List_Query = {|
 
 
 /*
-query List_Query {
+query List_Query(
+  $language: String
+  $delay: Int
+) {
   orders {
     id
     ...OrderComponent_order
@@ -49,7 +55,7 @@ fragment Item_item on ItemType {
   id
   name
   quantity
-  audio {
+  audio(language: $language, delay: $delay) {
     data
   }
   ...IngredientList_items
@@ -73,13 +79,23 @@ fragment OrderComponent_order on OrderType {
 
 const node/*: ConcreteRequest*/ = (function(){
 var v0 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "delay"
+},
+v1 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "language"
+},
+v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v1 = {
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -88,7 +104,10 @@ v1 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": [
+      (v0/*: any*/),
+      (v1/*: any*/)
+    ],
     "kind": "Fragment",
     "metadata": null,
     "name": "List_Query",
@@ -101,7 +120,7 @@ return {
         "name": "orders",
         "plural": true,
         "selections": [
-          (v0/*: any*/),
+          (v2/*: any*/),
           {
             "args": null,
             "kind": "FragmentSpread",
@@ -116,7 +135,10 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": [
+      (v1/*: any*/),
+      (v0/*: any*/)
+    ],
     "kind": "Operation",
     "name": "List_Query",
     "selections": [
@@ -128,7 +150,7 @@ return {
         "name": "orders",
         "plural": true,
         "selections": [
-          (v0/*: any*/),
+          (v2/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -137,8 +159,8 @@ return {
             "name": "items",
             "plural": true,
             "selections": [
-              (v0/*: any*/),
-              (v1/*: any*/),
+              (v2/*: any*/),
+              (v3/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -148,7 +170,18 @@ return {
               },
               {
                 "alias": null,
-                "args": null,
+                "args": [
+                  {
+                    "kind": "Variable",
+                    "name": "delay",
+                    "variableName": "delay"
+                  },
+                  {
+                    "kind": "Variable",
+                    "name": "language",
+                    "variableName": "language"
+                  }
+                ],
                 "concreteType": "AudioType",
                 "kind": "LinkedField",
                 "name": "audio",
@@ -172,8 +205,8 @@ return {
                 "name": "ingredients",
                 "plural": true,
                 "selections": [
-                  (v0/*: any*/),
-                  (v1/*: any*/)
+                  (v2/*: any*/),
+                  (v3/*: any*/)
                 ],
                 "storageKey": null
               }
@@ -188,8 +221,8 @@ return {
             "name": "client",
             "plural": false,
             "selections": [
-              (v1/*: any*/),
-              (v0/*: any*/)
+              (v3/*: any*/),
+              (v2/*: any*/)
             ],
             "storageKey": null
           },
@@ -220,16 +253,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "fa3a6b710e11b861e5f0e75e7b4c947b",
+    "cacheID": "d91edcb18ddb204ef1cf2af9add39066",
     "id": null,
     "metadata": {},
     "name": "List_Query",
     "operationKind": "query",
-    "text": "query List_Query {\n  orders {\n    id\n    ...OrderComponent_order\n  }\n}\n\nfragment IngredientList_items on ItemType {\n  ingredients {\n    id\n    name\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment Item_item on ItemType {\n  id\n  name\n  quantity\n  audio {\n    data\n  }\n  ...IngredientList_items\n}\n\nfragment OrderComponent_order on OrderType {\n  ...ItemList_order\n  id\n  client {\n    name\n    id\n  }\n  orderNumber\n  items {\n    id\n  }\n  dueTime\n  status\n}\n"
+    "text": "query List_Query(\n  $language: String\n  $delay: Int\n) {\n  orders {\n    id\n    ...OrderComponent_order\n  }\n}\n\nfragment IngredientList_items on ItemType {\n  ingredients {\n    id\n    name\n  }\n}\n\nfragment ItemList_order on OrderType {\n  items {\n    id\n    ...Item_item\n  }\n}\n\nfragment Item_item on ItemType {\n  id\n  name\n  quantity\n  audio(language: $language, delay: $delay) {\n    data\n  }\n  ...IngredientList_items\n}\n\nfragment OrderComponent_order on OrderType {\n  ...ItemList_order\n  id\n  client {\n    name\n    id\n  }\n  orderNumber\n  items {\n    id\n  }\n  dueTime\n  status\n}\n"
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '079c533fac1fb192cb92aa1bcb9c5ae5';
+(node/*: any*/).hash = 'cbfdcbd33f0578cbc1b1e4c010bef56d';
 
 module.exports = node;
