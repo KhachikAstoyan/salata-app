@@ -42,9 +42,9 @@ function OrderComponent(props) {
                         <select className={`browser-default ${className}`} onChange={(event) => {
                             setSelected(event.target.value);
                         }} defaultValue="1">
-                            <option value="1" className="option1">Not started</option>
-                            <option value="2" className="option2">Completed</option>
-                            <option value="3" className="option3">In progress</option>
+                            <option value="1" >Not started</option>
+                            <option value="2" >Completed</option>
+                            <option value="3" >In progress</option>
                         </select>
                     </div>
                 </div>
