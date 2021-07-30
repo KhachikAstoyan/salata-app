@@ -14,9 +14,12 @@ module.exports = async function (item, language = "en-US", delay = 1) {
     try {
 
         const { _id: id, ingredients, extra, name, quantity } = item;
-        const audioName = String(id) + language + '.mp3';
+        const audioName = `${String(id)}-${delay}s-[${language}]`
         const audioPath = path.resolve(__dirname, '..', 'static', `${audioName}`);
         const returnObject = { data: path.join('static', audioName) };
+        const breakMarkup = `<break time="${delay}s"/>`
+
+        console.log(breakMarkup);
 
         if (fs.existsSync(audioPath)) {
             return returnObject;
@@ -25,30 +28,30 @@ module.exports = async function (item, language = "en-US", delay = 1) {
         const target = language.split('-')[0];
         let ingredientData = await Item.findIngredients(id);
         ingredientData = ingredientData.map(ingredient => ingredient.name);
-        let ingredientString = ingredientData.map(ingredient => `${ingredient} <break time="1s" />`).join(' ');
+        let ingredientString = ingredientData.map(ingredient => `${ingredient} ${breakMarkup}`).join(' ');
         let extraTitle = 'extra information';
         let extraInfo = extra.join(' ');
 
         if (target !== 'en') {
             const [translatedIngredients] = await translate.translate(ingredientData, target)
-            ingredientString = translatedIngredients.map(ingredient => `${ingredient} <break time="1s" />`).join(' ');
+            ingredientString = translatedIngredients.map(ingredient => `${ingredient} ${breakMarkup}`).join(' ');
             [extraTitle] = await translate.translate(extraTitle, target);
             [extraInfo] = await translate.translate(extraInfo, target);
         }
-
         let info = `
             ${ingredientString}
-            ${extraTitle} <break time="${delay}s" />
+            ${extraTitle} ${breakMarkup}
             ${extraInfo}
         `
 
         const text = `
             <speak>
                 ${quantity} ${name}
-                <break time="${delay}s" />
+                ${breakMarkup}
                 ${info}
             </speak>
             `
+        console.log(text);
         const request = {
             input: { ssml: text },
             // LANGUAGE HAS TO BE IN THIS FORMAT - [en-US]

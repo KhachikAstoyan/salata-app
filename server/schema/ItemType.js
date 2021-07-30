@@ -29,7 +29,8 @@ const ItemType = new GraphQLObjectType({
     audio: {
       args: { language: { type: GraphQLString }, delay: { type: GraphQLInt } },
       type: AudioType, resolve(parentValue, args) {
-        return generateAudio(parentValue, args.language, args.delay)
+        console.log(args.delay);
+        return generateAudio(parentValue, language = args.language, delay = args.delay)
       }
     },
     quantity: { type: GraphQLInt }
