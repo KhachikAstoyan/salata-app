@@ -9,6 +9,7 @@ flex-grow: 1;
 
 .collection {
     border: 0;
+    width: 70%;
 }
 
 .container{
@@ -31,8 +32,8 @@ flex-grow: 1;
     background: #F5F5F5;
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.05);
     border-radius: 15px;
-    margin: 5px auto;
-    padding: 0 20px;
+    margin-bottom: 20px;
+    padding: 20px;
 }
 
 .itemsNames{
@@ -79,7 +80,7 @@ flex-grow: 1;
     color: #2CBB3A;
 }
 
-.smth {
+.header {
     display: flex;
     align-items: center;
 }

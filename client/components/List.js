@@ -21,7 +21,7 @@ function List() {
 
     return (
         <div className="main">
-            <div className = "smth">
+            <div className="header">
                 <h1 className="main-item">Orders</h1>
                 <div className="input-field">
                     <select className="browser-default option1">
@@ -29,9 +29,8 @@ function List() {
                         <option value="2">Spanish</option>
                     </select>
                 </div>
-
             </div>
-            <ul className="collection">{orders}</ul>
+            <ul>{orders}</ul>
         </div>
     )
 }

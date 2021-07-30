@@ -19,7 +19,7 @@ function Item(props) {
     },
     `, props.item);
 
-    return <div className="container">
+    return (
         <li key={item.id} className="item">
             <div className="topDiv">
                 <div className="RightPart">
@@ -51,7 +51,7 @@ function Item(props) {
                 {showItem && <div className="ingredientItem"><IngredientList items={item} /></div>}
             </div>
         </li>
-    </div>
+    )
 }
 
 export default Item;
