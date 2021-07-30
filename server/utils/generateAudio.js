@@ -46,7 +46,7 @@ module.exports = async function (item, language = "en-US", delay = 1) {
 
         const text = `
             <speak>
-                ${quantity} ${name}
+                ${quantity} ${name} ${quantity > 1 ? 's' : ''}
                 ${breakMarkup}
                 ${info}
             </speak>
