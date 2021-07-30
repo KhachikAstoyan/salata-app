@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { graphql, useFragment } from "react-relay";
-import ItemList from "../components/ItemList";
+import ItemList from "./ItemList";
 
 
 function OrderComponent(props) {

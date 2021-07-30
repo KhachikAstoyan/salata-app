@@ -1,7 +1,12 @@
-.main{
-margin: 0 25px;
-flex-grow: 1;
+body {
+  background-color: #f8fff6;
 }
+
+.main{
+    margin: 0 25px;
+    flex-grow: 1;
+}
+
 .main-item{
     color: black;
     flex-grow: 1;
@@ -93,4 +98,62 @@ flex-grow: 1;
 
 .ingredientItem{
     padding-left: 25px;
+}
+
+.ordersList {
+  background-color: #ffffff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+  margin-bottom: 20px;
+  padding: 30px;
+  flex-direction: column;
+}
+
+.orderInfo {
+  flex-grow: 1;
+}
+
+.listContainer {
+  display: flex;
+  align-items: center;
+}
+
+.browser-default {
+  height: 35px;
+  border-radius: 5px;
+  background-color: #6be87f;
+}
+
+.option1, option {
+  background-color: #F5F5F5;
+}
+
+.option2 {
+  background-color: #6be87f;
+}
+
+.option3 {
+  background-color: #fff45a;
+}
+
+
+.dueDate {
+    padding-right: 20px;
+}
+.input-field {
+    margin-top: 0;
+}
+
+.orderID {
+    font-weight: bold;
+}
+
+.order {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
 }
