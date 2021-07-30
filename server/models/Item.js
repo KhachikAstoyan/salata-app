@@ -31,7 +31,7 @@ const itemSchema = new Schema({
     type: Number,
     min: 1,
   },
-});
+}, { timestamps: true });
 
 itemSchema.statics.findIngredients = function (itemId) {
   const ingredients = this.findById(itemId)
