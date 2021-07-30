@@ -17,7 +17,7 @@ const ClientSchema = new Schema({
       ref: "order"
     }
   ]
-});
+}, { timestamps: true });
 
 const Client = Mongoose.model("client", ClientSchema);
 

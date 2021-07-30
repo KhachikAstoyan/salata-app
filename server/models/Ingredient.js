@@ -11,7 +11,7 @@ const ingredientSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "item"
     }
-});
+}, { timestamps: true });
 
 const Ingredient = Mongoose.model("ingredient", ingredientSchema);
 

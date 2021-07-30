@@ -21,7 +21,7 @@ const OrderSchema = new Schema({
     orderNumber: { type: Number },
     startTime: { type: String },
     status: { type: Number }
-});
+}, { timestamps: true });
 
 OrderSchema.statics.findItems = function (id) {
     const items = this.findById(id)
