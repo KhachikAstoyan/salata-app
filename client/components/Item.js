@@ -11,7 +11,7 @@ function Item(props) {
             id
             name
             quantity
-            audio{
+            audio(language: $language, delay: $delay){
                 data
             }
             ...IngredientList_items     

@@ -5,20 +5,19 @@ import { RelayEnvironmentProvider } from "react-relay";
 import Environment from "./relay/environment";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import "./style/style.css"
+import OrderPage from "./components/OrderPage";
 
 const Root = () => {
   return <RelayEnvironmentProvider environment={Environment}>
-    <Suspense fallback={<div> Loading...</div>}>
       <div className="container">
         <Router>
           <Switch>
             <Route path="/">
-              <List />
+              <OrderPage />
             </Route>
           </Switch>
         </Router>
       </div>
-    </Suspense>
   </RelayEnvironmentProvider>;
 };
 
