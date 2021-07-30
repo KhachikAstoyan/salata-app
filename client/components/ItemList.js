@@ -16,7 +16,7 @@ function ItemList(props) {
     const OrderItems = items.map(
         (item, index) => item && <Item item={item} key={item.id} index={index} length={items.length} />
     );
-    return <ul className="orders">{OrderItems}</ul>;
+    return <ul className="collection">{OrderItems}</ul>;
 }
 
 export default ItemList;

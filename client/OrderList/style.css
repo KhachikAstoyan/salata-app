@@ -29,7 +29,7 @@ body {
   background-color: #6be87f;
 }
 
-.option1 {
+.option1, option {
   background-color: #F5F5F5;
 }
 
@@ -41,9 +41,6 @@ body {
   background-color: #fff45a;
 }
 
-option {
-    background-color: #F5F5F5;
-}
 
 .dueDate {
     padding-right: 20px;
