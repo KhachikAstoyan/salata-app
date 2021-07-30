@@ -14,7 +14,7 @@ module.exports = async function (item, language = "en-US", delay = 1) {
     try {
 
         const { _id: id, ingredients, extra, name, quantity } = item;
-        const audioName = `${String(id)}-${delay}s-[${language}]`
+        const audioName = `${String(id)}-${delay}s-[${language}].mp3`
         const audioPath = path.resolve(__dirname, '..', 'static', `${audioName}`);
         const returnObject = { data: path.join('static', audioName) };
         const breakMarkup = `<break time="${delay}s"/>`
