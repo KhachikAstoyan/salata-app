@@ -45,6 +45,28 @@ module.exports = {
     async updateOrderStatus(_, { id, status }) {
       return await Order.findByIdAndUpdate(id, { status });
     },
+    async addItems(
+      _,
+      {
+        orderId,
+        ingredients,
+        extra,
+        additionalInformation,
+        name,
+        audio,
+        quantity,
+      }
+    ) {
+      return Order.addItems(
+        orderId,
+        ingredients,
+        extra,
+        additionalInformation,
+        name,
+        audio,
+        quantity
+      );
+    },
   },
   OrderType: {
     async items(parent) {
