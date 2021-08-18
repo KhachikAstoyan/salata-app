@@ -9,6 +9,8 @@ module.exports = gql`
   type RootQueryType {
     orders: [OrderType]
     clientOrders(id: String!): [OrderType]
+    client(clientId: ID!): ClientType
+    clients: [ClientType]
   }
 
   type OrderType {
