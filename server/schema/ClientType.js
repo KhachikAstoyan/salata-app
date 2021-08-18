@@ -1,6 +1,3 @@
-// TODO: add client Mutations - addClient
-// TODO: add client Queries - clients, client
-
 const Client = require("../models/Client");
 
 module.exports = {
