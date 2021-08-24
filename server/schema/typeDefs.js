@@ -18,7 +18,7 @@ module.exports = gql`
     client: ClientType
     dueTime: Float
     isTakeout: Boolean
-    items: [ItemType]
+    items: [OrderedItemType]
     orderNumber: Int
     startTime: String
     status: StatusType
@@ -30,14 +30,18 @@ module.exports = gql`
     phoneNumber: String
   }
 
+  type OrderedItemType {
+    item: ItemType
+    quantity: Int
+    extraInfo: String
+  }
+
   type ItemType {
     id: ID
-    ingredients: [IngredientType]
-    extra: [IngredientType]
-    additionalInformation: String
+    # ingredients: [IngredientType]
+    recipeInfo: String
     name: String
     audio: AudioType
-    quantity: Int
   }
 
   type IngredientType {
