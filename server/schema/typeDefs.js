@@ -38,15 +38,10 @@ module.exports = gql`
 
   type ItemType {
     id: ID
-    # ingredients: [IngredientType]
-    recipeInfo: String
+    ingredients: [String]
+    recipeInfo: [String]
     name: String
     audio: AudioType
-  }
-
-  type IngredientType {
-    id: String
-    name: String
   }
 
   type AudioType {
@@ -60,26 +55,24 @@ module.exports = gql`
   }
 
   type Mutation {
-    addOrder(input: input): OrderType
-    addItems(
-      orderId: ID
-      ingredients: [ID]
-      extra: String
-      additionalInformation: String
-      name: String
-      quantity: Int
-    ): OrderType
-    addIngredients(id: String, name: String, items: [ID]): OrderType
+    addOrder(input: inputOrder): OrderType
+    addItems(orderId: String, input: [inputItem]): OrderType
     updateOrderStatus(id: String, status: StatusType): OrderType
     addClient(name: String, phoneNumber: String): ClientType
   }
 
-  input input {
+  input inputItem {
+    item: ID
+    quantity: Int
+    extraInfo: String
+  }
+
+  input inputOrder {
     clientId: String
+    startTime: String
     dueTime: String
     isTakeout: Boolean
-    itemsId: [ID]
-    startTime: String
+    items: [inputItem]
     status: StatusType
   }
 `;
