@@ -24,7 +24,7 @@ module.exports = {
   Mutation: {
     async addOrder(
       _,
-      { input: { clientId, dueTime, isTakeout, itemsId, startTime, status } }
+      { input: { clientId, dueTime, isTakeout, items, startTime, status, d } }
     ) {
       const orders = await Order.find().sort({ orderNumber: -1 });
       const lastOrder = orders[0];
@@ -35,7 +35,7 @@ module.exports = {
         client: clientId,
         dueTime: dueTime,
         isTakeout: isTakeout,
-        items: itemsId,
+        items: items,
         orderNumber: lastOrder.orderNumber + 1,
         startTime: startTime,
         status: status,
@@ -45,42 +45,39 @@ module.exports = {
     async updateOrderStatus(_, { id, status }) {
       return await Order.findByIdAndUpdate(id, { status });
     },
-    async addItems(
-      _,
-      {
-        orderId,
-        ingredients,
-        extra,
-        additionalInformation,
-        name,
-        audio,
-        quantity,
-      }
-    ) {
-      return Order.addItems(
-        orderId,
-        ingredients,
-        extra,
-        additionalInformation,
-        name,
-        audio,
-        quantity
-      );
-    },
+    // async addItems(
+    //   _,
+    //   {
+    //     orderId,
+    //     ingredients,
+    //     extra,
+    //     additionalInformation,
+    //     name,
+    //     audio,
+    //     quantity,
+    //   }
+    // ) {
+    //   return Order.addItems(
+    //     orderId,
+    //     input
+    //   );
+    // },
   },
   OrderType: {
-    async items(parent) {
-      try {
-        const items = await Order.findItems(parent._id);
-        return items;
-      } catch (err) {
-        throw new Error(err);
-      }
-    },
     async client(parent) {
       try {
         const client = await Client.findById(parent.client);
         return client;
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
+  },
+  OrderedItemType: {
+    async item(parent) {
+      try {
+        const items = await Item.findById(parent.item);
+        return items;
       } catch (err) {
         throw new Error(err);
       }
