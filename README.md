@@ -1,6 +1,8 @@
 # Project init
 
-## [Figma mockup](https://www.figma.com/file/gvYTd9ZsGkEaEjTgtt7LyD/Untitled?node-id=0%3A1)
+### [Figma mockup](https://www.figma.com/file/gvYTd9ZsGkEaEjTgtt7LyD/Untitled?node-id=0%3A1)
+
+### [Miro whiteboard](https://miro.com/app/board/o9J_l1_sK4M=/)
 
 > Before making any changes click the button `Fetch upstream`, then `Fetch and merge` in your repo, then write in terminal:
 

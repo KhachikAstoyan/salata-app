@@ -1,41 +1,86 @@
-const { GraphQLString } = require("graphql");
-const graphql = require("graphql");
-const {
-  GraphQLObjectType,
-  GraphQLFloat,
-  GraphQLInt,
-  GraphQLBoolean,
-  GraphQLList,
-} = graphql;
-const ClientType = require("./ClientType");
-const ItemType = require("./ItemType");
-const StatusType = require("./StatusType");
 const Client = require("../models/Client");
 const Item = require("../models/Item");
 const Order = require("../models/Order");
 
-const OrderType = new GraphQLObjectType({
-  name: "OrderType",
-  fields: () => ({
-    id: { type: GraphQLString },
-    client: {
-      type: ClientType,
-      resolve: async (parentValue, args) => {
-        return await Client.findById(parentValue.client);
-      },
+module.exports = {
+  Query: {
+    async orders() {
+      try {
+        const orders = await Order.find();
+        return orders;
+      } catch (err) {
+        throw new Error(err);
+      }
     },
-    dueTime: { type: GraphQLFloat },
-    isTakeout: { type: GraphQLBoolean },
-    items: {
-      type: new GraphQLList(ItemType),
-      resolve: async (parentValue, args) => {
-        return Order.findItems(parentValue._id);
-      },
+    async clientOrders(_, { id }) {
+      try {
+        const orders = await Order.find({ client: id });
+        return orders;
+      } catch (err) {
+        throw new Error(err);
+      }
     },
-    orderNumber: { type: GraphQLInt },
-    startTime: { type: GraphQLString },
-    status: { type: StatusType },
-  }),
-});
+  },
+  Mutation: {
+    async addOrder(
+      _,
+      { input: { clientId, dueTime, isTakeout, items, startTime, status, d } }
+    ) {
+      const orders = await Order.find().sort({ orderNumber: -1 });
+      const lastOrder = orders[0];
 
-module.exports = OrderType;
+      if (!lastOrder.orderNumber) lastOrder.orderNumber = 0;
+
+      const newOrder = new Order({
+        client: clientId,
+        dueTime: dueTime,
+        isTakeout: isTakeout,
+        items: items,
+        orderNumber: lastOrder.orderNumber + 1,
+        startTime: startTime,
+        status: status,
+      });
+      return await newOrder.save();
+    },
+    async updateOrderStatus(_, { id, status }) {
+      return await Order.findByIdAndUpdate(id, { status });
+    },
+    // async addItems(
+    //   _,
+    //   {
+    //     orderId,
+    //     ingredients,
+    //     extra,
+    //     additionalInformation,
+    //     name,
+    //     audio,
+    //     quantity,
+    //   }
+    // ) {
+    //   return Order.addItems(
+    //     orderId,
+    //     input
+    //   );
+    // },
+  },
+  OrderType: {
+    async client(parent) {
+      try {
+        const client = await Client.findById(parent.client);
+        return client;
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
+  },
+  OrderedItemType: {
+    async item(parent) {
+      try {
+        const items = await Item.findById(parent.item);
+        return items;
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
+  },
+};

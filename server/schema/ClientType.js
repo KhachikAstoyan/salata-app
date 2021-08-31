@@ -1,14 +1,17 @@
-//@ts-check
-const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList } = graphql;
+const Client = require("../models/Client");
 
-const ClientType = new GraphQLObjectType({
-  name: "ClientType",
-  fields: () => ({
-    id: { type: GraphQLID },
-    name: { type: GraphQLString },
-    phoneNumber: { type: GraphQLString },
-  }),
-});
-
-module.exports = ClientType;
+module.exports = {
+  Query: {
+    async client(_, { clientId }) {
+      return await Client.findById(clientId);
+    },
+    async clients() {
+      return await Client.find();
+    },
+  },
+  Mutation: {
+    async addClient(_, { name, phoneNumber }) {
+      return await Client.create({ name, phoneNumber });
+    },
+  },
+};
