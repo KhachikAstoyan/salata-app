@@ -43,7 +43,8 @@ module.exports = {
       return await newOrder.save();
     },
     async updateOrderStatus(_, { id, status }) {
-      return await Order.findByIdAndUpdate(id, { status });
+      await Order.findByIdAndUpdate(id, { status });
+      return Order.findById(id);
     },
     // async addItems(
     //   _,
