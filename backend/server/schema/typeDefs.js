@@ -52,6 +52,7 @@ module.exports = gql`
     NOT_STARTED
     IN_PROGRESS
     COMPLETED
+    FINISHED
   }
 
   type Mutation {
