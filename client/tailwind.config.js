@@ -12,10 +12,14 @@ module.exports = {
         whiteHover: {
           DEFAULT: "#fafafa",
         },
+        fontPrimary: {
+          DEFAULT: "5A5A5A",
+        },
       },
       fontFamily: {
         Nunito: ['"Nunito"', '"Roboto"', "sans-serif"],
         Roboto: ['"Roboto"', '"Nunito"', "sans-serif"],
+        Comfortaa: ['"Comfortaa"', '"Roboto"', "sans-serif"],
       },
       transitionProperty: {
         height: "height",
