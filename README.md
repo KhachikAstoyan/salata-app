@@ -4,6 +4,10 @@
 
 ### [Miro whiteboard](https://miro.com/app/board/o9J_l1_sK4M=/)
 
+### Requirments
+
+- Nodejs version 16.9.1 (latest)
+
 > Before making any changes click the button `Fetch upstream`, then `Fetch and merge` in your repo, then write in terminal:
 
 ```
@@ -48,6 +52,11 @@ cp .env.example .env
 
 ```
 MONGO_URI=mongodb+srv://<username>:<password>@cluster0.1o8xa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+```
+> Go to backend directory
+
+```
+cd backend
 ```
 
 > Install packages
