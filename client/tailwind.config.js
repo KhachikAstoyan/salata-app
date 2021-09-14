@@ -31,7 +31,11 @@ module.exports = {
     },
   },
   variants: {
-    extend: { boxShadow: ["active"], translate: ["active"] },
+    extend: {
+      boxShadow: ["active"],
+      translate: ["active"],
+      textColor: ["active"],
+    },
   },
   plugins: [],
 };

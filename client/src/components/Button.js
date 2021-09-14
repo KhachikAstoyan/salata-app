@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function Button(props) {
-  return <div className="btn">{props.btnName}</div>;
+  return <div className={`btn ${props.btnStyle}`}>{props.btnName}</div>;
 }
 
 function Dropdown(props) {
