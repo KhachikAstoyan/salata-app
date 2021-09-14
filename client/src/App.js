@@ -14,8 +14,10 @@ function App() {
           </div>
         </Route>
         <Route path="/addOrder">
-          <Header pageName="Add Order" />
-          <AddOrder />
+          <div className="App font-Comfortaa">
+            <Header pageName="Add Order" />
+            <AddOrder />
+          </div>
         </Route>
       </Switch>
     </Router>
