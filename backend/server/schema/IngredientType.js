@@ -1,4 +1,5 @@
 const Ingredient = require("../models/Ingredient");
+const IngredientCategory = require("../models/IngredientCategory");
 
 module.exports = {
   Query: {
@@ -11,4 +12,16 @@ module.exports = {
       }
     },
   },
+
+  IngredientType: {
+    async category(parent) {
+      try {
+        const category = await IngredientCategory.findById(parent.category);
+        return category;
+      } catch (error) {
+        throw new Error(err);
+      }
+    }
+  }
+
 };

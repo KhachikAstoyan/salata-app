@@ -9,7 +9,7 @@ const itemSchema = new Schema(
       required: true,
     },
     recipeInfo: [String],
-    ingredients: [String],
+    ingredients: [{type: Mongoose.Schema.Types.ObjectId, ref: "Ingredient"}],
     audio: {
       type: String,
     },
