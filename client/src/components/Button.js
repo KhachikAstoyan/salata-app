@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 
+import { Link } from "react-router-dom";
+
 function Button(props) {
-  return <div className="btn">{props.btnName}</div>;
+  return (
+    <Link to={props.btnLink} className={`btn ${props.btnStyle}`}>
+      {props.btnName}
+    </Link>
+  );
 }
 
 function Dropdown(props) {

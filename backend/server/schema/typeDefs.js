@@ -11,6 +11,7 @@ module.exports = gql`
     clientOrders(id: String!): [OrderType]
     client(clientId: ID!): ClientType
     clients: [ClientType]
+    ingredients: [IngredientType]
   }
 
   type OrderType {
@@ -34,6 +35,17 @@ module.exports = gql`
     item: ItemType
     quantity: Int
     extraInfo: String
+  }
+
+  type IngredientType {
+    id: ID
+    name: String
+    category: CategoryType
+  }
+
+  type CategoryType {
+    id: ID
+    category: String
   }
 
   type ItemType {

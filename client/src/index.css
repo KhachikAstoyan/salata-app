@@ -21,6 +21,7 @@ code {
     @apply px-4 py-3 ml-4 text-sm  transition-all transform inline-block bg-white rounded-lg shadow cursor-pointer select-none min-w-min place-self-center active:shadow-sm active:translate-y-px;
   }
   .order {
-    @apply p-8 flex flex-col rounded-2xl mx-auto sm:flex-row items-center text-sm  transition-all transform bg-white shadow cursor-pointer select-none min-w-min place-self-center active:shadow-sm active:translate-y-px;
+    @apply p-8 mb-4 flex flex-col rounded-2xl mx-auto sm:flex-row items-center text-sm  transition-all transform bg-white shadow cursor-pointer select-none min-w-min place-self-center;
   }
+  /* active:shadow-sm active:translate-y-px */
 }

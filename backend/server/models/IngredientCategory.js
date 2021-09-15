@@ -8,9 +8,18 @@ const IngredientCategorySchema = new Schema(
       type: String,
       required: true,
     },
+    ingredients: [{type: Mongoose.Schema.Types.ObjectId, ref: "Ingredient"}]
   },
   { timestamps: true }
 );
+
+IngredientCategorySchema.statics.findIngredients = function(itemId) {
+  const ingredients = this.findById(itemId).populate("Ingredients");
+
+  return ingredients.then(item => {
+    return item.ingredients;
+  })
+}
 
 const IngredientCategoryModel = Mongoose.model(
   "IngredientCategory",
