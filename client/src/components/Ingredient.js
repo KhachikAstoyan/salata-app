@@ -6,7 +6,7 @@ function Ingredient({ ingredientName }) {
   return (
     <div
       onClick={() => setSelected(!selected)}
-      className={`inline-flex flex-wrap text-center flex-col rounded-xl border-2 mb-2 px-3 py-2 bg-gray-100 mr-2 ${
+      className={`inline-flex flex-wrap transition duration-200 ease-in-out text-center flex-col rounded-xl border-2 mb-2 px-3 py-2 bg-gray-100 mr-2 ${
         selected && "border-green-400 bg-green-100"
       }`}
     >

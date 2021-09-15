@@ -3,7 +3,7 @@ import Ingredient from "./Ingredient";
 
 // TODO: fix toggling
 
-const IngredientCategory = ({ number }) => {
+const IngredientCategory = ({ name, ingredients, number }) => {
   const [showContent, updateContent] = useState(number === 0 ? true : false);
   return (
     <div className="mt-5 mb-2">
@@ -28,7 +28,7 @@ const IngredientCategory = ({ number }) => {
             clipRule="evenodd"
           />
         </svg>
-        Vegetables
+        {name}
       </h2>
 
       <div
@@ -36,14 +36,9 @@ const IngredientCategory = ({ number }) => {
           showContent ? "block opacity-100" : "hidden opacity-0"
         }`}
       >
-        <Ingredient ingredientName="jalapeno" />
-        <Ingredient ingredientName="apple" />
-        <Ingredient ingredientName="jalapeno" />
-        <Ingredient ingredientName="apple" />
-        <Ingredient ingredientName="jalapeno" />
-        <Ingredient ingredientName="jalapeno" />
-        <Ingredient ingredientName="apple" />
-        <Ingredient ingredientName="jalapeno" />
+        {ingredients.map(ingredient => {
+           return <Ingredient ingredientName={ingredient.name} />
+        })}
       </div>
     </div>
   );

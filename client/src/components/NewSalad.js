@@ -1,11 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Ingredient from "./Ingredient";
 import IngredientCategory from "./IngredientCategory";
+import { gql, useQuery } from '@apollo/client';
 
 const arr = [0, 1, 2, 3];
 
+  const query = gql`
+    query RootQueryType {
+      ingredients {
+        name
+        id
+        category {
+          id
+          category
+        }
+      }
+    }
+`
+
 const NewSalad = () => {
   const [showContent, updateContent] = useState(0);
+  const { loading, error, data } = useQuery(query);
+  const [categories, setCategories] = useState();
+  const [categoryElems, setCategoryElems] = useState();
+
+  useEffect(() => {
+    if(data) {
+      const categoryToIngredients = {};
+      console.log({data})
+      data.ingredients.map(ingredient => {
+        if(categoryToIngredients[ingredient.category.category]) {
+          categoryToIngredients[ingredient.category.category].push(ingredient);
+        } else {
+          categoryToIngredients[ingredient.category.category] = [];
+          categoryToIngredients[ingredient.category.category].push(ingredient);
+        }
+      })
+
+      console.log({categoryToIngredients})
+  
+      setCategories(categoryToIngredients);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if(categories) {
+      const catElems = [];
+      let id = 0;
+
+      for(const [key, value] of Object.entries(categories)) {
+        catElems.push(<IngredientCategory name={key} ingredients={value} number={id}/>)
+        id++;
+      }
+
+      setCategoryElems(catElems)
+    }
+  }, [categories])
+
+  if(loading) return "LOADING...";
+  if (error) return `Error! ${error.message}`;
+
+ 
 
   return (
     <div className="order block">
@@ -16,15 +71,9 @@ const NewSalad = () => {
         className="py-2 px-3 border rounded-lg text-gray-700 focus:outline-none focus:border-green-500"
       />
 
-      {arr.map((elem) => (
-        <IngredientCategory
-          number={elem}
-          // showContent={showContent}
-          // updateContent={updateContent}
-        />
-      ))}
+      {categoryElems}
 
-      <div>
+      <div className="mt-10">
         <h2 className="text-xl mb-2">Extra Info</h2>
         <textarea
           class="w-full px-3 py-2 border rounded-lg focus:outline-none"
