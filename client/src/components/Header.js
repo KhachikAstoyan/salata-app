@@ -7,7 +7,7 @@ function Header(props) {
         <h1 className=" font-black text-7xl">{props.pageName}</h1>
       </div>
       <div className="flex flex-1 sm:justify-end">
-        <Button btnName="Click Me" />
+        <Button btnName={props.btnName} btnLink={props.btnLink} />
         <Dropdown options={["English", "Spanish"]} />
       </div>
     </header>
