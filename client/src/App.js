@@ -1,4 +1,10 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 import Header from "./components/Header";
 import OrderList from "./components/OrderList";
 import AddOrder from "./components/pages/AddOrder";
@@ -9,15 +15,18 @@ function App() {
       <Switch>
         <Route path="/orders">
           <div className="App font-Comfortaa">
-            <Header pageName="Orders" />
+            <Header pageName="Orders" btnName="Add Order" btnLink="/addOrder" />
             <OrderList />
           </div>
         </Route>
         <Route path="/addOrder">
           <div className="App font-Comfortaa">
-            <Header pageName="Add Order" />
+            <Header pageName="Add Order" btnName="Orders" btnLink="orders" />
             <AddOrder />
           </div>
+        </Route>
+        <Route path="/">
+          <Redirect to="/addOrder" />
         </Route>
       </Switch>
     </Router>
