@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import jalapeno from "../icons/jalapeno.png";
+
 
 function Ingredient({ ingredientName }) {
   const [selected, setSelected] = useState(false);
@@ -10,7 +10,7 @@ function Ingredient({ ingredientName }) {
         selected && "border-green-400 bg-green-100"
       }`}
     >
-      <img src={jalapeno} className="w-10 mx-auto" alt={ingredientName} />
+      {/* <img src=`http://localhost:3000/static/${}/${}.png` className="w-10 mx-auto" alt={ingredientName} /> */}
       <p>{ingredientName}</p>
     </div>
   );
