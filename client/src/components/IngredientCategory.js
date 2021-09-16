@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Ingredient from "./Ingredient";
+import { ChevronLeft } from "./Icons";
 
 // TODO: fix toggling
 
@@ -13,21 +14,14 @@ const IngredientCategory = ({ name, ingredients, number }) => {
           updateContent(!showContent);
         }}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-7 w-7 inline transition-transform duration-300 transform"
+        <div
+          className="inline-block transition-all duration-300 transform"
           style={{
             transform: showContent ? "rotate(90deg)" : "rotate(0deg)",
           }}
-          viewBox="0 0 20 20"
-          fill="currentColor"
         >
-          <path
-            fillRule="evenodd"
-            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-            clipRule="evenodd"
-          />
-        </svg>
+          <ChevronLeft />
+        </div>
         {name}
       </h2>
 
@@ -36,8 +30,8 @@ const IngredientCategory = ({ name, ingredients, number }) => {
           showContent ? "block opacity-100" : "hidden opacity-0"
         }`}
       >
-        {ingredients.map(ingredient => {
-           return <Ingredient ingredientName={ingredient.name} />
+        {ingredients.map((ingredient) => {
+          return <Ingredient ingredientName={ingredient.name} />;
         })}
       </div>
     </div>
