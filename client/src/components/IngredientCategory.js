@@ -4,7 +4,7 @@ import { ChevronLeft } from "./Icons";
 
 // TODO: fix toggling
 
-const IngredientCategory = ({ name, ingredients, number , category }) => {
+const IngredientCategory = ({ name, ingredients, number, category }) => {
   const [showContent, updateContent] = useState(number === 0 ? true : false);
   return (
     <div className="mt-5 mb-2">
@@ -23,7 +23,6 @@ const IngredientCategory = ({ name, ingredients, number , category }) => {
           <ChevronLeft />
         </div>
         {name}
-        
       </h2>
 
       <div
@@ -31,11 +30,8 @@ const IngredientCategory = ({ name, ingredients, number , category }) => {
           showContent ? "block opacity-100" : "hidden opacity-0"
         }`}
       >
-        {ingredients.map((ingredient) => {
-          return (
-          <Ingredient ingredient={ingredient}   />
-          )
-
+        {ingredients.map((ingredient, index) => {
+          return <Ingredient key={index} ingredient={ingredient} />;
         })}
       </div>
     </div>

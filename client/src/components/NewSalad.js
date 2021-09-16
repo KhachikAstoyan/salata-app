@@ -28,7 +28,6 @@ const NewSalad = () => {
   useEffect(() => {
     if (data) {
       const categoryToIngredients = {};
-      console.log({ data });
       data.ingredients.map((ingredient) => {
         if (categoryToIngredients[ingredient.category.category]) {
           categoryToIngredients[ingredient.category.category].push(ingredient);
@@ -37,8 +36,6 @@ const NewSalad = () => {
           categoryToIngredients[ingredient.category.category].push(ingredient);
         }
       });
-
-      console.log({ categoryToIngredients });
 
       setCategories(categoryToIngredients);
     }
@@ -51,7 +48,12 @@ const NewSalad = () => {
 
       for (const [key, value] of Object.entries(categories)) {
         catElems.push(
-          <IngredientCategory name={key} ingredients={value} number={id} />
+          <IngredientCategory
+            name={key}
+            key={key}
+            ingredients={value}
+            number={id}
+          />
         );
         id++;
       }
@@ -72,7 +74,7 @@ const NewSalad = () => {
       <div className="mt-10">
         <h2 className="text-xl mb-2">Extra Info</h2>
         <textarea
-          class="w-full px-3 py-2 border rounded-lg focus:outline-none"
+          className="w-full px-3 py-2 border rounded-lg focus:outline-none"
           rows="4"
         ></textarea>
       </div>

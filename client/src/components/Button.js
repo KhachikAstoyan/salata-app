@@ -13,11 +13,10 @@ function Dropdown(props) {
   const [showDropdown, updateDropdown] = useState(false);
   const [selectedOption, UpdateOption] = useState();
 
-  const drpOptions = props.options.map((option) => {
-    console.log(option);
+  const drpOptions = props.options.map((option, index) => {
     return (
       <li
-        key={option.toString}
+        key={index}
         className="px-1 text-gray-400 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
       >
         {option}
