@@ -26,7 +26,7 @@ function App() {
           </div>
         </Route>
         <Route path="/">
-          <Redirect to="/addOrder" />
+          {/* <Redirect to="/addOrder" /> */}
         </Route>
       </Switch>
     </Router>

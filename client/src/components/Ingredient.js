@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 
-function Ingredient({ ingredientName }) {
+
+function Ingredient({ ingredient }) {
   const [selected, setSelected] = useState(false);
   return (
     <div
@@ -10,10 +11,18 @@ function Ingredient({ ingredientName }) {
         selected && "border-green-400 bg-green-100"
       }`}
     >
-      {/* <img src=`http://localhost:3000/static/${}/${}.png` className="w-10 mx-auto" alt={ingredientName} /> */}
-      <p>{ingredientName}</p>
+      <img src={`http://localhost:3000/static/${ingredient.category.category}/${ingredient.name}.png`}
+      className="w-10 mx-auto" 
+      alt={ingredient.name} 
+      onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "http://localhost:3000/static/Other/Pasta.png";
+      } }
+      />
+      {/* <p>{ingredient}</p> */}
+   
     </div>
   );
+  
 }
-
 export default Ingredient;
