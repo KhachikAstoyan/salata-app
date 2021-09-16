@@ -8,7 +8,10 @@ function Header(props) {
       </div>
       <div className="flex flex-1 sm:justify-end">
         <Button btnName={props.btnName} btnLink={props.btnLink} />
-        <Dropdown options={["English", "Spanish"]} />
+        <Dropdown
+          drpName="Language"
+          options={["English", "Spanish", "Italian"]}
+        />
       </div>
     </header>
   );

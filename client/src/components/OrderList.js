@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Dropdown } from "./Button";
+import { ChevronLeft } from "./Icons.js";
 
 const OrderList = () => {
   const [showContent, updateContent] = useState(false);
@@ -12,22 +13,15 @@ const OrderList = () => {
         }}
       >
         <div className="flex-1 flex ">
-          <div className="">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7 inline transition-all duration-300 transform"
+          <div>
+            <div
+              className="inline-block transition-all duration-300 transform"
               style={{
                 transform: showContent ? "rotate(90deg)" : "rotate(0deg)",
               }}
-              viewBox="0 0 20 20"
-              fill="currentColor"
             >
-              <path
-                fillRule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
+              <ChevronLeft />
+            </div>
           </div>
           <div>
             <h2 className="text-xl">
@@ -39,7 +33,10 @@ const OrderList = () => {
         <div className="flex flex-1 justify-end overflow-visible">
           <div className="overflow-visible">
             <div className="inline-block">Due by 12:00pm</div>
-            <Dropdown />
+            <Dropdown
+              drpName="Status"
+              options={["Not Started", "In Progress", "Complated", "Finished"]}
+            />
           </div>
         </div>
       </div>
