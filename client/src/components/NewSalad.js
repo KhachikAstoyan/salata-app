@@ -20,10 +20,11 @@ const query = gql`
 `;
 
 const NewSalad = () => {
-  const [quantity, updateQuantity] = useState(1);
+  const [quantity,setQuantity] = useState(1);
   const { loading, error, data } = useQuery(query);
   const [categories, setCategories] = useState();
   const [categoryElems, setCategoryElems] = useState();
+
 
   useEffect(() => {
     if (data) {
@@ -67,8 +68,7 @@ const NewSalad = () => {
   return (
     <div className="order block">
       <span className="text-4xl align-middle py-3 text-green-600">Salad </span>
-      <Counter quantity={quantity} />
-
+      <Counter quantity={quantity} setQuantity={(x)=>{setQuantity(x)}}/>
       {categoryElems}
 
       <div className="mt-10">

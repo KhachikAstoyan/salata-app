@@ -9,6 +9,10 @@ const Counter = (props) => {
         className="h-7 w-7 inline text-green-500 active:text-green-600"
         viewBox="0 0 20 20"
         fill="currentColor"
+      
+        onClick={() => { if (props.quantity > 1) {
+          props.setQuantity(props.quantity - 1)
+        }}}
       >
         <path
           fillRule="evenodd"
@@ -22,6 +26,7 @@ const Counter = (props) => {
         className="h-7 w-7 inline text-green-500 active:text-green-600"
         viewBox="0 0 20 20"
         fill="currentColor"
+        onClick={() => props.setQuantity(props.quantity + 1)}
       >
         <path
           fillRule="evenodd"
