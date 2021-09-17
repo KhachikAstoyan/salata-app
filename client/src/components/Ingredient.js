@@ -10,12 +10,12 @@ function Ingredient({ ingredient }) {
       }`}
     >
       <img
-        src={`http://localhost:3000/static/${ingredient.category.category}/${ingredient.name}.png`}
+        src={`/static/${ingredient.category.category}/${ingredient.name}.png`}
         className="w-10 mx-auto"
         alt={ingredient.name}
         onError={(e) => {
           e.target.onerror = null;
-          e.target.src = "http://localhost:3000/static/harvest.png";
+          e.target.src = "/static/harvest.png";
         }}
       />
       <p>{ingredient.name}</p>
