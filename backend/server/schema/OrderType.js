@@ -22,23 +22,28 @@ module.exports = {
     },
   },
   Mutation: {
-    async addOrder(
-      _,
-      { input: { clientId, dueTime, isTakeout, items, startTime, status, d } }
-    ) {
+    async addOrder(_, { input: { isTakeout, items } }) {
       const orders = await Order.find().sort({ orderNumber: -1 });
       const lastOrder = orders[0];
 
-      if (!lastOrder.orderNumber) lastOrder.orderNumber = 0;
+      // Date.prototype.addHours = function (h) {
+      //   this.setTime(this.getTime() + h * 60 * 60 * 1000);
+      //   return this;
+      // };
+      var now = Date.now();
+      // var oneHourLater = now.addHours(1);
+      let newOrderNumber;
+      if (!lastOrder || !lastOrder.orderNumber) newOrderNumber = 1;
+      else newOrderNumber = lastOrder.orderNumber++;
 
       const newOrder = new Order({
-        client: clientId,
-        dueTime: dueTime,
+        // client: clientId,
+        startTime: now,
+        dueTime: now,
         isTakeout: isTakeout,
         items: items,
-        orderNumber: lastOrder.orderNumber + 1,
-        startTime: startTime,
-        status: status,
+        orderNumber: newOrderNumber,
+        status: 0,
       });
       return await newOrder.save();
     },
@@ -65,14 +70,14 @@ module.exports = {
     // },
   },
   OrderType: {
-    async client(parent) {
-      try {
-        const client = await Client.findById(parent.client);
-        return client;
-      } catch (err) {
-        throw new Error(err);
-      }
-    },
+    // async client(parent) {
+    //   try {
+    //     const client = await Client.findById(parent.client);
+    //     return client;
+    //   } catch (err) {
+    //     throw new Error(err);
+    //   }
+    // },
   },
   OrderedItemType: {
     async item(parent) {
