@@ -4,14 +4,28 @@ import { ChevronRight } from "./Icons";
 
 function Button(props) {
   return (
+    <div
+      className={`btn ${props.btnStyle}`}
+      onClick={() => {
+        props.btnFunction();
+      }}
+    >
+      {props.btnName}
+    </div>
+  );
+}
+
+function LinkButton(props) {
+  return (
     <Link to={props.btnLink} className={`btn ${props.btnStyle}`}>
       {props.btnName}
     </Link>
   );
 }
+
 function Dropdown(props) {
   const [showDropdown, updateDropdown] = useState(false);
-  const [selectedOption, UpdateOption] = useState();
+  // const [selectedOption, UpdateOption] = useState();
 
   const drpOptions = props.options.map((option, index) => {
     return (
@@ -51,4 +65,4 @@ function Dropdown(props) {
   );
 }
 
-export { Button, Dropdown };
+export { Button, LinkButton, Dropdown };
