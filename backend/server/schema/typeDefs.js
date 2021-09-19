@@ -15,13 +15,13 @@ module.exports = gql`
   }
 
   type OrderType {
-    id: String
-    client: ClientType
-    dueTime: Float
-    isTakeout: Boolean
-    items: [OrderedItemType]
-    orderNumber: Int
+    id: ID
+    # client: ClientType
+    dueTime: String
     startTime: String
+    isTakeout: Boolean
+    items: [ItemType]
+    orderNumber: String
     status: StatusType
   }
 
@@ -31,8 +31,8 @@ module.exports = gql`
     phoneNumber: String
   }
 
-  type OrderedItemType {
-    item: ItemType
+  type ItemType {
+    ingredients: [IngredientType]
     quantity: Int
     extraInfo: String
   }
@@ -46,14 +46,6 @@ module.exports = gql`
   type CategoryType {
     id: ID
     category: String
-  }
-
-  type ItemType {
-    id: ID
-    ingredients: [String]
-    recipeInfo: [String]
-    name: String
-    audio: AudioType
   }
 
   type AudioType {
@@ -75,17 +67,14 @@ module.exports = gql`
   }
 
   input inputItem {
-    item: ID
+    ingredients: [ID]
     quantity: Int
     extraInfo: String
   }
 
   input inputOrder {
-    clientId: String
-    startTime: String
-    dueTime: String
+    # clientId: ID
     isTakeout: Boolean
     items: [inputItem]
-    status: StatusType
   }
 `;

@@ -1,5 +1,6 @@
 const clientResolvers = require("./ClientType");
 const orderResolvers = require("./OrderType");
+const itemResolvers = require("./ItemType");
 const ingredientResolvers = require("./IngredientType");
 
 module.exports = {
@@ -13,8 +14,8 @@ module.exports = {
     ...orderResolvers.Mutation,
   },
   OrderType: { ...orderResolvers.OrderType },
-  OrderedItemType: { ...orderResolvers.OrderedItemType },
-  IngredientType: {...ingredientResolvers.IngredientType},
+  ItemType: { ...itemResolvers.ItemType },
+  IngredientType: { ...ingredientResolvers.IngredientType },
   StatusType: {
     NOT_STARTED: 0,
     IN_PROGRESS: 1,
