@@ -1,4 +1,4 @@
-import { Button, Dropdown } from "./Button";
+import { LinkButton, Dropdown } from "./Button";
 
 function Header(props) {
   return (
@@ -7,7 +7,7 @@ function Header(props) {
         <h1 className=" font-black text-7xl">{props.pageName}</h1>
       </div>
       <div className="flex flex-1 sm:justify-end">
-        <Button btnName={props.btnName} btnLink={props.btnLink} />
+        <LinkButton btnName={props.btnName} btnLink={props.btnLink} />
         <Dropdown
           drpName="Language"
           options={["English", "Spanish", "Italian"]}
