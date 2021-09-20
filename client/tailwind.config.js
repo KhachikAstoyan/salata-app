@@ -64,7 +64,7 @@ module.exports = {
       translate: ["active"],
       textColor: ["active"],
       margin: ["active"],
-      borderWidth: ["active"],
+      borderWidth: ["active"]
       backgroundColor: ["checked"],
       borderColor: ["checked"],
     },
