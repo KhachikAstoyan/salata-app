@@ -17,11 +17,17 @@ code {
 @tailwind utilities;
 
 @layer components {
-  .btn {
-    @apply px-4 py-3 ml-4 z-10 text-sm transition-all transform inline-block bg-white rounded-lg shadow cursor-pointer select-none min-w-min place-self-center active:shadow-sm active:translate-y-px;
+  .btnPage {
+    @apply px-4 py-3 ml-4 z-10 text-sm text-white font-sans transition-all transform inline-block bg-primary-myGreen rounded-lg shadow cursor-pointer select-none min-w-min place-self-center active:shadow-sm active:translate-y-px;
+  }
+  .btnLanguage {
+    @apply px-4 py-3 ml-4 z-10 text-lg font-light font-sans transition-all transform inline-block bg-white cursor-pointer select-none min-w-min active:border-0 active:mr-1 active:translate-y-px;
+  }
+  .btnStatus {
+    @apply w-24 h-11 px-4 py-3 ml-4 z-10 text-sm text-white font-sans transition-all transform inline-block bg-primary-gray rounded-lg shadow cursor-pointer select-none min-w-min place-self-center active:text-mainText active:shadow-sm active:translate-y-px;
   }
   .order {
-    @apply p-8 mb-4 flex flex-col rounded-2xl mx-auto sm:flex-row items-center text-sm  transition-all transform bg-white shadow select-none min-w-min place-self-center;
+    @apply p-6 mb-4 flex flex-col rounded-2xl mx-auto sm:flex-row items-center text-sm  transition-all transform bg-white shadow-customShadow cursor-pointer select-none min-w-min place-self-center;
   }
   .heading-list {
     @apply absolute w-full -left-0 rounded-none bg-white top-9 flex justify-center rounded-br-lg rounded-bl-lg shadow-md;
