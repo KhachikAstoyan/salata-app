@@ -99,6 +99,74 @@ const CloseIcon = (props) => {
   );
 };
 
+
+const RewindButton = (props) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-20 w-20"
+       viewBox="0 0 20 20"
+      fill="currentColor">
+      <path
+        d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z" />
+    </svg>
+  );
+};
+
+const ForwardButton = (props) => {
+  return (
+
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-20 w-20"
+      viewBox="0 0 20 20"
+      fill="currentColor">
+      <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798l-5.445-3.63z" />
+    </svg>
+  );
+};
+
+const PauseButton = (props) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-20 w-20"
+       fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      onClick={props.onClick}>
+
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+  );
+};
+
+const PlayButton = (props) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-20 w-20"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      onClick={props.onClick}
+
+
+
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  );
+};
+
+
+
 export {
   ChevronRight,
   ChevronLeft,
@@ -106,4 +174,9 @@ export {
   ClipboardIcon,
   ClipboardCheckIcon,
   CloseIcon,
+  RewindButton,
+  ForwardButton,
+  PauseButton,
+  PlayButton,
+
 };
