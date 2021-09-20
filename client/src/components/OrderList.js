@@ -7,38 +7,39 @@ const OrderList = () => {
   return (
     <main className="container max-w-5xl mx-auto ">
       <div
-        className="order"
+        className="order w-11/12"
         onClick={() => {
           updateContent(!showContent);
+         
         }}
       >
-        <div className="flex-1 flex ">
+        <div className="flex-1 flex w-full justify-start ">
+          
           <div>
+            <h2 className="text-xl text-mainText">
+              Order <span className="text-primary text-myGreen">#6542566</span> - 2 Items
+            </h2>
+            <p className="text-mainText text-base font-medium">For Milena Tovmasyan</p>
+            <p className="text-sm text-DueBy font-medium">Due by 12:00 pm</p>
+          </div>
+          <div className="overflow-visible flex flex-1 justify-end h-11 absolute bottom-0 right-0 mr-6 mb-6">
+                <div className="overflow-visible flex flex-1 justify-end">
+                    <Dropdown
+                        drpName="Status"
+                        options={["Not Started", "In Progress", "Completed", "Finished"]}
+                        drpStyle="Status"
+                        drpOptionSize={20}
+                    />
+                </div>
+          </div>
+        </div>
+         <div>
             <div
               className="inline-block transition-all duration-300 transform"
-              style={{
-                transform: showContent ? "rotate(90deg)" : "rotate(0deg)",
-              }}
             >
-              <ChevronLeft />
+                <img src="./dropdown for orders.png" className="w-4 h-4"></img>
             </div>
           </div>
-          <div>
-            <h2 className="text-xl">
-              Order <span className="text-primary">#6542566</span> - 2 Items
-            </h2>
-            <p>for Milena Tovmasyan</p>
-          </div>
-        </div>
-        <div className="flex flex-1 justify-end overflow-visible">
-          <div className="overflow-visible">
-            <div className="inline-block">Due by 12:00pm</div>
-            <Dropdown
-              drpName="Status"
-              options={["Not Started", "In Progress", "Complated", "Finished"]}
-            />
-          </div>
-        </div>
       </div>
     </main>
   );
