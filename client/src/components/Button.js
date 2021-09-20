@@ -9,9 +9,10 @@ function Button(props) {
     </Link>
   );
 }
+
 function Dropdown(props) {
   const [showDropdown, updateDropdown] = useState(false);
-  const [selectedOption, UpdateOption] = useState();
+  // const [selectedOption, UpdateOption] = useState();
 
   const drpOptions = props.options.map((option, index) => {
     if(option == "Not Started"){
@@ -89,4 +90,4 @@ function Dropdown(props) {
   );
 }
 
-export { Button, Dropdown };
+export { Button, LinkButton, Dropdown };

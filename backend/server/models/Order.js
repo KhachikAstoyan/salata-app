@@ -5,24 +5,23 @@ const Schema = Mongoose.Schema;
 
 const OrderSchema = new Schema(
   {
-    client: {
-      type: Schema.Types.ObjectId,
-      ref: "client",
-    },
-    startTime: { type: String },
+    // client: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "client",
+    // },
+    startTime: { type: Date },
     dueTime: {
       type: Date,
     },
     isTakeout: { type: Boolean, required: true },
     items: [
       {
-        item: { type: Schema.Types.ObjectId, ref: "item" },
+        ingredients: [{ type: Schema.Types.ObjectId, ref: "Ingredient" }],
         quantity: Number,
         extraInfo: String,
       },
     ],
-    orderNumber: { type: Number },
-
+    orderNumber: { type: String },
     status: { type: Number },
   },
   { timestamps: true }

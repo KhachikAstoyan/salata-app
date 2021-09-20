@@ -2,17 +2,18 @@ import React from "react";
 
 const Counter = (props) => {
   return (
-    <div className="inline">
+    <div className="px-2 pt-3 sm:inline sm:p-0">
       <span>Quantity: </span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-7 w-7 inline text-green-500 active:text-green-600"
         viewBox="0 0 20 20"
         fill="currentColor"
-      
-        onClick={() => { if (props.quantity > 1) {
-          props.setQuantity(props.quantity - 1)
-        }}}
+        onClick={() => {
+          if (props.quantity > 1) {
+            props.setQuantity(props.quantity - 1);
+          }
+        }}
       >
         <path
           fillRule="evenodd"

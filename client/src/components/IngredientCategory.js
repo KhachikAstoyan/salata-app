@@ -4,7 +4,14 @@ import { ChevronLeft } from "./Icons";
 
 // TODO: fix toggling
 
-const IngredientCategory = ({ name, ingredients, number, category }) => {
+const IngredientCategory = ({
+  name,
+  ingredients,
+  number,
+  category,
+  addIngredient,
+  removeIngredient,
+}) => {
   const [showContent, updateContent] = useState(number === 0 ? true : false);
   return (
     <div className="mt-5 mb-2">
@@ -31,7 +38,16 @@ const IngredientCategory = ({ name, ingredients, number, category }) => {
         }`}
       >
         {ingredients.map((ingredient, index) => {
-          return <Ingredient key={index} ingredient={ingredient} />;
+          return (
+            <Ingredient
+              key={index}
+              ingredient={ingredient}
+              updateIngredient={(id, selected) => {
+                if (selected) addIngredient(id);
+                else removeIngredient(id);
+              }}
+            />
+          );
         })}
       </div>
     </div>

@@ -40,10 +40,21 @@
 // module.exports = ItemType;
 
 const Item = require("../models/Item");
+const Ingredient = require("../models/Ingredient");
 
 module.exports = {
   // Mutation:{
   //   async addItems(_,{orderId,ingredients,extra,additionalInformation,name,})
   // }
   // ItemType:
+  ItemType: {
+    async ingredients(parent, args) {
+      console.log(parent);
+      const ingredients = [];
+      parent.ingredients.forEach((ingredientId) => {
+        ingredients.push(Ingredient.findById(ingredientId));
+      });
+      return ingredients;
+    },
+  },
 };
