@@ -35,24 +35,62 @@ const addOrderMutation = gql`
 `;
 
 const AddOrder = () => {
+  const [orderState, updateOrder] = useState({
+    isTakeout: false,
+    items: [
+      {
+        ingredients: [],
+        quantity: 1,
+        extraInfo: "",
+      },
+    ],
+  });
   const [selectedItem, selectItem] = useState(0);
   const [count, updateCount] = useState(["item"]);
   const [submitOrder, { data, loading, error }] = useMutation(addOrderMutation);
   return (
     <main className="container max-w-5xl mx-auto mb-40 ">
-      {count.map((item, id) => {
+      <button
+        className="bg-green-500 text-white px-4 py-2 rounded-lg"
+        onClick={() => {
+          console.log(orderState.items);
+        }}
+      >
+        log
+      </button>
+      {orderState.items.map((item, id) => {
         return (
           <NewSalad
             key={id}
-            updateQuantity={(x) => (order.items[id].quantity = x)}
-            addIngredient={(ingredientId) =>
-              order.items[id].ingredients.push(ingredientId)
-            }
-            removeIngredient={(ingredientId) => {
-              const index = order.items[id].ingredients.indexOf(ingredientId);
-              if (index > -1) order.items[id].ingredients.splice(index, 1);
+            item={item}
+            updateQuantity={(x) => {
+              let items = orderState.items;
+              items[id].quantity = x;
+              updateOrder({ isTakeout: orderState.isTakeout, items });
             }}
-            setExtraInfo={(value) => (order.items[id].extraInfo = value)}
+            addIngredient={(ingredientId) => {
+              let items = orderState.items;
+              items[id].ingredients.push(ingredientId);
+              updateOrder({ isTakeout: orderState.isTakeout, items });
+            }}
+            removeItem={() => {
+              let items = orderState.items;
+              items.splice(id, 1);
+              console.log(items);
+              updateOrder({ isTakeout: orderState.isTakeout, items });
+            }}
+            removeIngredient={(ingredientId) => {
+              const index =
+                orderState.items[id].ingredients.indexOf(ingredientId);
+              let items = orderState.items;
+              if (index > -1) items[id].ingredients.splice(index, 1);
+              updateOrder({ isTakeout: orderState.isTakeout, items });
+            }}
+            setExtraInfo={(value) => {
+              let items = orderState.items;
+              items[id].extraInfo = value;
+              updateOrder({ isTakeout: orderState.isTakeout, items });
+            }}
             showContent={selectedItem === id ? true : false}
             selectItem={() => {
               selectItem(id);
@@ -74,14 +112,13 @@ const AddOrder = () => {
             <Button
               btnName="+"
               btnFunction={() => {
-                updateCount([...count, "item"]);
-                order.items.push({
+                let items = orderState.items;
+                items.push({
                   ingredients: [],
                   quantity: 1,
                   extraInfo: "",
                 });
-                selectItem(order.items.length - 1);
-                console.log(selectedItem);
+                updateOrder({ isTakeout: orderState.isTakeout, items });
               }}
               btnStyle="bg-green-400 text-gray-100 text-xl  "
             />
@@ -92,6 +129,10 @@ const AddOrder = () => {
                   variables: {
                     addOrderInput: order,
                   },
+                });
+                updateOrder({
+                  isTakeout: false,
+                  items: [{ ingredients: [], quantity: 1, extraInfo: "" }],
                 });
               }}
               btnStyle="bg-green-400 text-gray-100 text-xl  "

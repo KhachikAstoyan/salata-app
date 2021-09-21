@@ -4,9 +4,12 @@ import { ChevronLeft } from "./Icons";
 
 // TODO: fix toggling
 
+const nums = [1, 23, 42, 12];
+
 const IngredientCategory = ({
   name,
   ingredients,
+  checkedIngredients,
   number,
   category,
   addIngredient,
@@ -42,6 +45,7 @@ const IngredientCategory = ({
             <Ingredient
               key={index}
               ingredient={ingredient}
+              checked={checkedIngredients}
               updateIngredient={(id, selected) => {
                 if (selected) addIngredient(id);
                 else removeIngredient(id);

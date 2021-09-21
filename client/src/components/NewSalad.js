@@ -19,7 +19,6 @@ const query = gql`
 `;
 
 const NewSalad = (props) => {
-  const [quantity, setQuantity] = useState(1);
   const { loading, error, data } = useQuery(query);
   const [categories, setCategories] = useState();
   const [categoryElems, setCategoryElems] = useState();
@@ -51,6 +50,7 @@ const NewSalad = (props) => {
             name={key}
             key={key}
             ingredients={value}
+            checkedIngredients={props.item.ingredients}
             number={id}
             addIngredient={(id) => props.addIngredient(id)}
             removeIngredient={(id) => props.removeIngredient(id)}
@@ -81,14 +81,16 @@ const NewSalad = (props) => {
             Salad{" "}
           </span>
           <Counter
-            quantity={quantity}
+            quantity={props.item.quantity}
             setQuantity={(x) => {
-              setQuantity(x);
               props.updateQuantity(x);
             }}
           />
         </div>
-        <div className="flex-none flex justify-end">
+        <div
+          onClick={() => props.removeItem()}
+          className="flex-none flex justify-end"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-7 w-7 text-red-500 align-middle active:text-red-600"
@@ -116,6 +118,7 @@ const NewSalad = (props) => {
             className="w-full px-3 py-2 border rounded-lg focus:outline-none"
             rows="4"
             onChange={(e) => props.setExtraInfo(e.target.value)}
+            value={props.item.extraInfo}
           ></textarea>
         </div>
       </div>
