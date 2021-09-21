@@ -50,14 +50,16 @@ const AddOrder = () => {
   const [submitOrder, { data, loading, error }] = useMutation(addOrderMutation);
   return (
     <main className="container max-w-5xl mx-auto mb-40 ">
-      <button
+
+      {/* <button
         className="bg-green-500 text-white px-4 py-2 rounded-lg"
         onClick={() => {
           console.log(orderState.items);
         }}
       >
         log
-      </button>
+      </button> */}
+
       {orderState.items.map((item, id) => {
         return (
           <NewSalad

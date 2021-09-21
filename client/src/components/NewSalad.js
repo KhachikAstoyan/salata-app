@@ -77,7 +77,7 @@ const NewSalad = (props) => {
           >
             <ChevronLeft />
           </div>
-          <span className="text-4xl align-middle py-3 text-green-600">
+          <span className="text-4xl align-middle py-3 text-myGreen">
             Salad{" "}
           </span>
           <Counter
@@ -113,9 +113,10 @@ const NewSalad = (props) => {
         {categoryElems}
 
         <div className="mt-10">
-          <h2 className="text-xl mb-2">Extra Info</h2>
+          {/* <h2 className="text-xl mb-2">Extra Info</h2> */}
           <textarea
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none"
+            placeholder="Extra Info"
+            className="placeholder-primary-txtColor w-full px-3 py-2 border-primary-txtColor rounded-3xl focus:outline-none"
             rows="4"
             onChange={(e) => props.setExtraInfo(e.target.value)}
             value={props.item.extraInfo}
