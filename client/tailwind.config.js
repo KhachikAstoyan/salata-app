@@ -35,10 +35,9 @@ module.exports = {
           light: "#F8FFF6",
           DEFAULT: "#2CBB3A",
           dark: "#249D30",
-          myGreen: "#058862",
-          gray: "#5C5F60",
-          itemsBg: "#80c2af",
-          txtColor:"#aedad5",
+          myGreen:'#018660',
+          gray:'#5C5F60',
+          itemsBg:'#AEDAD5'
         },
         whiteHover: {
           DEFAULT: "#fafafa",
