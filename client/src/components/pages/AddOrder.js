@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { gql, useMutation } from "@apollo/client";
+import { nanoid } from "nanoid";
 
 import { Button } from "../Button";
 import NewSalad from "../NewSalad";
 import { arrayExpression } from "@babel/types";
-
-const order = {
-  isTakeout: false,
-  items: [{ ingredients: [], quantity: 1, extraInfo: "" }],
-};
 
 const addOrderMutation = gql`
   mutation AddOrderMutation($addOrderInput: inputOrder) {
@@ -35,67 +31,103 @@ const addOrderMutation = gql`
 `;
 
 const AddOrder = () => {
-  const [orderState, updateOrder] = useState({
+  const [orderState, setOrder] = useState({
     isTakeout: false,
-    items: [
-      {
-        ingredients: [],
-        quantity: 1,
-        extraInfo: "",
-      },
-    ],
+    items: {},
   });
   const [selectedItem, selectItem] = useState(0);
-  const [count, updateCount] = useState(["item"]);
   const [submitOrder, { data, loading, error }] = useMutation(addOrderMutation);
+
+  useEffect(() => {
+    let uid = nanoid();
+    setOrder((prevState) => ({
+      ...prevState,
+      items: {
+        ...prevState.items,
+        [uid]: {
+          ingredients: [],
+          quantity: 1,
+          extraInfo: "",
+        },
+      },
+    }));
+    selectItem(uid);
+  }, []);
+
+  const updateQuantity = (uid, x) => {
+    setOrder((prevState) => ({
+      ...prevState,
+      items: {
+        ...prevState.items,
+        [uid]: { ...prevState.items[uid], quantity: x },
+      },
+    }));
+  };
+
+  const removeItem = (uid) => {
+    setOrder((prevState) => {
+      let newItems = { ...prevState.items };
+      delete newItems[uid];
+      return { ...prevState, items: newItems };
+    });
+  };
+
+  const addIngredient = (uid, ingredientId) => {
+    setOrder((prevState) => ({
+      ...prevState,
+      items: {
+        ...prevState.items,
+        [uid]: {
+          ...prevState.items[uid],
+          ingredients: [...prevState.items[uid].ingredients, ingredientId],
+        },
+      },
+    }));
+  };
+
+  const removeIngrediet = (uid, ingredientId) => {
+    setOrder((prevState) => {
+      const index = prevState.items[uid].ingredients.indexOf(ingredientId);
+      let ingredients = [...prevState.items[uid].ingredients];
+      if (index >= 0) ingredients.splice(index, 1);
+      return {
+        ...prevState,
+        items: {
+          ...prevState.items,
+          [uid]: { ...prevState.items[uid], ingredients },
+        },
+      };
+    });
+  };
+
+  const setExtraInfo = (uid, info) => {
+    setOrder((prevState) => ({
+      ...prevState,
+      items: {
+        ...prevState.items,
+        [uid]: { ...prevState.items[uid], extraInfo: info },
+      },
+    }));
+  };
+
   return (
     <main className="container max-w-5xl mx-auto mb-40 ">
-
-      {/* <button
-        className="bg-green-500 text-white px-4 py-2 rounded-lg"
-        onClick={() => {
-          console.log(orderState.items);
-        }}
-      >
-        log
-      </button> */}
-
-      {orderState.items.map((item, id) => {
+      {Object.keys(orderState.items).map((uid) => {
         return (
           <NewSalad
-            key={id}
-            item={item}
-            updateQuantity={(x) => {
-              let items = orderState.items;
-              items[id].quantity = x;
-              updateOrder({ isTakeout: orderState.isTakeout, items });
-            }}
-            addIngredient={(ingredientId) => {
-              let items = orderState.items;
-              items[id].ingredients.push(ingredientId);
-              updateOrder({ isTakeout: orderState.isTakeout, items });
-            }}
-            removeItem={() => {
-              let items = orderState.items;
-              items.splice(id, 1);
-              console.log(items);
-              updateOrder({ isTakeout: orderState.isTakeout, items });
-            }}
-            removeIngredient={(ingredientId) => {
-              const index =
-                orderState.items[id].ingredients.indexOf(ingredientId);
-              let items = orderState.items;
-              if (index > -1) items[id].ingredients.splice(index, 1);
-              updateOrder({ isTakeout: orderState.isTakeout, items });
-            }}
-            setExtraInfo={(value) => {
-              let items = orderState.items;
-              items[id].extraInfo = value;
-              updateOrder({ isTakeout: orderState.isTakeout, items });
-            }}
-            showContent={selectedItem === id ? true : false}
+            key={uid}
+            uid={uid}
+            item={orderState.items[uid]}
+            updateQuantity={(x) => updateQuantity(uid, x)}
+            addIngredient={(ingredientId) => addIngredient(uid, ingredientId)}
+            removeItem={() => removeItem(uid)}
+            removeIngredient={(ingredientId) =>
+              removeIngrediet(uid, ingredientId)
+            }
+            setExtraInfo={(value) => setExtraInfo(uid, value)}
+            showContent={selectedItem === uid ? true : false}
             selectItem={() => {
-              selectItem(id);
+              selectItem(uid);
             }}
           />
         );
@@ -107,20 +139,25 @@ const AddOrder = () => {
             <input
               type="checkbox"
               className="appearance-none text-green-600 focus:ring-green-600 rounded-sm "
-              onChange={(e) => (order.isTakeout = e.target.checked)}
+              onChange={(e) =>
+                setOrder((prevState) => ({
+                  ...prevState,
+                  isTakeout: e.target.checked,
+                }))
+              }
             ></input>
           </div>
           <div className="flex flex-1 sm:justify-end">
             <Button
               btnName="+"
               btnFunction={() => {
-                let items = orderState.items;
-                items.push({
-                  ingredients: [],
-                  quantity: 1,
-                  extraInfo: "",
-                });
-                updateOrder({ isTakeout: orderState.isTakeout, items });
+                setOrder((prevState) => ({
+                  ...prevState,
+                  items: {
+                    ...prevState.items,
+                    [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
+                  },
+                }));
               }}
               btnStyle="bg-green-400 text-gray-100 text-xl  "
             />
@@ -129,12 +166,17 @@ const AddOrder = () => {
               btnFunction={() => {
                 submitOrder({
                   variables: {
-                    addOrderInput: order,
+                    addOrderInput: {
+                      isTakeout: orderState.isTakeout,
+                      items: Object.values(orderState.items),
+                    },
                   },
                 });
-                updateOrder({
+                setOrder({
                   isTakeout: false,
-                  items: [{ ingredients: [], quantity: 1, extraInfo: "" }],
+                  items: {
+                    [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
+                  },
                 });
               }}
               btnStyle="bg-green-400 text-gray-100 text-xl  "

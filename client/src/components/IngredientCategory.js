@@ -8,6 +8,7 @@ const nums = [1, 23, 42, 12];
 
 const IngredientCategory = ({
   name,
+  uid,
   ingredients,
   checkedIngredients,
   number,
@@ -36,14 +37,14 @@ const IngredientCategory = ({
       </h2>
 
       <div
-        className={`transition-opacity duration-1000 ${
+        className={`transition-opacity flex flex-wrap duration-1000 ${
           showContent ? "block opacity-100" : "hidden opacity-0"
         }`}
       >
         {ingredients.map((ingredient, index) => {
           return (
             <Ingredient
-              key={index}
+              key={uid + index}
               ingredient={ingredient}
               checked={checkedIngredients}
               updateIngredient={(id, selected) => {
