@@ -21,7 +21,7 @@ const query = gql`
 const NewSalad = (props) => {
   const { loading, error, data } = useQuery(query);
   const [categories, setCategories] = useState();
-  const [categoryElems, setCategoryElems] = useState();
+  const [categoryElems, setCategoryElems] = useState([]);
 
   useEffect(() => {
     if (data) {
@@ -42,21 +42,13 @@ const NewSalad = (props) => {
   useEffect(() => {
     if (categories) {
       const catElems = [];
-      let id = 0;
 
       for (const [key, value] of Object.entries(categories)) {
-        catElems.push(
-          <IngredientCategory
-            name={key}
-            key={key}
-            ingredients={value}
-            checkedIngredients={props.item.ingredients}
-            number={id}
-            addIngredient={(id) => props.addIngredient(id)}
-            removeIngredient={(id) => props.removeIngredient(id)}
-          />
-        );
-        id++;
+        catElems.push({
+          name: key,
+          uid: props.uid + key,
+          ingredients: value,
+        });
       }
 
       setCategoryElems(catElems);
@@ -93,7 +85,7 @@ const NewSalad = (props) => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7 text-red-500 align-middle active:text-red-600"
+            className="h-7 w-7 text-red align-middle active:text-red-600"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -110,7 +102,20 @@ const NewSalad = (props) => {
           props.showContent ? "block opacity-100" : "hidden opacity-0"
         }`}
       >
-        {categoryElems}
+        {categoryElems.map(({ name, key, uid, ingredients }, catId) => {
+          return (
+            <IngredientCategory
+              name={name}
+              key={uid}
+              uid={uid}
+              ingredients={ingredients}
+              checkedIngredients={props.item.ingredients}
+              number={catId}
+              addIngredient={(id) => props.addIngredient(id)}
+              removeIngredient={(id) => props.removeIngredient(id)}
+            />
+          );
+        })}
 
         <div className="mt-10">
           {/* <h2 className="text-xl mb-2">Extra Info</h2> */}
