@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 
 import { Button } from "../Button";
 import NewSalad from "../NewSalad";
-import { arrayExpression } from "@babel/types";
+// import { arrayExpression } from "@babel/types";
 
 const addOrderMutation = gql`
   mutation AddOrderMutation($addOrderInput: inputOrder) {
@@ -53,6 +53,10 @@ const AddOrder = () => {
     }));
     selectItem(uid);
   }, []);
+
+  if (loading) return "Submitting...";
+  if (error) return `Submission error! ${error.message}`;
+  if (data);
 
   const updateQuantity = (uid, x) => {
     setOrder((prevState) => ({

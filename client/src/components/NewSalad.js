@@ -26,7 +26,7 @@ const NewSalad = (props) => {
   useEffect(() => {
     if (data) {
       const categoryToIngredients = {};
-      data.ingredients.map((ingredient) => {
+      data.ingredients.forEach((ingredient) => {
         if (categoryToIngredients[ingredient.category.category]) {
           categoryToIngredients[ingredient.category.category].push(ingredient);
         } else {
@@ -58,7 +58,7 @@ const NewSalad = (props) => {
   if (loading) return "LOADING...";
   if (error) return `Error! ${error.message}`;
   return (
-    <div className="order block">
+    <div className="order block p-8">
       <div className="flex flex-row" onClick={() => props.selectItem()}>
         <div className="flex-grow">
           <div
