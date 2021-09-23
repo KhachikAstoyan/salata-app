@@ -13,7 +13,7 @@ module.exports = {
       myGreen: "#018660",
       mainText: "#5C5F60",
       DueBy: "#AEDAD5",
-      txtColor:"#aedad5",
+      txtColor:"#7c7f80",
 
     },
     boxShadow: {
@@ -35,10 +35,9 @@ module.exports = {
           light: "#F8FFF6",
           DEFAULT: "#2CBB3A",
           dark: "#249D30",
-          myGreen: "#058862",
-          gray: "#5C5F60",
-          itemsBg: "#80c2af",
-          txtColor:"#aedad5",
+          myGreen:'#018660',
+          gray:'#5C5F60',
+          itemsBg:'#01866029'
         },
         whiteHover: {
           DEFAULT: "#fafafa",
@@ -59,6 +58,7 @@ module.exports = {
       transitionDuration: {
         custom: "1000ms",
       },
+
     },
   },
   variants: {
@@ -66,7 +66,7 @@ module.exports = {
       boxShadow: ["active"],
       translate: ["active"],
       textColor: ["active"],
-      margin: ["active"],
+      margin: ["active","focus"],
       borderWidth: ["active"],
       backgroundColor: ["checked"],
       borderColor: ["checked"],

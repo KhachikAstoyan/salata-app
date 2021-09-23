@@ -4,8 +4,6 @@ import { ChevronLeft } from "./Icons";
 
 // TODO: fix toggling
 
-const nums = [1, 23, 42, 12];
-
 const IngredientCategory = ({
   name,
   uid,

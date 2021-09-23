@@ -1,31 +1,39 @@
 import React from "react";
-import {ChevronLeft} from "./Icons.js";
+// import { ChevronLeft } from "./Icons.js";
+import Audio from "./Audio.js";
 
-function ItemList(){
-
-    return(
-        <div className="w-10/12 flex ml-8 p-4 bg-primary-itemsBg">
-            <div className="">
-                <p className="text-mainText text-base font-medium">1. Regular Salad</p>
-                <div className="float-right">
-                    <div className="flex">
-                        <p className="text-sm text-base font-normal">Listen in English</p>
-                        <div>
-                            <img src="./listen audio.png" className="w-20 h-8 relative left-20"></img>
-                        </div>
-                    </div>
-                    <div className="flex">
-                        <p className="text-sm text-base font-normal">Listen in Spanish</p>
-                        <div>
-                            <img src="./listen audio.png" className="w-20 h-8 relative left-20 mr-16    "></img>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    );
-
+function ItemList(props) {
+  return (
+    <div className="flex bg-primary-itemsBg pt-4 rounded-b-lg">
+      <div className="w-full">
+        {props.items.map((item, id) => {
+          return (
+            <li className="flex flex-row" key={props.orderId + id}>
+              <div className="flex-1 m-4">
+                <p className="font-light font-sans text-mainText text-lg"> Salad {id + 1}</p>
+                <ul
+                  onClick={() =>
+                    console.log(Object.keys(["hello", "ingredient"]))
+                  }
+                >
+                  {item.ingredients.map((ingredient, index) => {
+                    return (
+                      <li className="ml-2 font-light font-sans text-mainText text-base" key={props.orderId + id + index}>
+                        {ingredient.name}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+              <div className="flex-1 flex justify-end mt-4">
+                <Audio />
+              </div>
+            </li>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 export default ItemList;
