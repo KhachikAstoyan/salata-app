@@ -37,7 +37,7 @@ module.exports = {
           dark: "#249D30",
           myGreen:'#018660',
           gray:'#5C5F60',
-          itemsBg:'#AEDAD5'
+          itemsBg:'#01866029'
         },
         whiteHover: {
           DEFAULT: "#fafafa",
@@ -66,7 +66,7 @@ module.exports = {
       boxShadow: ["active"],
       translate: ["active"],
       textColor: ["active"],
-      margin: ["active"],
+      margin: ["active","focus"],
       borderWidth: ["active"],
       backgroundColor: ["checked"],
       borderColor: ["checked"],

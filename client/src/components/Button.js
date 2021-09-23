@@ -58,7 +58,7 @@ function Dropdown(props) {
       return (
         <li
           key={index}
-          className="text-right px-1 text-red transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
+          className="text-left px-1 text-red transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
         >
           {option}
         </li>
@@ -67,7 +67,7 @@ function Dropdown(props) {
       return (
         <li
           key={index}
-          className="text-right px-1 text-yellow transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
+          className="text-left px-1 text-yellow transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
         >
           {option}
         </li>
@@ -76,7 +76,7 @@ function Dropdown(props) {
       return (
         <li
           key={index}
-          className="text-right px-1 text-lightGreen transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
+          className="text-left px-1 text-lightGreen transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
         >
           {option}
         </li>
@@ -85,7 +85,7 @@ function Dropdown(props) {
       return (
         <li
           key={index}
-          className="text-right px-1 text-myGreen transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
+          className="text-left px-1 text-myGreen transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
         >
           {option}
         </li>
@@ -94,7 +94,7 @@ function Dropdown(props) {
       return (
         <li
           key={index}
-          className="text-right px-1 mr-4 text-gray-400 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
+          className="text-left px-1 mr-4 text-gray-400 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
         >
           {option}
         </li>
@@ -124,9 +124,7 @@ function Dropdown(props) {
             showDropdown && "py-1"
           } w-full duration-300 transition-height`}
           style={{
-            height: showDropdown
-              ? `${props.options.length * props.drpOptionSize + 8}px`
-              : "0px",
+            height: showDropdown ? `${props.options.length * props.drpOptionSize + 8}px` : "0px",
           }}
         >
           {drpOptions}
