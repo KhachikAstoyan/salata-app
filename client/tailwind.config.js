@@ -13,7 +13,7 @@ module.exports = {
       myGreen: "#018660",
       mainText: "#5C5F60",
       DueBy: "#AEDAD5",
-      txtColor:"#aedad5",
+      txtColor:"#7c7f80",
 
     },
     boxShadow: {
@@ -58,6 +58,7 @@ module.exports = {
       transitionDuration: {
         custom: "1000ms",
       },
+
     },
   },
   variants: {

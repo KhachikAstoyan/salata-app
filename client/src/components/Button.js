@@ -1,6 +1,32 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "./Icons";
+import { gql, useQuery } from "@apollo/client";
+
+const  updateOrderStatus = gql`
+mutation Mutation($updateOrderStatusId2: String, $updateOrderStatusStatus2: StatusType) {
+  updateOrderStatus(id: $updateOrderStatusId2, status: $updateOrderStatusStatus2) {
+    id
+    dueTime
+    startTime
+    isTakeout
+    orderNumber
+    status
+    items {
+      quantity
+      extraInfo
+      ingredients {
+        id
+        name
+        category {
+          id
+          category
+        }
+      }
+    }
+  }
+}
+`
 
 function Button(props) {
   return (

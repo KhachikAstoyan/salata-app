@@ -39,7 +39,8 @@ const OrderList = () => {
   if (error) return `Error! ${error.message}`;
 
   return (
-    <main className="container max-w-5xl mx-auto ">
+    <main className="container max-w-5xl mx-auto "
+    >
       {data.orders.map((order, orderId) => {
         return (
           <div
@@ -64,17 +65,31 @@ const OrderList = () => {
               </div>
               <div className="overflow-visible flex relative float-right place-self-end">
                 <div className="overflow-visible">
-                  <Dropdown
-                    drpName={order.status}
-                    options={[
-                      "Not Started",
-                      "In Progress",
-                      "Completed",
-                      "Finished",
-                    ]}
-                    drpStyle="Status"
-                    drpOptionSize={24}
-                  />
+                +              <Dropdown
+               drpName="Status"
+                 options={[
+                   //need to add mutation
+                   // {
+                   //   name: "Not Started",
+
+                   // },
+ 
+                   // {
+                   //   name: "In Progress",
+                   // },
+ 
+                   // {
+                   //   name: "Completed",
+                   // },
+ 
+                   // {
+                   //   name="Finished",
+                   // },
+                   "Not Started", "In Progress", "Completed", "Finished"
+                 ]}
+                 drpStyle="Status"
+                 drpOptionSize={20}
+              />
                 </div>
               </div>
             </div>
