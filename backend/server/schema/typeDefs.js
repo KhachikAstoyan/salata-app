@@ -7,7 +7,7 @@ module.exports = gql`
   }
 
   type RootQueryType {
-    orders: [OrderType]
+    orders(offset: Int, limit: Int): [OrderType]
     clientOrders(id: String!): [OrderType]
     client(clientId: ID!): ClientType
     clients: [ClientType]
@@ -16,7 +16,6 @@ module.exports = gql`
 
   type OrderType {
     id: ID
-    # client: ClientType
     dueTime: String
     startTime: String
     isTakeout: Boolean

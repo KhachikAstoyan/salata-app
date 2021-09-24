@@ -4,11 +4,19 @@ const Order = require("../models/Order");
 
 module.exports = {
   Query: {
-    async orders() {
+    async orders(parent, args, context, info) {
       try {
-        const orders = await Order.find();
-        return orders;
+        // const orders = await Order.find();
+        let orders = await Order.aggregate([
+          { '$sort': { 'createdAt' : -1 } },
+          { '$facet': {
+            data: [ { $skip: args.offset }, { $limit: args.limit } ] // add projection here wish you re-shape the docs
+          }}
+        ]).exec()
+        console.log(orders[0].data)
+        return orders[0].data;
       } catch (err) {
+        console.log(err)
         throw new Error(err);
       }
     },
