@@ -3,11 +3,11 @@ import React from "react";
 const Counter = (props) => {
   return (
     <div className="px-2 pt-3 sm:inline sm:p-0">
-      <span className="text-txtColor">Quantity: </span>
+      <span className="text-txtColor text-sm ml-2">Quantity </span>
 
 
       <svg xmlns="http://www.w3.org/2000/svg"
-        className="h-8 w-8 inline" fill="none"
+        className="h-10 w-10 inline" fill="none"
         viewBox="0 0 24 24"
         stroke="#018660"
         onClick={() => {
@@ -26,11 +26,11 @@ const Counter = (props) => {
 
 
 
-      <span className="px-4">{props.quantity}</span>
+      <span className="px-2">{props.quantity}</span>
 
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-8 w-8 inline"
+        className="h-10 w-10 inline"
         fill="none"
         viewBox="0 0 24 24"
         stroke="#018660"

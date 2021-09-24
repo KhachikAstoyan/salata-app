@@ -17,7 +17,7 @@ const OrderList = () => {
   if (error) return `Error! ${error.message}`;
 
   return (
-    <main className="container max-w-5xl">
+    <main className="container max-w-5xl mx-auto">
       {data.orders.map((order, orderId) => {
         return (
           <div
@@ -27,7 +27,7 @@ const OrderList = () => {
               setContentId(orderId);
             }}
           >
-            <div className="">
+            <div>
               <div className="order relative z-40 flow-root w-full p-6 justify-between">
                 <div className="justify-start">
                   <h2 className="text-xl text-mainText">

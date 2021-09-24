@@ -18,26 +18,27 @@ const IngredientCategory = ({
   return (
     <div className="mt-5 mb-2">
       <h2
-        className="text-xl mb-2 transition-all active:text-green-500 active:"
+        className="text-mainText text-base font-medium mb-2 transition-all active:text-green-500 active:"
         onClick={() => {
           updateContent(!showContent);
         }}
       >
+        {name}
         <div
-          className="inline-block transition-all duration-300 transform"
+          className="inline-block relative float-right transition-all duration-500 transform"
           style={{
-            transform: showContent ? "rotate(90deg)" : "rotate(0deg)",
+            transform: showContent ? "rotate(270deg)" : "rotate(90deg)",
           }}
         >
           <ChevronLeft />
         </div>
-        {name}
       </h2>
+
 
       <div
         className={`transition-opacity flex flex-wrap duration-1000 ${
           showContent ? "block opacity-100" : "hidden opacity-0"
-        }`}
+          }`}
       >
         {ingredients.map((ingredient, index) => {
           return (

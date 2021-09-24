@@ -14,6 +14,8 @@ module.exports = {
       mainText: "#5C5F60",
       DueBy: "#AEDAD5",
       txtColor:"#7c7f80",
+      ingredient:"#43464F",
+      extraInfo: "#01866029",
 
     },
     boxShadow: {
@@ -37,7 +39,9 @@ module.exports = {
           dark: "#249D30",
           myGreen:'#018660',
           gray:'#5C5F60',
-          itemsBg:'#01866029'
+          itemsBg:'#01866029',
+          extraInfo: "#01866029",
+
         },
         whiteHover: {
           DEFAULT: "#fafafa",

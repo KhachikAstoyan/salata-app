@@ -58,18 +58,10 @@ const NewSalad = (props) => {
   if (loading) return "LOADING...";
   if (error) return `Error! ${error.message}`;
   return (
-    <div className="order block p-8">
+    <div className="order block p-4">
       <div className="flex flex-row" onClick={() => props.selectItem()}>
         <div className="flex-grow">
-          <div
-            className="inline-block transition-all duration-300 transform"
-            style={{
-              transform: props.showContent ? "rotate(90deg)" : "rotate(0deg)",
-            }}
-          >
-            <ChevronLeft />
-          </div>
-          <span className="text-4xl align-middle py-3 text-myGreen">
+          <span className="font-base font-sans text-lg align-middle py-3 text-myGreen">
             Salad{" "}
           </span>
           <Counter
@@ -119,7 +111,7 @@ const NewSalad = (props) => {
         <div className="mt-10">
           <textarea
             placeholder="Extra Info"
-            className="placeholder-primary-txtColor w-full px-3 py-2 border-primary-txtColor rounded-3xl focus:outline-none"
+            className="placeholder-primary-extraInfo w-full px-3 py-2 border-primary-extraInfo rounded-3xl focus:outline-none"
             rows="4"
             onChange={(e) => props.setExtraInfo(e.target.value)}
             value={props.item.extraInfo}
