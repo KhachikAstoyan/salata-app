@@ -98,9 +98,8 @@ const NewSalad = (props) => {
         </div>
       </div>
       <div
-        className={`transition-opacity duration-1000 ${
-          props.showContent ? "block opacity-100" : "hidden opacity-0"
-        }`}
+        className={`transition-opacity duration-1000 ${props.showContent ? "block opacity-100" : "hidden opacity-0"
+          }`}
       >
         {categoryElems.map(({ name, key, uid, ingredients }, catId) => {
           return (
@@ -118,7 +117,6 @@ const NewSalad = (props) => {
         })}
 
         <div className="mt-10">
-          {/* <h2 className="text-xl mb-2">Extra Info</h2> */}
           <textarea
             placeholder="Extra Info"
             className="placeholder-primary-txtColor w-full px-3 py-2 border-primary-txtColor rounded-3xl focus:outline-none"
