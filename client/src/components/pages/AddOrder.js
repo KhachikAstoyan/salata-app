@@ -2,33 +2,11 @@ import React, { useState, useEffect } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { nanoid } from "nanoid";
 
+import { addOrderMutation, ordersQuery } from "../../gql.js";
+
 import { Button } from "../Button";
 import NewSalad from "../NewSalad";
 // import { arrayExpression } from "@babel/types";
-
-const addOrderMutation = gql`
-  mutation AddOrderMutation($addOrderInput: inputOrder) {
-    addOrder(input: $addOrderInput) {
-      id
-      dueTime
-      startTime
-      isTakeout
-      items {
-        ingredients {
-          id
-          name
-          category {
-            category
-          }
-        }
-        quantity
-        extraInfo
-      }
-      orderNumber
-      status
-    }
-  }
-`;
 
 const AddOrder = () => {
   const [orderState, setOrder] = useState({
@@ -36,7 +14,10 @@ const AddOrder = () => {
     items: {},
   });
   const [selectedItem, selectItem] = useState(0);
-  const [submitOrder, { data, loading, error }] = useMutation(addOrderMutation);
+  const [submitOrder, { data, loading, error }] = useMutation(
+    addOrderMutation,
+    { refetchQueries: [{ query: ordersQuery }] }
+  );
 
   useEffect(() => {
     let uid = nanoid();
