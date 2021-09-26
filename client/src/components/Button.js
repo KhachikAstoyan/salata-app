@@ -27,31 +27,81 @@ function LinkButton(props) {
 }
 
 function DropdownStatus(props) {
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const breakpoint = 640;
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const [setStatus, { data, loading, error }] = useMutation(
-    updateOrderStatusMutation,
-    {
-      refetchQueries: [{ query: ordersQuery }],
+  const [setStatus, { error }] = useMutation(updateOrderStatusMutation, {
+    refetchQueries: [{ query: ordersQuery }],
+  });
+
+  const setTitle = (status, returnValue) => {
+    switch (returnValue) {
+      case "title":
+        switch (status) {
+          case "NOT_STARTED":
+            return <span>Not Started</span>;
+          case "IN_PROGRESS":
+            return <span>In Progress</span>;
+          case "COMPLETED":
+            return <span>Completed</span>;
+          case "FINISHED":
+            return <span>Finished</span>;
+          default:
+            return <span>Status</span>;
+        }
+      case "color":
+        switch (status) {
+          case "NOT_STARTED":
+            return "red";
+          case "IN_PROGRESS":
+            return "yellow";
+          case "COMPLETED":
+            return "green";
+          case "FINISHED":
+            return "blue";
+          default:
+            return "gray";
+        }
+      default:
+        return null;
     }
-  );
+  };
+
+  React.useEffect(() => {
+    const handleWindowResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleWindowResize);
+
+    // Return a function from the effect that removes the event listener
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
 
   return (
     <div
-      className={`btn${props.drpStyle}`}
+      className={`${width < breakpoint ? "relative h-14" : ""}`}
       onClick={() => setShowDropdown(!showDropdown)}
     >
-      <div className="dropdown-heading">
+      <div
+        className={`btnStatus absolute ${
+          width < 640 ? "top-2 right-0" : "right-6 top-6"
+        } text-${setTitle(
+          props.drpStatus,
+          "color"
+        )} bg-white border-2 rounded-lg border-${setTitle(
+          props.drpStatus,
+          "color"
+        )}-500 text-right`}
+      >
         {(() => {
           switch (props.drpStatus) {
             case "NOT_STARTED":
-              return <span className="bg-red-500">Not Started</span>;
+              return <span>Not Started</span>;
             case "IN_PROGRESS":
-              return <span className="bg-yellow-500">In Progress</span>;
+              return <span>In Progress</span>;
             case "COMPLETED":
-              return <span className="bg-green-500">Completed</span>;
+              return <span>Completed</span>;
             case "FINISHED":
-              return <span className="bg-blue-500">Finished</span>;
+              return <span>Finished</span>;
             default:
               return <span>Status</span>;
           }
@@ -64,7 +114,7 @@ function DropdownStatus(props) {
         >
           <ChevronRight />
         </div>
-        <div className="heading-list">
+        <div className="">
           <ul
             className={`overflow-hidden text-right px-4 ${
               showDropdown && "py-1"

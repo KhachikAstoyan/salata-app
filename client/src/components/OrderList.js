@@ -28,8 +28,8 @@ const OrderList = () => {
             }}
           >
             <div>
-              <div className="order relative z-40 flow-root w-full p-6 justify-between">
-                <div className="justify-start">
+              <div className="order relative z-40 w-full p-6 justify-between">
+                <div className="flex-grow justify-self-start">
                   <h2 className="text-xl text-mainText">
                     Order{" "}
                     <span className="text-myGreen">#{order.orderNumber}</span> -{" "}
@@ -39,7 +39,7 @@ const OrderList = () => {
                     Due by {order.dueTime} pm
                   </p>
                 </div>
-                <div className="overflow-visible flex relative float-right place-self-end">
+                <div className="flex-none">
                   <div className="overflow-visible">
                     <DropdownStatus
                       drpStatus={order.status}

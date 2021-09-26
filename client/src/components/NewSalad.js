@@ -3,7 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 
 import IngredientCategory from "./IngredientCategory";
 import Counter from "./Counter";
-import { ChevronLeft } from "./Icons";
+// import { ChevronLeft } from "./Icons";
 
 const query = gql`
   query RootQueryType {
@@ -90,8 +90,9 @@ const NewSalad = (props) => {
         </div>
       </div>
       <div
-        className={`transition-opacity duration-1000 ${props.showContent ? "block opacity-100" : "hidden opacity-0"
-          }`}
+        className={`transition-opacity duration-1000 ${
+          props.showContent ? "block opacity-100" : "hidden opacity-0"
+        }`}
       >
         {categoryElems.map(({ name, key, uid, ingredients }, catId) => {
           return (
