@@ -48,4 +48,35 @@ const addOrderMutation = gql`
   }
 `;
 
-export { ordersQuery, addOrderMutation };
+const updateOrderStatusMutation = gql`
+  mutation UpdateOrderStatusMutation(
+    $updateOrderStatusId: String
+    $updateOrderStatusStatus: StatusType
+  ) {
+    updateOrderStatus(
+      id: $updateOrderStatusId
+      status: $updateOrderStatusStatus
+    ) {
+      id
+      dueTime
+      startTime
+      isTakeout
+      items {
+        ingredients {
+          id
+          name
+          category {
+            id
+            category
+          }
+        }
+        quantity
+        extraInfo
+      }
+      orderNumber
+      status
+    }
+  }
+`;
+
+export { ordersQuery, addOrderMutation, updateOrderStatusMutation };

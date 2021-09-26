@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { nanoid } from "nanoid";
 
 import { addOrderMutation, ordersQuery } from "../../gql.js";
@@ -141,7 +141,9 @@ const AddOrder = () => {
         </div>
       </div>
       <div className="flex">
-        <label className="ml-2 text-mainText text-base font-medium my-auto">Takeout</label>
+        <label className="ml-2 text-mainText text-base font-medium my-auto">
+          Takeout
+        </label>
         <div className="flex flex-1 justify-end">
           <input
             type="checkbox"
@@ -155,14 +157,10 @@ const AddOrder = () => {
           ></input>
         </div>
       </div>
-     
-
 
       <div className="w-full fixed bottom-0 left-0">
         <div className="order bg-primary-gray text-white font-sans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row">
-
           <div className="flex flex-1 justify-center">
-
             <Button
               btnName="Submit"
               btnFunction={() => {

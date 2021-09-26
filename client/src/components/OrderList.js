@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown } from "./Button";
 import { gql, useQuery } from "@apollo/client";
 
 import { ordersQuery } from "../gql.js";
 
 // import { ChevronLeft } from "./Icons.js";
+import { Dropdown, DropdownStatus } from "./Button";
 import ItemList from "./ItemList.js";
 
 const OrderList = () => {
@@ -32,10 +32,8 @@ const OrderList = () => {
                 <div className="justify-start">
                   <h2 className="text-xl text-mainText">
                     Order{" "}
-                    <span className="text-primary text-myGreen">
-                      #{order.orderNumber}
-                    </span>{" "}
-                    - {order.items.length} Items
+                    <span className="text-myGreen">#{order.orderNumber}</span> -{" "}
+                    {order.items.length} Items
                   </h2>
                   <p className="text-mainText text-base font-medium">
                     Due by {order.dueTime} pm
@@ -43,8 +41,9 @@ const OrderList = () => {
                 </div>
                 <div className="overflow-visible flex relative float-right place-self-end">
                   <div className="overflow-visible">
-                    <Dropdown
-                      drpName={order.status}
+                    <DropdownStatus
+                      drpStatus={order.status}
+                      orderId={order.id}
                       options={[
                         //need to add mutation
                         // {
@@ -69,7 +68,7 @@ const OrderList = () => {
                         "Finished",
                       ]}
                       drpStyle="Status"
-                      drpOptionSize={24}
+                      drpOptionSize={20}
                     />
                   </div>
                 </div>
