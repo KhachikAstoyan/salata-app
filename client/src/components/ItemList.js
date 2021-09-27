@@ -4,7 +4,7 @@ import Audio from "./Audio.js";
 
 function ItemList(props) {
   return (
-    <div className="flex bg-primary-extraInfo pt-4 rounded-b-lg">
+    <div className="flex bg-primary-bgLight pt-4 rounded-b-lg">
       <div className="w-full">
         {props.items.map((item, id) => {
           return (
