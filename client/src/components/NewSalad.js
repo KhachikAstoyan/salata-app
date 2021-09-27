@@ -61,7 +61,7 @@ const NewSalad = (props) => {
     <div className="order block p-4">
       <div className="flex flex-row" onClick={() => props.selectItem()}>
         <div className="flex-grow">
-          <span className="font-base font-sans text-lg align-middle py-3 text-myGreen">
+          <span className="font-base font-sans text-lg align-middle py-3 text-primary">
             Salad{" "}
           </span>
           <Counter
@@ -77,7 +77,7 @@ const NewSalad = (props) => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7 text-red align-middle active:text-red-600"
+            className="h-7 w-7 text-red-500 align-middle active:text-red-600"
             viewBox="0 0 20 20"
             fill="currentColor"
           >

@@ -120,10 +120,10 @@ const AddOrder = () => {
 
       <div className="flex">
         <div className="text-4xl py-1 text-green-600">
-          <h2 className="ml-2 font-base font-sans text-myGreen">Order</h2>
+          <h2 className="ml-2 font-base font-sans text-primary">Order</h2>
         </div>
         <div className="flex flex-1 justify-end mr-2">
-          <div className="flex justify-center w-9 h-9 bg-primary-myGreen font-sans text-4xl text-white rounded-lg">
+          <div className="flex justify-center w-9 h-9 bg-primary font-sans text-4xl text-white rounded-lg">
             <Button
               btnName="+"
               btnFunction={() => {
@@ -141,13 +141,13 @@ const AddOrder = () => {
         </div>
       </div>
       <div className="flex">
-        <label className="ml-2 text-mainText text-base font-medium my-auto">
+        <label className="ml-2 text-secondary text-base font-medium my-auto">
           Takeout
         </label>
         <div className="flex flex-1 justify-end">
           <input
             type="checkbox"
-            className="appearance-none mr-2 border-primary-myGreen w-7 h-7 text-primary-myGreen focus:ring-primary-myGreen rounded-lg "
+            className="appearance-none mr-2 border-primary w-7 h-7 text-primary focus:ring-primary rounded-lg "
             onChange={(e) =>
               setOrder((prevState) => ({
                 ...prevState,
@@ -159,7 +159,7 @@ const AddOrder = () => {
       </div>
 
       <div className="w-full fixed bottom-0 left-0">
-        <div className="order bg-primary-gray text-white font-sans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row">
+        <div className="order bg-secondary text-white font-sans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row">
           <div className="flex flex-1 justify-center">
             <Button
               btnName="Submit"

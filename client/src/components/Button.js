@@ -87,10 +87,10 @@ function DropdownStatus(props) {
         } text-${setTitle(
           props.drpStatus,
           "color"
-        )} bg-white border-2 rounded-lg border-${setTitle(
+        )}-500 bg-white border-2 rounded-lg border-${setTitle(
           props.drpStatus,
           "color"
-        )}-500 text-right`}
+        )}-300 text-right`}
       >
         {(() => {
           switch (props.drpStatus) {
@@ -136,7 +136,7 @@ function DropdownStatus(props) {
                 });
               }}
               key={props.orderId + 1}
-              className="text-left px-1 text-red transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
+              className="text-left px-1 text-red-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-red-600"
             >
               Not Started
             </li>
@@ -151,7 +151,7 @@ function DropdownStatus(props) {
                 });
               }}
               key={props.orderId + 2}
-              className="text-left px-1 text-yellow transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
+              className="text-left px-1 text-yellow-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-yellow-600"
             >
               In Progress
             </li>
@@ -166,7 +166,7 @@ function DropdownStatus(props) {
                 });
               }}
               key={props.orderId + 3}
-              className="text-left px-1 text-myGreen transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
+              className="text-left px-1 text-green-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-green-600"
             >
               Completed
             </li>
@@ -181,7 +181,7 @@ function DropdownStatus(props) {
                 });
               }}
               key={props.orderId + 4}
-              className="text-left px-1 text-primary transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
+              className="text-left px-1 text-blue-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-blue-600"
             >
               Finished
             </li>
@@ -198,41 +198,6 @@ function Dropdown(props) {
 
   const drpOptions = props.options.map((option, index) => {
     if (option === "Not Started") {
-      return (
-        <li
-          key={index}
-          className="text-left px-1 text-red transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
-        >
-          {option}
-        </li>
-      );
-    } else if (option === "In Progress") {
-      return (
-        <li
-          key={index}
-          className="text-left px-1 text-yellow transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
-        >
-          {option}
-        </li>
-      );
-    } else if (option === "Completed") {
-      return (
-        <li
-          key={index}
-          className="text-left px-1 text-lightGreen transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
-        >
-          {option}
-        </li>
-      );
-    } else if (option === "Finished") {
-      return (
-        <li
-          key={index}
-          className="text-left px-1 text-myGreen transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
-        >
-          {option}
-        </li>
-      );
     } else {
       return (
         <li

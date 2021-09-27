@@ -18,7 +18,7 @@ const IngredientCategory = ({
   return (
     <div className="mt-5 mb-2">
       <h2
-        className="text-mainText text-base font-medium mb-2 transition-all active:text-green-500 active:"
+        className="text-secondary text-base font-medium mb-2 transition-all active:text-green-500 active:"
         onClick={() => {
           updateContent(!showContent);
         }}
@@ -34,11 +34,10 @@ const IngredientCategory = ({
         </div>
       </h2>
 
-
       <div
         className={`transition-opacity flex flex-wrap duration-1000 ${
           showContent ? "block opacity-100" : "hidden opacity-0"
-          }`}
+        }`}
       >
         {ingredients.map((ingredient, index) => {
           return (

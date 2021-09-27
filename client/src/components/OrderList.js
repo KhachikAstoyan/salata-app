@@ -30,12 +30,12 @@ const OrderList = () => {
             <div>
               <div className="order relative z-40 w-full p-6 justify-between">
                 <div className="flex-grow justify-self-start">
-                  <h2 className="text-xl text-mainText">
+                  <h2 className="text-xl text-secondary">
                     Order{" "}
-                    <span className="text-myGreen">#{order.orderNumber}</span> -{" "}
+                    <span className="text-primary">#{order.orderNumber}</span> -{" "}
                     {order.items.length} Items
                   </h2>
-                  <p className="text-mainText text-base font-medium">
+                  <p className="text-secondary text-base font-medium">
                     Due by {order.dueTime} pm
                   </p>
                 </div>
