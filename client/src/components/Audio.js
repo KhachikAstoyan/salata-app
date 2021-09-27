@@ -25,7 +25,7 @@ const Audiolist = () => {
 
   return (
     <main className="container max-w-5xl mx-auto ">
-      <div className="grid-cols-3 text-primary items-center flex ">
+      <div className="grid-cols-3 font-DMSans text-primary items-center flex ">
         Listen
         {isPlayingAudio ? (
           <PauseButton onClick={handlePauseButtonClick} />

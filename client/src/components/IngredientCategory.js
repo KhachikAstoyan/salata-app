@@ -18,7 +18,7 @@ const IngredientCategory = ({
   return (
     <div className="mt-5 mb-2">
       <h2
-        className="text-secondary text-base font-medium mb-2 transition-all active:text-green-500 active:"
+        className="text-secondary font-DMSans text-base font-medium mb-2 transition-all active:text-green-500 active:"
         onClick={() => {
           updateContent(!showContent);
         }}

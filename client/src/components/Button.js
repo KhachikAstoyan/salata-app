@@ -53,13 +53,13 @@ function DropdownStatus(props) {
       case "color":
         switch (status) {
           case "NOT_STARTED":
-            return "red";
+            return "gray";
           case "IN_PROGRESS":
             return "yellow";
           case "COMPLETED":
             return "green";
           case "FINISHED":
-            return "blue";
+            return "red";
           default:
             return "gray";
         }
@@ -79,7 +79,6 @@ function DropdownStatus(props) {
   return (
     <div
       className={`${width < breakpoint ? "relative h-14" : ""}`}
-      onClick={() => setShowDropdown(!showDropdown)}
     >
       <div
         className={`btnStatus absolute ${
@@ -91,6 +90,8 @@ function DropdownStatus(props) {
           props.drpStatus,
           "color"
         )}-300 text-right`}
+        onClick={() => setShowDropdown(!showDropdown)}
+
       >
         {(() => {
           switch (props.drpStatus) {
@@ -107,9 +108,9 @@ function DropdownStatus(props) {
           }
         })()}
         <div
-          className="inline-block transition-all duration-300 transform"
+          className="inline-block transition-all duration-500 transform"
           style={{
-            transform: showDropdown ? "rotate(-90deg)" : "rotate(0deg)",
+            transform: showDropdown ? "rotate(90deg)" : "rotate(-90deg)",
           }}
         >
           <ChevronRight />
@@ -136,7 +137,7 @@ function DropdownStatus(props) {
                 });
               }}
               key={props.orderId + 1}
-              className="text-left px-1 text-red-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-red-600"
+              className="text-left px-1 py-1 text-gray-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
             >
               Not Started
             </li>
@@ -181,7 +182,7 @@ function DropdownStatus(props) {
                 });
               }}
               key={props.orderId + 4}
-              className="text-left px-1 text-blue-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-blue-600"
+              className="text-left px-1 text-red-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-red-600"
             >
               Finished
             </li>
