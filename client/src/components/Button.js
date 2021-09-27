@@ -77,9 +77,7 @@ function DropdownStatus(props) {
   }, []);
 
   return (
-    <div
-      className={`${width < breakpoint ? "relative h-14" : ""}`}
-    >
+    <div className={`${width < breakpoint ? "relative h-14" : ""}`}>
       <div
         className={`btnStatus absolute ${
           width < 640 ? "top-2 right-0" : "right-6 top-6"
@@ -91,7 +89,6 @@ function DropdownStatus(props) {
           "color"
         )}-300 text-right`}
         onClick={() => setShowDropdown(!showDropdown)}
-
       >
         {(() => {
           switch (props.drpStatus) {
@@ -152,7 +149,7 @@ function DropdownStatus(props) {
                 });
               }}
               key={props.orderId + 2}
-              className="text-left px-1 text-yellow-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-yellow-600"
+              className="text-left px-1 py-1 text-yellow-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-yellow-600"
             >
               In Progress
             </li>
@@ -167,7 +164,7 @@ function DropdownStatus(props) {
                 });
               }}
               key={props.orderId + 3}
-              className="text-left px-1 text-green-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-green-600"
+              className="text-left px-1 py-1 text-green-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-green-600"
             >
               Completed
             </li>
@@ -182,7 +179,7 @@ function DropdownStatus(props) {
                 });
               }}
               key={props.orderId + 4}
-              className="text-left px-1 text-red-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-red-600"
+              className="text-left px-1 py-1 text-red-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-red-600"
             >
               Finished
             </li>

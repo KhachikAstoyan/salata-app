@@ -32,8 +32,10 @@ const OrderList = () => {
                 <div className="flex-grow justify-self-start">
                   <h2 className="text-xl font-DMSans text-secondary">
                     Order{" "}
-                    <span className="text-primary font-DMSans">#{order.orderNumber}</span> -{" "}
-                    {order.items.length} Items
+                    <span className="text-primary font-DMSans">
+                      #{order.orderNumber}
+                    </span>{" "}
+                    - {order.items.length} Items
                   </h2>
                   <p className="text-secondary font-DMSans text-base font-medium">
                     Due by {order.dueTime} pm
@@ -68,7 +70,7 @@ const OrderList = () => {
                         "Finished",
                       ]}
                       drpStyle="Status"
-                      drpOptionSize={20}
+                      drpOptionSize={28}
                     />
                   </div>
                 </div>
