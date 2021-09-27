@@ -9,9 +9,8 @@ function Ingredient({ ingredient, checked, updateIngredient }) {
           setSelected(!selected);
           updateIngredient(ingredient.id, !selected);
         }}
-        className={`inline-flex transition duration-200 ease-in-out text-center flex-col rounded-xl border-2 mb-2 px-3 py-2 mr-2 border-primary-myGreen  ${
-          checked.indexOf(ingredient.id) > -1 &&
-          "border-primary-myGreen bg-primary-itemsBg "
+        className={`inline-flex transition mr-2 duration-200 ease-in-out text-center flex-col rounded-xl border mb-2 px-3 py-2 border-primary  ${
+          checked.indexOf(ingredient.id) > -1 && " bg-primary-lighten "
         }`}
       >
         <img
@@ -23,8 +22,10 @@ function Ingredient({ ingredient, checked, updateIngredient }) {
             e.target.src = "/static/harvest.png";
           }}
         />
-        <p className="text-txtColor">{ingredient.name}</p>
       </div>
+      <p className="text-secondary-light break-normal ml-3 w-16 text-center text-xs">
+        {ingredient.name}
+      </p>
     </div>
   );
 }

@@ -1,32 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "./Icons";
-import { gql, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 
-const  updateOrderStatus = gql`
-mutation Mutation($updateOrderStatusId2: String, $updateOrderStatusStatus2: StatusType) {
-  updateOrderStatus(id: $updateOrderStatusId2, status: $updateOrderStatusStatus2) {
-    id
-    dueTime
-    startTime
-    isTakeout
-    orderNumber
-    status
-    items {
-      quantity
-      extraInfo
-      ingredients {
-        id
-        name
-        category {
-          id
-          category
-        }
-      }
-    }
-  }
-}
-`
+import { updateOrderStatusMutation, ordersQuery } from "../gql.js";
 
 function Button(props) {
   return (
@@ -49,47 +26,178 @@ function LinkButton(props) {
   );
 }
 
+function DropdownStatus(props) {
+  const [width, setWidth] = React.useState(window.innerWidth);
+  const breakpoint = 640;
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const [setStatus, { error }] = useMutation(updateOrderStatusMutation, {
+    refetchQueries: [{ query: ordersQuery }],
+  });
+
+  const setTitle = (status, returnValue) => {
+    switch (returnValue) {
+      case "title":
+        switch (status) {
+          case "NOT_STARTED":
+            return <span>Not Started</span>;
+          case "IN_PROGRESS":
+            return <span>In Progress</span>;
+          case "COMPLETED":
+            return <span>Completed</span>;
+          case "FINISHED":
+            return <span>Finished</span>;
+          default:
+            return <span>Status</span>;
+        }
+      case "color":
+        switch (status) {
+          case "NOT_STARTED":
+            return "red";
+          case "IN_PROGRESS":
+            return "yellow";
+          case "COMPLETED":
+            return "green";
+          case "FINISHED":
+            return "blue";
+          default:
+            return "gray";
+        }
+      default:
+        return null;
+    }
+  };
+
+  React.useEffect(() => {
+    const handleWindowResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleWindowResize);
+
+    // Return a function from the effect that removes the event listener
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
+
+  return (
+    <div
+      className={`${width < breakpoint ? "relative h-14" : ""}`}
+      onClick={() => setShowDropdown(!showDropdown)}
+    >
+      <div
+        className={`btnStatus absolute ${
+          width < 640 ? "top-2 right-0" : "right-6 top-6"
+        } text-${setTitle(
+          props.drpStatus,
+          "color"
+        )}-500 bg-white border-2 rounded-lg border-${setTitle(
+          props.drpStatus,
+          "color"
+        )}-300 text-right`}
+      >
+        {(() => {
+          switch (props.drpStatus) {
+            case "NOT_STARTED":
+              return <span>Not Started</span>;
+            case "IN_PROGRESS":
+              return <span>In Progress</span>;
+            case "COMPLETED":
+              return <span>Completed</span>;
+            case "FINISHED":
+              return <span>Finished</span>;
+            default:
+              return <span>Status</span>;
+          }
+        })()}
+        <div
+          className="inline-block transition-all duration-300 transform"
+          style={{
+            transform: showDropdown ? "rotate(-90deg)" : "rotate(0deg)",
+          }}
+        >
+          <ChevronRight />
+        </div>
+        <div className="">
+          <ul
+            className={`overflow-hidden text-right px-4 ${
+              showDropdown && "py-1"
+            } w-full duration-300 transition-height`}
+            style={{
+              height: showDropdown
+                ? `${props.options.length * props.drpOptionSize + 8}px`
+                : "0px",
+            }}
+          >
+            <li
+              onClick={() => {
+                console.log(props.orderId);
+                setStatus({
+                  variables: {
+                    updateOrderStatusId: props.orderId,
+                    updateOrderStatusStatus: "NOT_STARTED",
+                  },
+                });
+              }}
+              key={props.orderId + 1}
+              className="text-left px-1 text-red-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-red-600"
+            >
+              Not Started
+            </li>
+            <li
+              onClick={() => {
+                console.log(props.orderId);
+                setStatus({
+                  variables: {
+                    updateOrderStatusId: props.orderId,
+                    updateOrderStatusStatus: "IN_PROGRESS",
+                  },
+                });
+              }}
+              key={props.orderId + 2}
+              className="text-left px-1 text-yellow-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-yellow-600"
+            >
+              In Progress
+            </li>
+            <li
+              onClick={() => {
+                console.log(props.orderId);
+                setStatus({
+                  variables: {
+                    updateOrderStatusId: props.orderId,
+                    updateOrderStatusStatus: "COMPLETED",
+                  },
+                });
+              }}
+              key={props.orderId + 3}
+              className="text-left px-1 text-green-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-green-600"
+            >
+              Completed
+            </li>
+            <li
+              onClick={() => {
+                console.log(props.orderId);
+                setStatus({
+                  variables: {
+                    updateOrderStatusId: props.orderId,
+                    updateOrderStatusStatus: "FINISHED",
+                  },
+                });
+              }}
+              key={props.orderId + 4}
+              className="text-left px-1 text-blue-500 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-blue-600"
+            >
+              Finished
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Dropdown(props) {
   const [showDropdown, updateDropdown] = useState(false);
   // const [selectedOption, UpdateOption] = useState();
 
   const drpOptions = props.options.map((option, index) => {
     if (option === "Not Started") {
-      return (
-        <li
-          key={index}
-          className="text-left px-1 text-red transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
-        >
-          {option}
-        </li>
-      );
-    } else if (option === "In Progress") {
-      return (
-        <li
-          key={index}
-          className="text-left px-1 text-yellow transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
-        >
-          {option}
-        </li>
-      );
-    } else if (option === "Completed") {
-      return (
-        <li
-          key={index}
-          className="text-left px-1 text-lightGreen transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
-        >
-          {option}
-        </li>
-      );
-    } else if (option === "Finished") {
-      return (
-        <li
-          key={index}
-          className="text-left px-1 text-myGreen transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
-        >
-          {option}
-        </li>
-      );
     } else {
       return (
         <li
@@ -124,7 +232,9 @@ function Dropdown(props) {
             showDropdown && "py-1"
           } w-full duration-300 transition-height`}
           style={{
-            height: showDropdown ? `${props.options.length * props.drpOptionSize + 8}px` : "0px",
+            height: showDropdown
+              ? `${props.options.length * props.drpOptionSize + 8}px`
+              : "0px",
           }}
         >
           {drpOptions}
@@ -134,4 +244,4 @@ function Dropdown(props) {
   );
 }
 
-export { Button, LinkButton, Dropdown };
+export { Button, LinkButton, Dropdown, DropdownStatus };

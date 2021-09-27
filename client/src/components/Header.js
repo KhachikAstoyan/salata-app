@@ -18,7 +18,7 @@ function Header(props) {
       </div>
       <div className="flex">
         <div>
-          <h1 className=" font-black ml-3 text-myGreen text-2xl">
+          <h1 className="font-base font-sans ml-3 text-primary text-2xl">
             {props.pageName}
           </h1>
         </div>

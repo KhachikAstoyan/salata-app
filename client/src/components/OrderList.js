@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown } from "./Button";
 import { gql, useQuery } from "@apollo/client";
 
 import { ordersQuery } from "../gql.js";
 
 // import { ChevronLeft } from "./Icons.js";
+import { Dropdown, DropdownStatus } from "./Button";
 import ItemList from "./ItemList.js";
 
 const OrderList = () => {
@@ -17,7 +17,7 @@ const OrderList = () => {
   if (error) return `Error! ${error.message}`;
 
   return (
-    <main className="container max-w-5xl">
+    <main className="container max-w-5xl mx-auto">
       {data.orders.map((order, orderId) => {
         return (
           <div
@@ -27,24 +27,23 @@ const OrderList = () => {
               setContentId(orderId);
             }}
           >
-            <div className="">
-              <div className="order relative z-40 flow-root w-full p-6 justify-between">
-                <div className="justify-start">
-                  <h2 className="text-xl text-mainText">
+            <div>
+              <div className="order relative z-40 w-full p-6 justify-between">
+                <div className="flex-grow justify-self-start">
+                  <h2 className="text-xl text-secondary">
                     Order{" "}
-                    <span className="text-primary text-myGreen">
-                      #{order.orderNumber}
-                    </span>{" "}
-                    - {order.items.length} Items
+                    <span className="text-primary">#{order.orderNumber}</span> -{" "}
+                    {order.items.length} Items
                   </h2>
-                  <p className="text-mainText text-base font-medium">
+                  <p className="text-secondary text-base font-medium">
                     Due by {order.dueTime} pm
                   </p>
                 </div>
-                <div className="overflow-visible flex relative float-right place-self-end">
+                <div className="flex-none">
                   <div className="overflow-visible">
-                    <Dropdown
-                      drpName={order.status}
+                    <DropdownStatus
+                      drpStatus={order.status}
+                      orderId={order.id}
                       options={[
                         //need to add mutation
                         // {
@@ -69,7 +68,7 @@ const OrderList = () => {
                         "Finished",
                       ]}
                       drpStyle="Status"
-                      drpOptionSize={24}
+                      drpOptionSize={20}
                     />
                   </div>
                 </div>

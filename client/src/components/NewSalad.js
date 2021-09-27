@@ -3,7 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 
 import IngredientCategory from "./IngredientCategory";
 import Counter from "./Counter";
-import { ChevronLeft } from "./Icons";
+// import { ChevronLeft } from "./Icons";
 
 const query = gql`
   query RootQueryType {
@@ -58,18 +58,10 @@ const NewSalad = (props) => {
   if (loading) return "LOADING...";
   if (error) return `Error! ${error.message}`;
   return (
-    <div className="order block p-8">
+    <div className="order block p-4">
       <div className="flex flex-row" onClick={() => props.selectItem()}>
         <div className="flex-grow">
-          <div
-            className="inline-block transition-all duration-300 transform"
-            style={{
-              transform: props.showContent ? "rotate(90deg)" : "rotate(0deg)",
-            }}
-          >
-            <ChevronLeft />
-          </div>
-          <span className="text-4xl align-middle py-3 text-myGreen">
+          <span className="font-base font-sans text-lg align-middle py-3 text-primary">
             Salad{" "}
           </span>
           <Counter
@@ -85,7 +77,7 @@ const NewSalad = (props) => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7 text-red align-middle active:text-red-600"
+            className="h-7 w-7 text-red-500 align-middle active:text-red-600"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -118,10 +110,9 @@ const NewSalad = (props) => {
         })}
 
         <div className="mt-10">
-          {/* <h2 className="text-xl mb-2">Extra Info</h2> */}
           <textarea
             placeholder="Extra Info"
-            className="placeholder-primary-txtColor w-full px-3 py-2 border-primary-txtColor rounded-3xl focus:outline-none"
+            className="placeholder-primary-extraInfo w-full px-3 py-2 border-primary-extraInfo rounded-3xl focus:outline-none"
             rows="4"
             onChange={(e) => props.setExtraInfo(e.target.value)}
             value={props.item.extraInfo}

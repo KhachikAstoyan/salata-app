@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { nanoid } from "nanoid";
 
 import { addOrderMutation, ordersQuery } from "../../gql.js";
@@ -96,7 +96,7 @@ const AddOrder = () => {
   };
 
   return (
-    <main className="container max-w-5xl mx-auto mb-40 ">
+    <main className="container max-w-5xl mx-auto mb-40">
       {Object.keys(orderState.items).map((uid) => {
         return (
           <NewSalad
@@ -117,22 +117,13 @@ const AddOrder = () => {
           />
         );
       })}
-      <div className="w-full fixed bottom-0 left-0">
-        <div className="order border-green-500 border-2 bg-gray-100 flex flex-col max-w-5xl py-4 mx-auto sm:flex-row">
-          <div className="flex-1 text-3xl py-1 text-green-600">
-            Order <label className="text-gray-600 text-lg">Takeout </label>
-            <input
-              type="checkbox"
-              className="appearance-none text-green-600 focus:ring-green-600 rounded-sm "
-              onChange={(e) =>
-                setOrder((prevState) => ({
-                  ...prevState,
-                  isTakeout: e.target.checked,
-                }))
-              }
-            ></input>
-          </div>
-          <div className="flex flex-1 sm:justify-end">
+
+      <div className="flex">
+        <div className="text-4xl py-1 text-green-600">
+          <h2 className="ml-2 font-base font-sans text-primary">Order</h2>
+        </div>
+        <div className="flex flex-1 justify-end mr-2">
+          <div className="flex justify-center w-9 h-9 bg-primary font-sans text-4xl text-white rounded-lg">
             <Button
               btnName="+"
               btnFunction={() => {
@@ -144,8 +135,32 @@ const AddOrder = () => {
                   },
                 }));
               }}
-              btnStyle="bg-green-400 text-gray-100 text-xl  "
+              btnStyle="bg-green-400 text-gray-100 text-xl"
             />
+          </div>
+        </div>
+      </div>
+      <div className="flex">
+        <label className="ml-2 text-secondary text-base font-medium my-auto">
+          Takeout
+        </label>
+        <div className="flex flex-1 justify-end">
+          <input
+            type="checkbox"
+            className="appearance-none mr-2 border-primary w-7 h-7 text-primary focus:ring-primary rounded-lg "
+            onChange={(e) =>
+              setOrder((prevState) => ({
+                ...prevState,
+                isTakeout: e.target.checked,
+              }))
+            }
+          ></input>
+        </div>
+      </div>
+
+      <div className="w-full fixed bottom-0 left-0">
+        <div className="order bg-secondary text-white font-sans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row">
+          <div className="flex flex-1 justify-center">
             <Button
               btnName="Submit"
               btnFunction={() => {
