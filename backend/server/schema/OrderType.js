@@ -6,7 +6,7 @@ module.exports = {
   Query: {
     async orders() {
       try {
-        const orders = await Order.find();
+        const orders = await Order.find({ status: { $in: [0, 1, 2] } });
         return orders;
       } catch (err) {
         throw new Error(err);
