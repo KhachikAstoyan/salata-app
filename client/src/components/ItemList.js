@@ -4,13 +4,13 @@ import Audio from "./Audio.js";
 
 function ItemList(props) {
   return (
-    <div className="flex bg-primary-bgLight pt-4 rounded-b-lg">
+    <div className="flex bg-primary-extraInfo pt-4 rounded-b-lg">
       <div className="w-full">
         {props.items.map((item, id) => {
           return (
             <li className="flex flex-row" key={props.orderId + id}>
               <div className="flex-1 m-4">
-                <p className="font-light font-sans text-secondary text-lg">
+                <p className="font-light font-DMSans text-secondary-light text-lg">
                   {" "}
                   Salad {id + 1}
                 </p>
@@ -22,7 +22,7 @@ function ItemList(props) {
                   {item.ingredients.map((ingredient, index) => {
                     return (
                       <li
-                        className="ml-2 font-light font-sans text-secondary text-base"
+                        className="ml-2 font-light font-DMSans text-secondary-light text-base"
                         key={props.orderId + id + index}
                       >
                         {ingredient.name}
@@ -31,7 +31,7 @@ function ItemList(props) {
                   })}
                 </ul>
               </div>
-              <div className="flex-1 flex justify-end mt-4">
+              <div className="flex-1 flex justify-end mt-6">
                 <Audio />
               </div>
             </li>

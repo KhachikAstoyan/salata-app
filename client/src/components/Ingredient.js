@@ -10,7 +10,7 @@ function Ingredient({ ingredient, checked, updateIngredient }) {
           updateIngredient(ingredient.id, !selected);
         }}
         className={`inline-flex transition mr-2 duration-200 ease-in-out text-center flex-col rounded-xl border mb-2 px-3 py-2 border-primary  ${
-          checked.indexOf(ingredient.id) > -1 && " bg-primary-lighten "
+          checked.indexOf(ingredient.id) > -1 && " bg-primary-imgBg "
         }`}
       >
         <img
@@ -23,7 +23,7 @@ function Ingredient({ ingredient, checked, updateIngredient }) {
           }}
         />
       </div>
-      <p className="text-secondary-light break-normal ml-3 w-16 text-center text-xs">
+      <p className="text-secondary-light font-light break-normal ml-3 w-16 text-center font-DMSans text-sm">
         {ingredient.name}
       </p>
     </div>

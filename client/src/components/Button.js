@@ -107,9 +107,9 @@ function DropdownStatus(props) {
           }
         })()}
         <div
-          className="inline-block transition-all duration-300 transform"
+          className="inline-block transition-all duration-500 transform"
           style={{
-            transform: showDropdown ? "rotate(-90deg)" : "rotate(0deg)",
+            transform: showDropdown ? "rotate(90deg)" : "rotate(-90deg)",
           }}
         >
           <ChevronRight />

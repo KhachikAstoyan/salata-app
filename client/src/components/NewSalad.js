@@ -61,7 +61,7 @@ const NewSalad = (props) => {
     <div className="order block p-4">
       <div className="flex flex-row" onClick={() => props.selectItem()}>
         <div className="flex-grow">
-          <span className="font-base font-sans text-lg align-middle py-3 text-primary">
+          <span className="font-extrabold font-DMSans text-xl align-middle py-3 text-primary">
             Salad{" "}
           </span>
           <Counter
@@ -112,7 +112,7 @@ const NewSalad = (props) => {
         <div className="mt-10">
           <textarea
             placeholder="Extra Info"
-            className="placeholder-primary-extraInfo w-full px-3 py-2 border-primary-extraInfo rounded-3xl focus:outline-none"
+            className="placeholder-primary-imgBg w-full px-3 py-2 border-primary-extraInfo font-DMSans rounded-3xl focus:outline-none"
             rows="4"
             onChange={(e) => props.setExtraInfo(e.target.value)}
             value={props.item.extraInfo}

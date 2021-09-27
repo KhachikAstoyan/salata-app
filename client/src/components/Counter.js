@@ -3,7 +3,7 @@ import React from "react";
 const Counter = (props) => {
   return (
     <div className="px-2 pt-3 sm:inline sm:p-0">
-      <span className="text-secondary-light text-sm ml-2">Quantity </span>
+      <span className="text-secondary-light font-light font-DMSans text-sm ml-2">Quantity </span>
 
       <svg
         xmlns="http://www.w3.org/2000/svg"
