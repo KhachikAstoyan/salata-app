@@ -123,7 +123,7 @@ const AddOrder = () => {
           <h2 className="ml-2 font-base font-DMSans text-primary">Order</h2>
         </div>
         <div className="flex flex-1 justify-end mr-2">
-          <div className="flex justify-center w-10 h-10 bg-primary font-DMSans text-white rounded-lg">
+          <div className="flex justify-center cursor-pointer w-10 h-10 bg-primary font-DMSans text-white rounded-lg">
             <Button
               btnName="+"
               btnFunction={() => {
@@ -159,7 +159,7 @@ const AddOrder = () => {
         </div>
       </div>
 
-      <div className="w-full fixed bottom-0 left-0">
+      <div className="w-11/12 sm:w-full fixed bottom-0 left-4 sm:left-0">
         <div className="order bg-secondary text-white font-DMSans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row">
           <div className="flex flex-1 justify-center">
             <Button

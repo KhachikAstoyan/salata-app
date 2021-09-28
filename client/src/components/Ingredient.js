@@ -9,7 +9,7 @@ function Ingredient({ ingredient, checked, updateIngredient }) {
           setSelected(!selected);
           updateIngredient(ingredient.id, !selected);
         }}
-        className={`inline-flex transition mr-2 duration-200 ease-in-out text-center flex-col rounded-xl border mb-2 px-3 py-2 border-primary  ${
+        className={`inline-flex transition mr-2 duration-200 ease-in-out text-center flex-col rounded-xl border mb-2 px-2 py-2 border-primary  ${
           checked.indexOf(ingredient.id) > -1 && " bg-primary-imgBg "
         }`}
       >
