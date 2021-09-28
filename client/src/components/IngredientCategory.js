@@ -35,7 +35,7 @@ const IngredientCategory = ({
       </h2>
 
       <div
-        className={`transition-opacity flex flex-wrap duration-1000 ${
+        className={`transition-opacity flex flex-wrap duration-1000 justify-between sm:justify-start ${
           showContent ? "block opacity-100" : "hidden opacity-0"
         }`}
       >

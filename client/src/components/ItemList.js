@@ -10,30 +10,43 @@ function ItemList(props) {
           return (
             <li className="flex flex-row" key={props.orderId + id}>
               <div className="flex-1 m-4">
-                <p className="font-light font-DMSans text-secondary-light text-lg">
-                  {" "}
-                  Salad {id + 1}
+                <div className="flex w-full">
+                  <div className="inline-block">
+                    <p className="font-light font-DMSans text-secondary-light text-lg">
+                      {" "}
+                      Salad {id + 1}
+                    </p>
+                    <ul
+                      onClick={() =>
+                        console.log(Object.keys(["hello", "ingredient"]))
+                      }
+                    >
+                      {item.ingredients.map((ingredient, index) => {
+                        return (
+                          <li
+                            className="ml-2 font-light font-DMSans text-secondary-light text-base"
+                            key={props.orderId + id + index}
+                          >
+                            {ingredient.name}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                  <div className="mr-12">
+                    <Audio />
+                  </div>
+                </div>
+
+                <div className="mt-2">
+                  <p className="font-light font-DMSans text-secondary-light text-lg">Extra info</p>
+                  <p className="ml-2 font-light font-DMSans text-secondary-light text-base">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas viverra velit nulla, non condimentum eros rhoncus vel. Proin euismod dignissim tortor, sit amet interdum turpis.
                 </p>
-                <ul
-                  onClick={() =>
-                    console.log(Object.keys(["hello", "ingredient"]))
-                  }
-                >
-                  {item.ingredients.map((ingredient, index) => {
-                    return (
-                      <li
-                        className="ml-2 font-light font-DMSans text-secondary-light text-base"
-                        key={props.orderId + id + index}
-                      >
-                        {ingredient.name}
-                      </li>
-                    );
-                  })}
-                </ul>
+                </div>
               </div>
-              <div className="flex-1 flex justify-end mt-6">
-                <Audio />
-              </div>
+
+
             </li>
           );
         })}
