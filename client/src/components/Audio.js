@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PlayButton, PauseButton } from "./Icons.js";
+import PlaySvg from "../static/play.svg";
+import PauseSvg from "../static/pause.svg";
 import audioSrc from "../Loco Ringtone _ VIRAL BGM.mp3";
 
 const audio = new Audio(audioSrc);
@@ -25,12 +27,11 @@ const Audiolist = () => {
 
   return (
     <div className="font-DMSans text-primary items-center justify-end flex relative left-0 top-0">
-      Listen
-        {isPlayingAudio ? (
-        <PauseButton onClick={handlePauseButtonClick} />
+      {isPlayingAudio ? (
+        <img src={PauseSvg} alt="play" onClick={handlePauseButtonClick} />
       ) : (
-          <PlayButton onClick={handlePlayButtonClick} />
-        )}
+        <img src={PlaySvg} alt="play" onClick={handlePlayButtonClick} />
+      )}
     </div>
   );
 };
