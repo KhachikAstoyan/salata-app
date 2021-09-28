@@ -72,7 +72,10 @@ const NewSalad = (props) => {
           />
         </div>
         <div
-          onClick={() => props.removeItem()}
+          onClick={(e) => {
+            e.stopPropagation();
+            props.removeItem();
+          }}
           className="flex-none flex justify-end"
         >
           <svg

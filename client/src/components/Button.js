@@ -77,7 +77,10 @@ function DropdownStatus(props) {
   }, []);
 
   return (
-    <div className={`${width < breakpoint ? "relative h-14" : ""}`}>
+    <div
+      className={`${width < breakpoint ? "relative h-14" : ""}`}
+      onClick={(e) => e.stopPropagation()}
+    >
       <div
         className={`btnStatus absolute ${
           width < 640 ? "top-2 right-0" : "right-6 top-6"

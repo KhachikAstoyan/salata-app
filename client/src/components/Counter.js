@@ -3,7 +3,9 @@ import React from "react";
 const Counter = (props) => {
   return (
     <div className="px-2 pt-3 sm:inline sm:p-0">
-      <span className="text-secondary-light font-light font-DMSans text-sm ml-2">Quantity </span>
+      <span className="text-secondary-light font-light font-DMSans text-sm ml-2">
+        Quantity{" "}
+      </span>
 
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +13,8 @@ const Counter = (props) => {
         fill="none"
         viewBox="0 0 24 24"
         stroke="#018660"
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           if (props.quantity > 1) {
             props.setQuantity(props.quantity - 1);
           }
@@ -33,7 +36,10 @@ const Counter = (props) => {
         fill="none"
         viewBox="0 0 24 24"
         stroke="#018660"
-        onClick={() => props.setQuantity(props.quantity + 1)}
+        onClick={(e) => {
+          e.stopPropagation();
+          props.setQuantity(props.quantity + 1);
+        }}
       >
         <path
           strokeLinecap="round"
