@@ -143,7 +143,7 @@ const AddOrder = () => {
       <br></br>
       <div className="flex">
         <label className="ml-2 text-secondary font-DMSans text-base font-medium my-auto">
-          Takeout
+          Takeaway
         </label>
         <div className="flex flex-1 justify-end">
           <input
@@ -160,7 +160,7 @@ const AddOrder = () => {
       </div>
 
       <div className="w-11/12 sm:w-full fixed bottom-0 left-4 sm:left-0">
-        <div className="order bg-secondary text-white font-DMSans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row">
+        <div className="order bg-secondary text-white font-DMSans text-xl flex flex-col max-w-5xl py-2 mx-auto sm:flex-row">
           <div className="flex flex-1 justify-center">
             <Button
               btnName="Submit"
@@ -180,7 +180,7 @@ const AddOrder = () => {
                   },
                 });
               }}
-              btnStyle="bg-green-400 text-gray-100 text-xl  "
+              btnStyle="bg-green-400 text-gray-100 text-2xl text-center w-full h-10 mt-2"
             />
           </div>
         </div>
