@@ -7,7 +7,7 @@ import { ordersQuery } from "../gql.js";
 import { Dropdown, DropdownStatus } from "./Button";
 import ItemList from "./ItemList.js";
 
-const PER_PAGE = 5;
+const PER_PAGE = 1;
 
 const PaginationBtn = (props) => {
 	return (
@@ -35,10 +35,12 @@ const OrderList = () => {
 			limit: PER_PAGE,
 		},
 	});
+
 	const [showContentId, setContentId] = useState(0);
 
 	useEffect(() => {
-		refetch({ offset: page * PER_PAGE, limit: PER_PAGE });
+		console.log({ offset: page * PER_PAGE, limit: PER_PAGE });
+		refetch({ offset: page * PER_PAGE, limit: 1 });
 	}, [page]);
 
 	if (loading) return "Loading...";
