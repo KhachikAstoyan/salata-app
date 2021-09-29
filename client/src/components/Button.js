@@ -30,7 +30,7 @@ const PaginationBtn = (props) => {
   return (
     <button
       {...props}
-      className="p-2 rounded text-black bg-gray-100 transition-colors hover:bg-gray-200 m-2"
+      className="p-2 rounded-lg text-black transition-colors font-DMSans hover:bg-gray-200 m-2"
     >
       {props.children}
     </button>

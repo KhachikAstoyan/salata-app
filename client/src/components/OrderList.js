@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { ordersQuery } from "../gql.js";
-// import { ChevronLeft } from "./Icons.js";
+import { ChevronLeftPagination, ChevronRightPagination } from "./Icons.js";
 import { Dropdown, DropdownStatus, PaginationBtn } from "./Button";
 import ItemList from "./ItemList.js";
 
@@ -107,9 +107,9 @@ const OrderList = () => {
             </div>
             <div
               className="flex left-1/2 relative z-50"
-              // onClick={() => {
-              //   setContentId(null);
-              // }}
+            // onClick={() => {
+            //   setContentId(null);
+            // }}
             ></div>
             <div className="relative bottom-10 z-20">
               {showContentId === orderId && (
@@ -123,13 +123,15 @@ const OrderList = () => {
         );
       })}
       <section className="flex justify-center">
-        <div>
+        <div className="flex">
           <PaginationBtn onClick={() => paginate("prev")}>
-            Previous page
+            <ChevronRightPagination />
           </PaginationBtn>
-          <span className="mx-3">{page + 1}</span>
+
+          <p className="mx-3 mt-4">{page + 1}</p>
+
           <PaginationBtn onClick={() => paginate("next")}>
-            Next page
+            <ChevronLeftPagination />
           </PaginationBtn>
         </div>
       </section>
