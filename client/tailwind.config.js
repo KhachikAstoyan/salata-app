@@ -37,7 +37,7 @@ module.exports = {
           light: "#f1faf9",
           DEFAULT: "#018660",
           dark: "#016d4e",
-          bgLight: "#AEDAD5",
+          bgLight: "#F1FAF9",
           imgBg: "#01866080",
           extraInfo: "#01866029",
         },
@@ -56,7 +56,7 @@ module.exports = {
         Nunito: ['"Nunito"', '"Roboto"', "sans-serif"],
         Roboto: ['"Roboto"', '"Nunito"', "sans-serif"],
         Comfortaa: ['"Comfortaa"', '"Roboto"', "sans-serif"],
-        DMSans: ['DM Sans',"sans-serif"],
+        DMSans: ["DM Sans", "sans-serif"],
       },
       transitionProperty: {
         height: "height",
