@@ -61,7 +61,7 @@ const OrderList = () => {
             }}
           >
             <div>
-              <div className="order relative z-40 w-full p-6 justify-between">
+              <div className="order relative z-30 w-full p-6 justify-between">
                 <div className="flex-grow justify-self-start">
                   <h2 className="text-xl font-DMSans text-secondary">
                     Order{" "}

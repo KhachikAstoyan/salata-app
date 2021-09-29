@@ -5,7 +5,7 @@ import ExtraInfo from "./ExtraInfo";
 
 function ItemList(props) {
   return (
-    <div className="flex flex-col bg-primary-bgLight pt-10 pb-2 px-6 divide-y divide-gray-400 rounded-b-lg">
+    <div className="flex flex-col bg-primary-bgLight pt-10 pb-2 px-6 divide-y divide-gray-400 rounded-b-2xl">
       {props.items.map((item, id) => {
         return (
           <div className="py-4" key={props.orderId + id}>
@@ -21,19 +21,20 @@ function ItemList(props) {
               </div>
             </div>
             <div className="">
-              <ul
+              <ul 
+                className="flex flex-row flex-wrap"
                 onClick={() =>
                   console.log(Object.keys(["hello", "ingredient"]))
                 }
               >
                 {item.ingredients.map((ingredient, index) => {
                   return (
-                    <span
-                      className=" font-light font-DMSans text-secondary-light text-base"
+                    <p
+                      className=" mx-2 my-1 font-light font-DMSans text-secondary-light text-base"
                       key={props.orderId + id + index}
                     >
                       {index + 1 + ". " + ingredient.name + " "}
-                    </span>
+                    </p>
                   );
                 })}
               </ul>
