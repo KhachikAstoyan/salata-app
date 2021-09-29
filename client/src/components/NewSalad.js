@@ -115,7 +115,7 @@ const NewSalad = (props) => {
         <div className="mt-10">
           <textarea
             placeholder="Extra Info"
-            className="placeholder-primary-imgBg w-full px-3 py-2 border-primary-extraInfo font-DMSans rounded-3xl focus:outline-none"
+            className="placeholder-primary-imgBg w-full px-3 py-2 border-primary-extraInfo font-DMSans rounded-3xl border border-transparent focus:outline-none focus:ring-2 focus:ring-primary-lighten focus:border-transparent"
             rows="4"
             onChange={(e) => props.setExtraInfo(e.target.value)}
             value={props.item.extraInfo}
