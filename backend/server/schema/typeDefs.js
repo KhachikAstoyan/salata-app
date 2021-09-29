@@ -1,80 +1,85 @@
 const gql = require("graphql-tag");
 
 module.exports = gql`
-  schema {
-    query: RootQueryType
-    mutation: Mutation
-  }
+	schema {
+		query: RootQueryType
+		mutation: Mutation
+	}
 
-  type RootQueryType {
-    orders: [OrderType]
-    clientOrders(id: String!): [OrderType]
-    client(clientId: ID!): ClientType
-    clients: [ClientType]
-    ingredients: [IngredientType]
-  }
+	type RootQueryType {
+		orders(offset: Int, limit: Int): [OrderType]
+		clientOrders(id: String!): [OrderType]
+		client(clientId: ID!): ClientType
+		clients: [ClientType]
+		orderCount: OrderCount
+		ingredients: [IngredientType]
+	}
 
-  type OrderType {
-    id: ID
-    # client: ClientType
-    dueTime: String
-    startTime: String
-    isTakeout: Boolean
-    items: [ItemType]
-    orderNumber: String
-    status: StatusType
-  }
+	type OrderCount {
+		count: Int
+	}
 
-  type ClientType {
-    id: ID
-    name: String
-    phoneNumber: String
-  }
+	type OrderType {
+		id: ID
+		# client: ClientType
+		dueTime: String
+		startTime: String
+		isTakeout: Boolean
+		items: [ItemType]
+		orderNumber: String
+		status: StatusType
+	}
 
-  type ItemType {
-    ingredients: [IngredientType]
-    quantity: Int
-    extraInfo: String
-  }
+	type ClientType {
+		id: ID
+		name: String
+		phoneNumber: String
+	}
 
-  type IngredientType {
-    id: ID
-    name: String
-    category: CategoryType
-  }
+	type ItemType {
+		ingredients: [IngredientType]
+		quantity: Int
+		extraInfo: String
+	}
 
-  type CategoryType {
-    id: ID
-    category: String
-  }
+	type IngredientType {
+		id: ID
+		name: String
+		category: CategoryType
+	}
 
-  type AudioType {
-    data: String
-  }
+	type CategoryType {
+		id: ID
+		category: String
+	}
 
-  enum StatusType {
-    NOT_STARTED
-    IN_PROGRESS
-    COMPLETED
-    FINISHED
-  }
+	type AudioType {
+		data: String
+	}
 
-  type Mutation {
-    addOrder(input: inputOrder): OrderType
-    addItems(orderId: String, input: [inputItem]): OrderType
-    updateOrderStatus(id: String, status: StatusType): OrderType
-    addClient(name: String, phoneNumber: String): ClientType
-  }
+	enum StatusType {
+		NOT_STARTED
+		IN_PROGRESS
+		COMPLETED
+		FINISHED
+	}
 
-  input inputItem {
-    ingredients: [ID]
-    quantity: Int
-    extraInfo: String
-  }
+	type Mutation {
+		addOrder(input: inputOrder): OrderType
+		addItems(orderId: String, input: [inputItem]): OrderType
+		updateOrderStatus(id: String, status: StatusType): OrderType
+		addClient(name: String, phoneNumber: String): ClientType
+	}
 
-  input inputOrder {
-    # clientId: ID
-    isTakeout: Boolean
-    items: [inputItem]
-  }
+	input inputItem {
+		ingredients: [ID]
+		quantity: Int
+		extraInfo: String
+	}
+
+	input inputOrder {
+		# clientId: ID
+		isTakeout: Boolean
+		items: [inputItem]
+	}
 `;
