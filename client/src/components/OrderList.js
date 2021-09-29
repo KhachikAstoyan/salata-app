@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-
 import { ordersQuery } from "../gql.js";
-
 // import { ChevronLeft } from "./Icons.js";
 import { Dropdown, DropdownStatus } from "./Button";
 import ItemList from "./ItemList.js";
 
+
 const OrderList = () => {
   const { loading, error, data } = useQuery(ordersQuery);
   const [showContentId, setContentId] = useState(0);
-
   useEffect(() => {});
-
+  
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
@@ -37,9 +35,12 @@ const OrderList = () => {
                     </span>{" "}
                     - {order.items.length} Items
                   </h2>
-                  <p className="text-secondary font-DMSans text-base font-medium">
+                  <p className="text-secondary-light font-DMSans text-base font-medium">
                     Due by {order.dueTime} pm
                   </p>
+                  {order.isTakeout && <p className="text-secondary-light font-DMSans text-base font-medium">
+                  Takeaway
+                  </p>}
                 </div>
                 <div className="flex-none">
                   <div className="overflow-visible">
@@ -94,6 +95,7 @@ const OrderList = () => {
           </div>
         );
       })}
+      
     </main>
   );
 };
