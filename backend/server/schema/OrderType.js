@@ -7,8 +7,8 @@ module.exports = {
 		async orders(_, args) {
 			try {
 				const orders = await Order.find({ status: { $in: [0, 1, 2] } })
-					.skip(args.offset)
-					.limit(args.limit);
+					.limit(args.limit)
+					.skip(args.offset);
 				return orders;
 			} catch (err) {
 				throw new Error(err);
