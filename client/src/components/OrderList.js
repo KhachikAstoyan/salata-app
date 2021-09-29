@@ -2,15 +2,50 @@ import React, { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { ordersQuery } from "../gql.js";
 // import { ChevronLeft } from "./Icons.js";
-import { Dropdown, DropdownStatus } from "./Button";
+import { Dropdown, DropdownStatus, PaginationBtn } from "./Button";
 import ItemList from "./ItemList.js";
 
+const PER_PAGE = 1;
 
 const OrderList = () => {
-  const { loading, error, data } = useQuery(ordersQuery);
+  const [page, setPage] = useState(0);
+  const { data: orderCount } = useQuery(gql`
+    query {
+      orderCount {
+        count
+      }
+    }
+  `);
+  const { loading, error, data, refetch } = useQuery(ordersQuery, {
+    variables: {
+      offset: page * PER_PAGE,
+      limit: PER_PAGE,
+    },
+  });
   const [showContentId, setContentId] = useState(0);
-  useEffect(() => {});
-  
+
+  useEffect(() => {
+    console.log({ offset: page * PER_PAGE, limit: PER_PAGE });
+    refetch({ offset: page * PER_PAGE, limit: 1 });
+  }, [page]);
+
+  const paginate = (action) => {
+    switch (action) {
+      case "next": {
+        if (page * PER_PAGE < orderCount.orderCount.count) {
+          setPage(page + 1);
+        }
+        break;
+      }
+      case "prev": {
+        if (page > 0) {
+          setPage(page - 1);
+        }
+        break;
+      }
+    }
+  };
+
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
@@ -38,9 +73,11 @@ const OrderList = () => {
                   <p className="text-secondary-light font-DMSans text-base font-medium">
                     Due by {order.dueTime} pm
                   </p>
-                  {order.isTakeout && <p className="text-secondary-light font-DMSans text-base font-medium">
-                  Takeaway
-                  </p>}
+                  {order.isTakeout && (
+                    <p className="text-secondary-light font-DMSans text-base font-medium">
+                      Takeaway
+                    </p>
+                  )}
                 </div>
                 <div className="flex-none">
                   <div className="overflow-visible">
@@ -51,16 +88,6 @@ const OrderList = () => {
                         //need to add mutation
                         // {
                         //   name: "Not Started",
-
-                        // },
-
-                        // {
-                        //   name: "In Progress",
-                        // },
-
-                        // {
-                        //   name: "Completed",
-                        // },
 
                         // {
                         //   name="Finished",
@@ -95,7 +122,17 @@ const OrderList = () => {
           </div>
         );
       })}
-      
+      <section className="flex justify-center">
+        <div>
+          <PaginationBtn onClick={() => paginate("prev")}>
+            Previous page
+          </PaginationBtn>
+          <span className="mx-3">{page + 1}</span>
+          <PaginationBtn onClick={() => paginate("next")}>
+            Next page
+          </PaginationBtn>
+        </div>
+      </section>
     </main>
   );
 };

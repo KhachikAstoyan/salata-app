@@ -26,6 +26,17 @@ function LinkButton(props) {
   );
 }
 
+const PaginationBtn = (props) => {
+  return (
+    <button
+      {...props}
+      className="p-2 rounded text-black bg-gray-100 transition-colors hover:bg-gray-200 m-2"
+    >
+      {props.children}
+    </button>
+  );
+};
+
 function DropdownStatus(props) {
   const [width, setWidth] = React.useState(window.innerWidth);
   const breakpoint = 640;
@@ -245,4 +256,4 @@ function Dropdown(props) {
   );
 }
 
-export { Button, LinkButton, Dropdown, DropdownStatus };
+export { Button, LinkButton, PaginationBtn, Dropdown, DropdownStatus };
