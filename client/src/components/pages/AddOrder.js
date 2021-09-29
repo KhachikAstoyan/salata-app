@@ -142,7 +142,7 @@ const AddOrder = () => {
       <br></br>
       <div className="flex">
         <label className="ml-2 text-secondary font-DMSans text-base font-medium my-auto">
-          Takeout
+          Takeaway
         </label>
         <div className="flex flex-1 justify-end">
           <input
