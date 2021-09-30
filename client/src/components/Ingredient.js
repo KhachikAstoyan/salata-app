@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function Ingredient({ ingredient, checked, updateIngredient }) {
   const [selected, setSelected] = useState(false);
   return (
-    <div>
+    <div >
       <div
         onClick={() => {
           setSelected(!selected);
@@ -15,7 +15,7 @@ function Ingredient({ ingredient, checked, updateIngredient }) {
       >
         <img
           src={`/static/${ingredient.category.category}/${ingredient.name}.png`}
-          className="w-16 h-16 mx-auto"
+          className="w-16 h-16 mx-auto  "
           alt={ingredient.name}
           onError={(e) => {
             e.target.onerror = null;

@@ -38,7 +38,7 @@ module.exports = {
           DEFAULT: "#018660",
           dark: "#016d4e",
           bgLight: "#F1FAF9",
-          imgBg: "#01866080",
+          imgBg: " #e6fff8",
           extraInfo: "#01866029",
         },
         secondary: {
