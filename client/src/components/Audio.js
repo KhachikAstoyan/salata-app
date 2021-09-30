@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PlayButton, PauseButton } from "./Icons.js";
 import PlaySvg from "../static/play.svg";
 import PauseSvg from "../static/pause.svg";
-import audioSrc from "../Loco Ringtone _ VIRAL BGM.mp3";
+import audioSrc from "../Salad.mp3";
 
 const audio = new Audio(audioSrc);
 
