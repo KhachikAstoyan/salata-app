@@ -5,7 +5,7 @@ import { ChevronLeftPagination, ChevronRightPagination } from "./Icons.js";
 import { Dropdown, DropdownStatus, PaginationBtn } from "./Button";
 import ItemList from "./ItemList.js";
 
-const PER_PAGE = 1;
+const PER_PAGE = 5;
 
 const OrderList = () => {
   const [page, setPage] = useState(0);
@@ -25,8 +25,7 @@ const OrderList = () => {
   const [showContentId, setContentId] = useState(0);
 
   useEffect(() => {
-    console.log({ offset: page * PER_PAGE, limit: PER_PAGE });
-    refetch({ offset: page * PER_PAGE, limit: 1 });
+    refetch({ offset: page * PER_PAGE, limit: PER_PAGE });
   }, [page]);
 
   const paginate = (action) => {
@@ -71,7 +70,10 @@ const OrderList = () => {
                     - {order.items.length} Items
                   </h2>
                   <p className="text-secondary-light font-DMSans text-base font-medium">
-                    Due by {new Date("2021-09-23T20:47:39.672+00:00").toLocaleDateString()}
+                    Due by{" "}
+                    {new Date(
+                      "2021-09-23T20:47:39.672+00:00"
+                    ).toLocaleDateString()}
                   </p>
                   {order.isTakeout && (
                     <p className="text-secondary-light font-DMSans text-base font-medium">
@@ -107,9 +109,9 @@ const OrderList = () => {
             </div>
             <div
               className="flex left-1/2 relative z-50"
-            // onClick={() => {
-            //   setContentId(null);
-            // }}
+              // onClick={() => {
+              //   setContentId(null);
+              // }}
             ></div>
             <div className="relative bottom-10 z-20">
               {showContentId === orderId && (
