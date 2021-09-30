@@ -80,7 +80,7 @@ const NewSalad = (props) => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7 text-red-500 align-middle active:text-red-600"
+            className="h-7 w-7 text-red-500 align-middle active:text-red-600 cursor-pointer"
             viewBox="0 0 20 20"
             fill="currentColor"
           >

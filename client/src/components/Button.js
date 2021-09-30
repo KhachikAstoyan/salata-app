@@ -13,7 +13,7 @@ function Button(props) {
         props.btnFunction();
       }}
     >
-      {props.btnName}
+      {props.children}
     </div>
   );
 }

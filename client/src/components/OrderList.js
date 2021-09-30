@@ -71,7 +71,7 @@ const OrderList = () => {
                     - {order.items.length} Items
                   </h2>
                   <p className="text-secondary-light font-DMSans text-base font-medium">
-                    Due by {order.dueTime} pm
+                    Due by {new Date("2021-09-23T20:47:39.672+00:00").toLocaleDateString()}
                   </p>
                   {order.isTakeout && (
                     <p className="text-secondary-light font-DMSans text-base font-medium">
