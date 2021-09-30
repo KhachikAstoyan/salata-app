@@ -118,25 +118,25 @@ const AddOrder = () => {
         );
       })}
 
-      <div className="flex">
-        <div className="text-5xl py-1 text-green-600">
+      <div className="flex items-center">
+        <div className="flex-grow text-5xl py-1 text-green-600">
           <h2 className="ml-2 font-base font-DMSans text-primary">Order</h2>
         </div>
-        <div className="flex flex-1 justify-end mr-2">
-          <div className="flex justify-center cursor-pointer w-10 h-10 bg-primary  text-white rounded-lg">
-            <Button
-              btnFunction={() => {
-                setOrder((prevState) => ({
-                  ...prevState,
-                  items: {
-                    ...prevState.items,
-                    [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
-                  },
-                }));
-              }}
-              btnStyle="bg-green-400 text-gray-100 text-3xl"
-            ><PlusButton /></Button>
-          </div>
+        <div className="p-2 cursor-pointer bg-primary  text-white rounded-lg">
+          <Button
+            btnFunction={() => {
+              setOrder((prevState) => ({
+                ...prevState,
+                items: {
+                  ...prevState.items,
+                  [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
+                },
+              }));
+            }}
+            btnStyle="bg-green-400 text-gray-100 text-3xl"
+          >
+            <PlusButton />
+          </Button>
         </div>
       </div>
       <br></br>
@@ -160,7 +160,7 @@ const AddOrder = () => {
 
       <div className="w-11/12 sm:w-full fixed bottom-0 left-4 sm:left-0">
         <div className="order bg-secondary text-white font-DMSans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row">
-          <div className="flex flex-1 justify-center" >
+          <div className="flex flex-1 justify-center">
             <Button
               btnFunction={() => {
                 submitOrder({
@@ -170,8 +170,8 @@ const AddOrder = () => {
                       items: Object.values(orderState.items),
                     },
                   },
-                })
-                
+                });
+
                 setOrder({
                   isTakeout: false,
                   items: {
@@ -180,7 +180,9 @@ const AddOrder = () => {
                 });
               }}
               btnStyle="bg-green-400 text-gray-100 text-xl  "
-            >Submit</Button>
+            >
+              Submit
+            </Button>
           </div>
         </div>
       </div>
