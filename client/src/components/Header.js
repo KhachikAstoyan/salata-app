@@ -8,12 +8,12 @@ function Header(props) {
           <img src="./salata.png" alt="Logo" className="w-40"></img>
         </div>
         <div className="flex flex-1 justify-end">
-          <Dropdown
+          {/* <Dropdown
             drpName="EN"
             options={["EN", "SP"]}
             drpStyle="Language"
             drpOptionSize={28}
-          />
+          /> */}
         </div>
       </div>
       <div className="flex">
