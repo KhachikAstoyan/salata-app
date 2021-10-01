@@ -159,26 +159,29 @@ const AddOrder = () => {
       </div>
 
       <div className="w-11/12 sm:w-full fixed bottom-0 left-4 sm:left-0">
-        <div className="order bg-secondary text-white font-DMSans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row">
+        <div
+          className="order bg-secondary text-white font-DMSans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row"
+          onClick={() => {
+            submitOrder({
+              variables: {
+                addOrderInput: {
+                  isTakeout: orderState.isTakeout,
+                  items: Object.values(orderState.items),
+                },
+              },
+            });
+
+            setOrder({
+              isTakeout: false,
+              items: {
+                [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
+              },
+            });
+          }}
+        >
           <div className="flex flex-1 justify-center">
             <Button
-              btnFunction={() => {
-                submitOrder({
-                  variables: {
-                    addOrderInput: {
-                      isTakeout: orderState.isTakeout,
-                      items: Object.values(orderState.items),
-                    },
-                  },
-                });
-
-                setOrder({
-                  isTakeout: false,
-                  items: {
-                    [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
-                  },
-                });
-              }}
+              btnFunction={() => {}}
               btnStyle="bg-green-400 text-gray-100 text-xl  "
             >
               Submit
