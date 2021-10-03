@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "./Icons";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 
 import { updateOrderStatusMutation, ordersQuery } from "../gql.js";
 
@@ -42,8 +42,14 @@ function DropdownStatus(props) {
   const breakpoint = 640;
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const [setStatus, { error }] = useMutation(updateOrderStatusMutation, {
-    refetchQueries: [{ query: ordersQuery }],
+  const { loading, error, data, refetch } = useQuery(ordersQuery, {
+    variables: {
+      offset: 1 * 5,
+      limit: 5,
+    },
+  });
+  const [setStatus, {}] = useMutation(updateOrderStatusMutation, {
+    onCompleted: refetch,
   });
 
   const setTitle = (status, returnValue) => {
@@ -190,6 +196,7 @@ function DropdownStatus(props) {
                     updateOrderStatusId: props.orderId,
                     updateOrderStatusStatus: "FINISHED",
                   },
+                  onCompleted: refetch,
                 });
               }}
               key={props.orderId + 4}

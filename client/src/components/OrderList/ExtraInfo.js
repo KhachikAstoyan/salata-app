@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronLeft } from "./Icons";
+import { ChevronLeft } from "../Icons";
 
 const ExtraInfo = ({ extraInfo }) => {
   const [showExtraInfo, setShowExtraInfo] = useState(false);

@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import { addOrderMutation, ordersQuery } from "../../gql.js";
 import { PlusButton } from "../Icons.js";
 import { Button } from "../Button";
-import NewSalad from "../NewSalad";
+import NewSalad from "../NewOrder/NewSalad";
 // import { arrayExpression } from "@babel/types";
 
 const AddOrder = () => {

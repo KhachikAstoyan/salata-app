@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 
 import IngredientCategory from "./IngredientCategory";
-import Counter from "./Counter";
+import Counter from "../Counter";
 // import { ChevronLeft } from "./Icons";
 
 const query = gql`

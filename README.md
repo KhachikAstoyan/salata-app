@@ -45,6 +45,7 @@ _Copy the URI provided by mongodb into the .env file_
 
 _You can find how to do that [here](https://cloud.google.com/docs/authentication/production)_
 
+_`if you install app locally, the old orders' speech will not work`_
 
 - Run Backend
 

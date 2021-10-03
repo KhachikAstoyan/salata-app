@@ -5,7 +5,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import Header from "./components/Header";
-import OrderList from "./components/OrderList";
+import OrderList from "./components/pages/OrderList";
 import AddOrder from "./components/pages/AddOrder";
 
 function App() {

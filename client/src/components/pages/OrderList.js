@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { ordersQuery } from "../gql.js";
-import { ChevronLeftPagination, ChevronRightPagination } from "./Icons.js";
-import { Dropdown, DropdownStatus, PaginationBtn } from "./Button";
-import ItemList from "./ItemList.js";
+import { ordersQuery } from "../../gql.js";
+import { ChevronLeftPagination, ChevronRightPagination } from "../Icons.js";
+import { Dropdown, DropdownStatus, PaginationBtn } from "../Button";
+import ItemList from "../OrderList/ItemList.js";
 
 const PER_PAGE = 5;
 
@@ -87,19 +87,14 @@ const OrderList = () => {
                       drpStatus={order.status}
                       orderId={order.id}
                       options={[
-                        //need to add mutation
-                        // {
-                        //   name: "Not Started",
-
-                        // {
-                        //   name="Finished",
-                        // },
                         "Not Started",
                         "In Progress",
                         "Completed",
                         "Finished",
                       ]}
-                      drpStyle="Status"
+                      refetchOrders={() =>
+                        refetch({ offset: page * PER_PAGE, limit: PER_PAGE })
+                      }
                       drpOptionSize={28}
                     />
                   </div>
