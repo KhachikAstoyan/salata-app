@@ -122,17 +122,20 @@ const AddOrder = () => {
         <div className="flex-grow text-5xl py-1 text-green-600">
           <h2 className="ml-2 font-base font-DMSans text-primary">Order</h2>
         </div>
-        <div className="p-2 cursor-pointer bg-primary  text-white rounded-lg">
+        <div
+          className="p-2 cursor-pointer bg-primary  text-white rounded-lg"
+          onClick={() => {
+            setOrder((prevState) => ({
+              ...prevState,
+              items: {
+                ...prevState.items,
+                [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
+              },
+            }));
+          }}
+        >
           <Button
-            btnFunction={() => {
-              setOrder((prevState) => ({
-                ...prevState,
-                items: {
-                  ...prevState.items,
-                  [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
-                },
-              }));
-            }}
+            btnFunction={() => {}}
             btnStyle="bg-green-400 text-gray-100 text-3xl"
           >
             <PlusButton />
