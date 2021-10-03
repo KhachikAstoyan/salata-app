@@ -39,6 +39,13 @@ cp .env.example .env
 
 _Copy the URI provided by mongodb into the .env file_
 
+- Create Google Cloud Account
+- Enable Speech-to-Text API
+- Pass credentials
+
+_You can find how to do that [here]https://cloud.google.com/docs/authentication/production_
+
+
 - Run Backend
 
 ```
