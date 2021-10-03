@@ -43,7 +43,7 @@ _Copy the URI provided by mongodb into the .env file_
 - Enable Speech-to-Text API
 - Pass credentials
 
-_You can find how to do that [here]https://cloud.google.com/docs/authentication/production_
+_You can find how to do that [here](https://cloud.google.com/docs/authentication/production)_
 
 
 - Run Backend
@@ -67,4 +67,4 @@ npm run start
 
 ## Technologies
 
-<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" style="display: inline;" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" style="display:inline;"  alt="drawing" width="50" height="50"/><img src="https://cdn.worldvectorlogo.com/logos/graphql.svg" style="display:inline;"  alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/apollo-graphql-compact.svg" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/react-2.svg" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" alt="drawing" width="50" height="50"/>
+<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" style="display: inline;" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/google-cloud-1.svg" style="display: inline;" alt="drawing" width="50" height="50"/><img src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" style="display:inline;"  alt="drawing" width="50" height="50"/><img src="https://cdn.worldvectorlogo.com/logos/graphql.svg" style="display:inline;"  alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/apollo-graphql-compact.svg" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/react-2.svg" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" alt="drawing" width="50" height="50"/>
