@@ -13,7 +13,8 @@ function ItemList(props) {
               <div className="flex-grow ">
                 <p className="font-light align-middle font-DMSans text-secondary-light text-xl">
                   {" "}
-                  Salad {id + 1}
+                  Salad {id + 1} - {item.quantity}{" "}
+                  {item.quantity === 1 ? "Serving" : "Servings"}
                 </p>
               </div>
               <div className="w-16 h-16 p-2 flex-none">
