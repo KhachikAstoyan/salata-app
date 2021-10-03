@@ -8,24 +8,69 @@ const path = require("path");
 // Creates a client
 const client = new textToSpeech.TextToSpeechClient();
 
-module.exports = async function generateAudio(item, delay = 1) {
-  // The text to synthesize
-  const text = "hello, world!";
-  const audioPath = path.resolve(__dirname, "..", "static", `${audioName}.mp3`);
+const Ingredient = require("../models/Ingredient.js");
 
-  // Construct the request
-  const request = {
-    input: { text: text },
-    // Select the language and SSML voice gender (optional)
-    voice: { languageCode: "en-US", ssmlGender: "FEMALE" },
-    // select the type of audio encoding
-    audioConfig: { audioEncoding: "MP3" },
-  };
+module.exports = async function generateAudio(order, delay = 1) {
+  try {
+    const breakMarkup = `<break time="${delay}s"/>`;
+    // The text to synthesize
+    const { _id: id, items } = order;
+    console.log(id);
+    const itemsData = await Promise.all(
+      items.map(async (item) => {
+        const ingredientsObj = await Ingredient.find({
+          _id: { $in: item.ingredients },
+        });
+        const ingredients = ingredientsObj.map(
+          (ingredientObj) => ingredientObj.name
+        );
+        console.log(ingredients);
+        return { ingredients, extraInfo: item.extraInfo };
+      })
+    );
+    let itemsStringArr = itemsData.map((item) => {
+      let itemString = item.ingredients.join(" " + breakMarkup + "");
+      return `
+        <speak>
+          ${itemString} ${breakMarkup}
+          ${item.extraInfo}
+        </speak>
+      `;
+    });
+    console.log(itemsStringArr);
 
-  // Performs the text-to-speech request
-  const [response] = await client.synthesizeSpeech(request);
-  // Write the binary audio content to a local file
-  const writeFile = util.promisify(fs.writeFile);
-  await writeFile(audioPath, response.audioContent, "binary");
-  console.log("Audio content written to file: ../static/output.mp3");
+    await itemsStringArr.forEach(async (itemString, index) => {
+      const audioPath = path.resolve(
+        __dirname,
+        "..",
+        "static",
+        `${id + index}.mp3`
+      );
+      // Construct the request
+      const request = {
+        input: { ssml: itemString },
+        // Select the language and SSML voice gender (optional)
+        voice: { languageCode: "en-US", ssmlGender: "FEMALE" },
+        // select the type of audio encoding
+        audioConfig: { audioEncoding: "MP3" },
+      };
+
+      // Performs the text-to-speech request
+      const [response] = await client.synthesizeSpeech(request);
+      // Write the binary audio content to a local file
+      const writeFile = util.promisify(fs.writeFile);
+      await writeFile(audioPath, response.audioContent, "binary");
+      console.log(`Audio content written to file: ../static/${id + index}.mp3`);
+    });
+    // let ingredientNames = await Promise.all(
+    //   ingredientIds.map(async (item) => {
+    //     const ingredients = await Ingredient.find({ _id: { $in: item } });
+    //     const ingNames = ingredients.map((ingredient) => ingredient.name);
+    //     console.log(ingNames);
+    //     return ingNames;
+    //   })
+    // );
+  } catch (e) {
+    console.error(e);
+  }
 };
