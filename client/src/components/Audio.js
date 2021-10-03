@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { PlayButton, PauseButton } from "./Icons.js";
 import PlaySvg from "../static/play.svg";
 import PauseSvg from "../static/pause.svg";
-import audioSrc from "../Salad.mp3";
 
-const audio = new Audio(audioSrc);
-
-const Audiolist = () => {
+const Audiolist = ({ audioSrc }) => {
+  const audio = new Audio("http://localhost:4000/" + audioSrc + ".mp3");
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
   useEffect(() => {

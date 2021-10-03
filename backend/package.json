@@ -10,6 +10,7 @@
   },
   "engineStrict": true,
   "dependencies": {
+    "@google-cloud/storage": "^5.14.4",
     "@google-cloud/text-to-speech": "^3.3.1",
     "@google-cloud/translate": "^6.3.0",
     "apollo-server-express": "^3.3.0",

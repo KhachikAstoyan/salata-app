@@ -1,6 +1,6 @@
 const { ApolloServer } = require("apollo-server-express");
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 
 const connect = require("./db");
 const PORT = process.env.PORT || 4000;
@@ -13,15 +13,14 @@ async function start() {
   const server = new ApolloServer({ typeDefs, resolvers });
 
   await server.start();
-  await server.applyMiddleware({app});
+  await server.applyMiddleware({ app });
 
-  app.use(express.static("static"));
-  app.use(cors({origin: "*"}))
-
+  app.use(express.static(__dirname + "/static"));
+  app.use(cors({ origin: "*" }));
 
   app.listen(process.env.PORT || 4000);
 }
 
-connect().then(async function() {
+connect().then(async function () {
   await start();
 });
