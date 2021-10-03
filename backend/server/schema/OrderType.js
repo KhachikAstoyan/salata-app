@@ -1,7 +1,7 @@
 const Client = require("../models/Client");
 const Item = require("../models/Item");
 const Order = require("../models/Order");
-const generateAudio = require("../utils/generateAudio.js");
+const { generateAudio, removeAudio } = require("../utils/generateAudio.js");
 
 module.exports = {
   Query: {
@@ -64,6 +64,7 @@ module.exports = {
     },
     async updateOrderStatus(_, { id, status }) {
       await Order.findByIdAndUpdate(id, { status });
+      if (status == 3) removeAudio(id);
       return Order.findById(id);
     },
     // async addItems(

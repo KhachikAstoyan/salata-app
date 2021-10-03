@@ -3,6 +3,7 @@ require("dotenv").config();
 
 // Import other required libraries
 const fs = require("fs");
+const glob = require("glob");
 const util = require("util");
 const path = require("path");
 // Creates a client
@@ -10,7 +11,7 @@ const client = new textToSpeech.TextToSpeechClient();
 
 const Ingredient = require("../models/Ingredient.js");
 
-module.exports = async function generateAudio(order, delay = 1) {
+async function generateAudio(order, delay = 1) {
   try {
     const breakMarkup = `<break time="${delay}s"/>`;
     // The text to synthesize
@@ -40,11 +41,14 @@ module.exports = async function generateAudio(order, delay = 1) {
     console.log(itemsStringArr);
 
     await itemsStringArr.forEach(async (itemString, index) => {
+      let dir = `${__dirname}/../static/${id}`;
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir);
       const audioPath = path.resolve(
         __dirname,
         "..",
         "static",
-        `${id + index}.mp3`
+        `${id}`,
+        `${index}.mp3`
       );
       // Construct the request
       const request = {
@@ -73,4 +77,11 @@ module.exports = async function generateAudio(order, delay = 1) {
   } catch (e) {
     console.error(e);
   }
-};
+}
+
+async function removeAudio(orderId) {
+  let dir = `${__dirname}/../static/${orderId}`;
+  if (fs.existsSync(dir)) fs.rmdirSync(dir, { recursive: true });
+}
+
+module.exports = { generateAudio, removeAudio };

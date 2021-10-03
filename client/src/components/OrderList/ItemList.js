@@ -17,7 +17,7 @@ function ItemList(props) {
                 </p>
               </div>
               <div className="w-16 h-16 p-2 flex-none">
-                <Audio audioSrc={props.orderId + id} />
+                <Audio audioSrc={`${props.orderId}/${id}`} />
               </div>
             </div>
             <div className="">
