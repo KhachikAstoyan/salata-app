@@ -34,18 +34,28 @@ cd salata-app
 // install packages
 cd backend
 npm install
+```
+
+- Setup Environment Variables
+
+```
+// copy .env file
 cp .env.example .env
 ```
 
 _Copy the URI provided by mongodb into the .env file_
 
+e.g. `MONGO_URI=<YOUR MONGODB URI GOES HERE>`
+
 - Create Google Cloud Account
 - Enable Speech-to-Text API
-- Pass credentials
+- Pass Credentials
 
-_You can find how to do that [here](https://cloud.google.com/docs/authentication/production)_
+e.g `GOOGLE_APPLICATION_CREDENTIALS=<GCP CREDENTIALS PATH>`
 
-_`if you install app locally, the old orders' speech will not work`_
+_You can find information [here](https://cloud.google.com/docs/authentication/production)_
+
+<p><em><code style="color:#D0342C">if you install app locally, the old orders&#39; speech will not work</code></em></p>
 
 - Run Backend
 
