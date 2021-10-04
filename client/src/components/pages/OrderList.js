@@ -65,7 +65,7 @@ const OrderList = () => {
                   <h2 className="text-xl font-DMSans text-secondary">
                     Order{" "}
                     <span className="text-primary font-DMSans">
-                      #{order.orderNumber}
+                      #{order.id.slice(-6)}
                     </span>{" "}
                     - {order.items.length} Items
                   </h2>
