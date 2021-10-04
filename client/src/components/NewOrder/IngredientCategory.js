@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Ingredient from "./Ingredient";
-import { ChevronLeft } from "./Icons";
+import { ChevronLeft } from "../Icons";
 
 // TODO: fix toggling
 

@@ -1,4 +1,5 @@
 ![Salata Icon](./client/public/salata.png)
+
 A web app to order salads
 
 ## Preview
@@ -38,6 +39,14 @@ cp .env.example .env
 
 _Copy the URI provided by mongodb into the .env file_
 
+- Create Google Cloud Account
+- Enable Speech-to-Text API
+- Pass credentials
+
+_You can find how to do that [here](https://cloud.google.com/docs/authentication/production)_
+
+_`if you install app locally, the old orders' speech will not work`_
+
 - Run Backend
 
 ```
@@ -59,9 +68,4 @@ npm run start
 
 ## Technologies
 
-<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" alt="drawing" width="50"/>
-<img src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" alt="drawing" width="50" height="50"/>
-<img src="https://cdn.worldvectorlogo.com/logos/graphql.svg" alt="drawing" width="50"/>
-<img src="https://cdn.worldvectorlogo.com/logos/apollo-graphql-compact.svg" alt="drawing" width="50"/>
-<img src="https://cdn.worldvectorlogo.com/logos/react-2.svg" alt="drawing" width="50"/>
-<img src="https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" alt="drawing" width="50" height="50"/>
+<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" style="display: inline;" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/google-cloud-1.svg" style="display: inline;" alt="drawing" width="50" height="50"/><img src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" style="display:inline;"  alt="drawing" width="50" height="50"/><img src="https://cdn.worldvectorlogo.com/logos/graphql.svg" style="display:inline;"  alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/apollo-graphql-compact.svg" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/react-2.svg" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" alt="drawing" width="50" height="50"/>

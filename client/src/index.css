@@ -18,10 +18,10 @@ code {
 
 @layer components {
   .btnPage {
-    @apply px-4 py-3 ml-4 z-10 text-sm text-white font-DMSans transition-all transform inline-block bg-primary rounded-lg shadow cursor-pointer select-none min-w-min place-self-center active:shadow-sm active:translate-y-px;
+    @apply px-4 py-3 ml-4  text-sm text-white font-DMSans transition-all transform inline-block bg-primary rounded-lg shadow cursor-pointer select-none min-w-min place-self-center active:shadow-sm active:translate-y-px;
   }
   .btnLanguage {
-    @apply px-4 py-3 ml-4 z-10 text-lg font-light font-sans transition-all transform inline-block bg-white cursor-pointer select-none min-w-min active:border-0 active:mr-1 active:translate-y-px;
+    @apply px-4 py-3 ml-4  text-lg font-light font-sans transition-all transform inline-block bg-white cursor-pointer select-none min-w-min active:border-0 active:mr-1 active:translate-y-px;
   }
   .btnStatus {
     @apply pl-0 pr-2 px-4 py-3 ml-4 text-sm font-sans transition-all transform inline-block rounded-lg cursor-pointer select-none min-w-min place-self-center active:translate-y-px;

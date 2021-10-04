@@ -1,72 +1,86 @@
-const tts = require("@google-cloud/text-to-speech");
-const { Translate } = require("@google-cloud/translate").v2;
-const client = new tts.TextToSpeechClient();
-const translate = new Translate();
+require("dotenv").config();
+const textToSpeech = require("@google-cloud/text-to-speech");
+
+// Import other required libraries
 const fs = require("fs");
 const util = require("util");
 const path = require("path");
-const Order = require("../models/Order");
-const Item = require("../models/Item");
-const writeFile = util.promisify(fs.writeFile);
+// Creates a client
+const client = new textToSpeech.TextToSpeechClient();
 
-module.exports = async function (item, language = "en-US", delay = 1) {
-	try {
-		const { _id: id, ingredients, extra, name, quantity } = item;
-		const audioName = `${String(id)}-${delay}s-[${language}].mp3`;
-		const audioPath = path.resolve(__dirname, "..", "static", `${audioName}`);
-		const returnObject = { data: path.join("static", audioName) };
-		const breakMarkup = `<break time="${delay}s"/>`;
+const Ingredient = require("../models/Ingredient.js");
 
-		console.log(breakMarkup);
+async function generateAudio(order, delay = 1) {
+  try {
+    const breakMarkup = `<break time="${delay}s"/>`;
+    // The text to synthesize
+    const { _id: id, items } = order;
+    console.log(id);
+    const itemsData = await Promise.all(
+      items.map(async (item) => {
+        const ingredientsObj = await Ingredient.find({
+          _id: { $in: item.ingredients },
+        });
+        const ingredients = ingredientsObj.map(
+          (ingredientObj) => ingredientObj.name
+        );
+        console.log(ingredients);
+        return { ingredients, extraInfo: item.extraInfo };
+      })
+    );
+    let itemsStringArr = itemsData.map((item) => {
+      let itemString = item.ingredients.join(" " + breakMarkup + "");
+      return `
+        <speak>
+          ${itemString} ${breakMarkup}
+          ${item.extraInfo}
+        </speak>
+      `;
+    });
+    console.log(itemsStringArr);
 
-		if (fs.existsSync(audioPath)) {
-			return returnObject;
-		}
+    await itemsStringArr.forEach(async (itemString, index) => {
+      let dir = `${__dirname}/../static/${id}`;
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+      const audioPath = path.resolve(
+        __dirname,
+        "..",
+        "static",
+        `${id}`,
+        `${index}.mp3`
+      );
+      // Construct the request
+      const request = {
+        input: { ssml: itemString },
+        // Select the language and SSML voice gender (optional)
+        voice: { languageCode: "en-US", ssmlGender: "FEMALE" },
+        // select the type of audio encoding
+        audioConfig: { audioEncoding: "MP3" },
+      };
 
-		const target = language.split("-")[0];
-		let ingredientData = await Item.findIngredients(id);
-		ingredientData = ingredientData.map((ingredient) => ingredient.name);
-		let ingredientString = ingredientData
-			.map((ingredient) => `${ingredient} ${breakMarkup}`)
-			.join(" ");
-		let extraTitle = "extra information";
-		let extraInfo = extra.join(" ");
+      // Performs the text-to-speech request
+      const [response] = await client.synthesizeSpeech(request);
+      // Write the binary audio content to a local file
+      const writeFile = util.promisify(fs.writeFile);
+      await writeFile(audioPath, response.audioContent, "binary");
+      console.log(`Audio content written to file: ../static/${id + index}.mp3`);
+    });
+    // let ingredientNames = await Promise.all(
+    //   ingredientIds.map(async (item) => {
+    //     const ingredients = await Ingredient.find({ _id: { $in: item } });
+    //     const ingNames = ingredients.map((ingredient) => ingredient.name);
+    //     console.log(ingNames);
+    //     return ingNames;
+    //   })
+    // );
+  } catch (e) {
+    console.error(e);
+  }
+}
 
-		if (target !== "en") {
-			const [translatedIngredients] = await translate.translate(ingredientData, target);
-			ingredientString = translatedIngredients
-				.map((ingredient) => `${ingredient} ${breakMarkup}`)
-				.join(" ");
-			[extraTitle] = await translate.translate(extraTitle, target);
-			[extraInfo] = await translate.translate(extraInfo, target);
-		}
-		let info = `
-            ${ingredientString}
-            ${extraTitle} ${breakMarkup}
-            ${extraInfo}
-        `;
+async function removeAudio(orderId) {
+  let dir = `${__dirname}/../static/${orderId}`;
+  if (fs.existsSync(dir)) fs.rmdirSync(dir, { recursive: true });
+}
 
-		const text = `
-            <speak>
-                ${quantity} ${name}
-                ${breakMarkup}
-                ${info}
-            </speak>
-            `;
-		console.log(text);
-		const request = {
-			input: { ssml: text },
-			// LANGUAGE HAS TO BE IN THIS FORMAT - [en-US]
-			voice: { languageCode: language, ssmlGender: "FEMALE" },
-			audioConfig: { audioEncoding: "MP3" },
-		};
-
-		const [response] = await client.synthesizeSpeech(request);
-
-		await writeFile(audioPath, response.audioContent, "binary");
-
-		return returnObject;
-	} catch (e) {
-		console.log(e);
-	}
-};
+module.exports = { generateAudio, removeAudio };

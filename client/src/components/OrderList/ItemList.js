@@ -1,11 +1,11 @@
 import React from "react";
 // import { ChevronLeft } from "./Icons.js";
-import Audio from "./Audio.js";
+import Audio from "../Audio.js";
 import ExtraInfo from "./ExtraInfo";
 
 function ItemList(props) {
   return (
-    <div className="flex flex-col bg-primary-bgLight pt-10 pb-2 px-6 divide-y divide-gray-400 rounded-b-2xl">
+    <div className="flex flex-col relative top-10 mb-4 bg-primary-bgLight py-2 px-6 divide-y divide-gray-400 rounded-b-2xl">
       {props.items.map((item, id) => {
         return (
           <div className="py-4" key={props.orderId + id}>
@@ -13,20 +13,16 @@ function ItemList(props) {
               <div className="flex-grow ">
                 <p className="font-light align-middle font-DMSans text-secondary-light text-xl">
                   {" "}
-                  Salad {id + 1}
+                  Salad {id + 1} - {item.quantity}{" "}
+                  {item.quantity === 1 ? "Serving" : "Servings"}
                 </p>
               </div>
               <div className="w-16 h-16 p-2 flex-none">
-                <Audio />
+                <Audio audioSrc={`${props.orderId}/${id}`} />
               </div>
             </div>
             <div className="">
-              <ul 
-                className="flex flex-row flex-wrap"
-                onClick={() =>
-                  console.log(Object.keys(["hello", "ingredient"]))
-                }
-              >
+              <ul className="flex flex-row flex-wrap">
                 {item.ingredients.map((ingredient, index) => {
                   return (
                     <p

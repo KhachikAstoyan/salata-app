@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { ordersQuery } from "../gql.js";
-import { ChevronLeftPagination, ChevronRightPagination } from "./Icons.js";
-import { Dropdown, DropdownStatus, PaginationBtn } from "./Button";
-import ItemList from "./ItemList.js";
+import { ordersQuery } from "../../gql.js";
+import { ChevronLeftPagination, ChevronRightPagination } from "../Icons.js";
+import { Dropdown, DropdownStatus, PaginationBtn } from "../Button";
+import ItemList from "../OrderList/ItemList.js";
 
 const PER_PAGE = 5;
 
@@ -60,12 +60,12 @@ const OrderList = () => {
             }}
           >
             <div>
-              <div className="order relative z-30 w-full p-6 justify-between">
+              <div className="order relative w-full p-6 justify-between">
                 <div className="flex-grow justify-self-start">
                   <h2 className="text-xl font-DMSans text-secondary">
                     Order{" "}
                     <span className="text-primary font-DMSans">
-                      #{order.orderNumber}
+                      #{order.id.slice(-6)}
                     </span>{" "}
                     - {order.items.length} Items
                   </h2>
@@ -87,19 +87,14 @@ const OrderList = () => {
                       drpStatus={order.status}
                       orderId={order.id}
                       options={[
-                        //need to add mutation
-                        // {
-                        //   name: "Not Started",
-
-                        // {
-                        //   name="Finished",
-                        // },
                         "Not Started",
                         "In Progress",
                         "Completed",
                         "Finished",
                       ]}
-                      drpStyle="Status"
+                      refetchOrders={() =>
+                        refetch({ offset: page * PER_PAGE, limit: PER_PAGE })
+                      }
                       drpOptionSize={28}
                     />
                   </div>
@@ -113,7 +108,8 @@ const OrderList = () => {
               //   setContentId(null);
               // }}
             ></div>
-            <div className="relative bottom-10 z-20">
+            <div className="relative bottom-10">
+            <div className={`${showContentId === orderId && "h-16"} bg-primary-bgLight absolute w-full -z-10`}></div>
               {showContentId === orderId && (
                 <ItemList
                   items={[...data.orders[orderId].items]}

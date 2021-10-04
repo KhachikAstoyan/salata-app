@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "./Icons";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 
 import { updateOrderStatusMutation, ordersQuery } from "../gql.js";
 
@@ -42,8 +42,14 @@ function DropdownStatus(props) {
   const breakpoint = 640;
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const [setStatus, { error }] = useMutation(updateOrderStatusMutation, {
-    refetchQueries: [{ query: ordersQuery }],
+  const { loading, error, data, refetch } = useQuery(ordersQuery, {
+    variables: {
+      offset: 1 * 5,
+      limit: 5,
+    },
+  });
+  const [setStatus, { }] = useMutation(updateOrderStatusMutation, {
+    onCompleted: refetch,
   });
 
   const setTitle = (status, returnValue) => {
@@ -90,47 +96,48 @@ function DropdownStatus(props) {
   return (
     <div className={`${width < breakpoint ? "relative h-14" : ""}`}>
       <div
-        className={`btnStatus absolute ${
+        className={`btnStatus absolute ${showDropdown ? "z-50":""} ${
           width < 640 ? "top-2 right-0" : "right-6 top-6"
-        } text-${setTitle(
-          props.drpStatus,
-          "color"
-        )}-500 bg-white border-2 rounded-lg border-${setTitle(
-          props.drpStatus,
-          "color"
-        )}-300 text-right`}
+          } text-${setTitle(
+            props.drpStatus,
+            "color"
+          )}-500 bg-white border-2 rounded-lg border-${setTitle(
+            props.drpStatus,
+            "color"
+          )}-300 text-right`}
         onClick={(e) => {
           setShowDropdown(!showDropdown);
           e.stopPropagation();
         }}
       >
-        {(() => {
-          switch (props.drpStatus) {
-            case "NOT_STARTED":
-              return <span>Not Started</span>;
-            case "IN_PROGRESS":
-              return <span>In Progress</span>;
-            case "COMPLETED":
-              return <span>Completed</span>;
-            case "FINISHED":
-              return <span>Finished</span>;
-            default:
-              return <span>Status</span>;
-          }
-        })()}
-        <div
-          className="inline-block transition-all duration-500 transform"
-          style={{
-            transform: showDropdown ? "rotate(90deg)" : "rotate(-90deg)",
-          }}
-        >
-          <ChevronRight />
-        </div>
+          {(() => {
+            switch (props.drpStatus) {
+              case "NOT_STARTED":
+                return <span>Not Started</span>;
+              case "IN_PROGRESS":
+                return <span>In Progress</span>;
+              case "COMPLETED":
+                return <span>Completed</span>;
+              case "FINISHED":
+                return <span>Finished</span>;
+              default:
+                return <span>Status</span>;
+            }
+          })()}
+          <div
+            className="inline-block transition-all duration-500 transform"
+            style={{
+              transform: showDropdown ? "rotate(90deg)" : "rotate(-90deg)",
+            }}
+          >
+            <ChevronRight />
+          </div>
+
         <div className="">
           <ul
             className={`overflow-hidden text-right px-4 ${
               showDropdown && "py-1"
-            } w-full duration-300 transition-height`}
+              } w-full duration-300 transition-height`}
             style={{
               height: showDropdown
                 ? `${props.options.length * props.drpOptionSize + 8}px`
@@ -190,6 +197,7 @@ function DropdownStatus(props) {
                     updateOrderStatusId: props.orderId,
                     updateOrderStatusStatus: "FINISHED",
                   },
+                  onCompleted: refetch,
                 });
               }}
               key={props.orderId + 4}
@@ -242,7 +250,7 @@ function Dropdown(props) {
         <ul
           className={`overflow-hidden text-right px-4 ${
             showDropdown && "py-1"
-          } w-full duration-300 transition-height`}
+            } w-full duration-300 transition-height`}
           style={{
             height: showDropdown
               ? `${props.options.length * props.drpOptionSize + 8}px`

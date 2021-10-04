@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import { addOrderMutation, ordersQuery } from "../../gql.js";
 import { PlusButton } from "../Icons.js";
 import { Button } from "../Button";
-import NewSalad from "../NewSalad";
+import NewSalad from "../NewOrder/NewSalad";
 // import { arrayExpression } from "@babel/types";
 
 const AddOrder = () => {
@@ -122,17 +122,20 @@ const AddOrder = () => {
         <div className="flex-grow text-5xl py-1 text-green-600">
           <h2 className="ml-2 font-base font-DMSans text-primary">Order</h2>
         </div>
-        <div className="p-2 cursor-pointer bg-primary  text-white rounded-lg">
+        <div
+          className="btnPage p-2 cursor-pointer bg-primary  text-white rounded-lg"
+          onClick={() => {
+            setOrder((prevState) => ({
+              ...prevState,
+              items: {
+                ...prevState.items,
+                [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
+              },
+            }));
+          }}
+        >
           <Button
-            btnFunction={() => {
-              setOrder((prevState) => ({
-                ...prevState,
-                items: {
-                  ...prevState.items,
-                  [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
-                },
-              }));
-            }}
+            btnFunction={() => {}}
             btnStyle="bg-green-400 text-gray-100 text-3xl"
           >
             <PlusButton />
@@ -159,26 +162,29 @@ const AddOrder = () => {
       </div>
 
       <div className="w-11/12 sm:w-full fixed bottom-0 left-4 sm:left-0">
-        <div className="order bg-secondary text-white font-DMSans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row">
+        <div
+          className="order btnPage bg-secondary text-white font-DMSans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row"
+          onClick={() => {
+            submitOrder({
+              variables: {
+                addOrderInput: {
+                  isTakeout: orderState.isTakeout,
+                  items: Object.values(orderState.items),
+                },
+              },
+            });
+
+            setOrder({
+              isTakeout: false,
+              items: {
+                [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
+              },
+            });
+          }}
+        >
           <div className="flex flex-1 justify-center">
             <Button
-              btnFunction={() => {
-                submitOrder({
-                  variables: {
-                    addOrderInput: {
-                      isTakeout: orderState.isTakeout,
-                      items: Object.values(orderState.items),
-                    },
-                  },
-                });
-
-                setOrder({
-                  isTakeout: false,
-                  items: {
-                    [nanoid()]: { ingredients: [], quantity: 1, extraInfo: "" },
-                  },
-                });
-              }}
+              btnFunction={() => {}}
               btnStyle="bg-green-400 text-gray-100 text-xl  "
             >
               Submit
