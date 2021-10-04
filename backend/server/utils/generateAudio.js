@@ -1,9 +1,8 @@
-const textToSpeech = require("@google-cloud/text-to-speech");
 require("dotenv").config();
+const textToSpeech = require("@google-cloud/text-to-speech");
 
 // Import other required libraries
 const fs = require("fs");
-const glob = require("glob");
 const util = require("util");
 const path = require("path");
 // Creates a client
