@@ -5,7 +5,7 @@ import ExtraInfo from "./ExtraInfo";
 
 function ItemList(props) {
   return (
-    <div className="flex flex-col bg-primary-bgLight pt-10 pb-2 px-6 divide-y divide-gray-400 rounded-b-2xl">
+    <div className="flex flex-col relative top-10 mb-4 bg-primary-bgLight py-2 px-6 divide-y divide-gray-400 rounded-b-2xl">
       {props.items.map((item, id) => {
         return (
           <div className="py-4" key={props.orderId + id}>

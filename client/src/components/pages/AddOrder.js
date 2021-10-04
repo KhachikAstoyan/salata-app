@@ -123,7 +123,7 @@ const AddOrder = () => {
           <h2 className="ml-2 font-base font-DMSans text-primary">Order</h2>
         </div>
         <div
-          className="p-2 cursor-pointer bg-primary  text-white rounded-lg"
+          className="btnPage p-2 cursor-pointer bg-primary  text-white rounded-lg"
           onClick={() => {
             setOrder((prevState) => ({
               ...prevState,
@@ -163,7 +163,7 @@ const AddOrder = () => {
 
       <div className="w-11/12 sm:w-full fixed bottom-0 left-4 sm:left-0">
         <div
-          className="order bg-secondary text-white font-DMSans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row"
+          className="order btnPage bg-secondary text-white font-DMSans text-xl flex flex-col max-w-5xl py-4 mx-auto sm:flex-row"
           onClick={() => {
             submitOrder({
               variables: {

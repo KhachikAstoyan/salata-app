@@ -60,7 +60,7 @@ const OrderList = () => {
             }}
           >
             <div>
-              <div className="order relative z-30 w-full p-6 justify-between">
+              <div className="order relative w-full p-6 justify-between">
                 <div className="flex-grow justify-self-start">
                   <h2 className="text-xl font-DMSans text-secondary">
                     Order{" "}
@@ -108,7 +108,8 @@ const OrderList = () => {
               //   setContentId(null);
               // }}
             ></div>
-            <div className="relative bottom-10 z-20">
+            <div className="relative bottom-10">
+            <div className={`${showContentId === orderId && "h-16"} bg-primary-bgLight absolute w-full -z-10`}></div>
               {showContentId === orderId && (
                 <ItemList
                   items={[...data.orders[orderId].items]}

@@ -2,21 +2,7 @@ module.exports = {
   purge: ["./src/**/*.html", "./src/**/*.js"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    // textColor: {
-    //   primary: "#3490dc",
-    //   secondary: "#ffed4a",
-    //   danger: "#e3342f",
-    //   white: "#ffffff",
-    //   red: "#E06A6A",
-    //   yellow: "#FCD573",
-    //   lightGreen: "#96CA4F",
-    //   myGreen: "#018660",
-    //   mainText: "#5C5F60",
-    //   DueBy: "#AEDAD5",
-    //   txtColor: "#7c7f80",
-    //   ingredient: "#43464F",
-    //   extraInfo: "#01866029",
-    // },
+    
     boxShadow: {
       sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
       DEFAULT:
@@ -31,7 +17,11 @@ module.exports = {
       customShadow: "0 3px 7px 0 rgba(1, 134, 96, 0.16)",
     },
     extend: {
+      zIndex: {
+        '-10': '-10',
+       },
       colors: {
+        
         primary: {
           lighten: "#02d296",
           light: "#f1faf9",
@@ -51,6 +41,11 @@ module.exports = {
           DEFAULT: "#AEDAD5",
           dark: "",
         },
+        warning:{
+          DEFAULT:"#E06A6A",
+          light:"#e03838",
+          dark:"#c71f1f"
+        }
       },
       fontFamily: {
         Nunito: ['"Nunito"', '"Roboto"', "sans-serif"],
