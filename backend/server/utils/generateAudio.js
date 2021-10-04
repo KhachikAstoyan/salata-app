@@ -13,9 +13,11 @@ const Ingredient = require("../models/Ingredient.js");
 async function generateAudio(order, delay = 1) {
   try {
     const breakMarkup = `<break time="${delay}s"/>`;
-    // The text to synthesize
+    const staticDir = `${__dirname}/../static/`;
     const { _id: id, items } = order;
-    console.log(id);
+
+    if (!fs.existsSync(staticDir)) fs.mkdirSync(staticDir);
+
     const itemsData = await Promise.all(
       items.map(async (item) => {
         const ingredientsObj = await Ingredient.find({
@@ -24,7 +26,6 @@ async function generateAudio(order, delay = 1) {
         const ingredients = ingredientsObj.map(
           (ingredientObj) => ingredientObj.name
         );
-        console.log(ingredients);
         return { ingredients, extraInfo: item.extraInfo };
       })
     );
@@ -37,10 +38,8 @@ async function generateAudio(order, delay = 1) {
         </speak>
       `;
     });
-    console.log(itemsStringArr);
-
     await itemsStringArr.forEach(async (itemString, index) => {
-      let dir = `${__dirname}/../static/${id}`;
+      let dir = `${staticDir}${id}`;
       if (!fs.existsSync(dir)) fs.mkdirSync(dir);
       const audioPath = path.resolve(
         __dirname,

@@ -87,6 +87,7 @@ web_modules/
 out
 
 static/
+!static/.gitkeep
 
 # Nuxt.js build / generate output
 .nuxt
