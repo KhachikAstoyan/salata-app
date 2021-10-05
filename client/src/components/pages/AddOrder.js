@@ -123,7 +123,7 @@ const AddOrder = () => {
           <h2 className="ml-2 font-base font-DMSans text-primary">Order</h2>
         </div>
         <div
-          className="btnPage p-2 cursor-pointer bg-primary  text-white rounded-lg"
+          className="btnPage p-2 sm:button-cursor bg-primary  text-white rounded-lg"
           onClick={() => {
             setOrder((prevState) => ({
               ...prevState,

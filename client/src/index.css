@@ -18,13 +18,13 @@ code {
 
 @layer components {
   .btnPage {
-    @apply px-4 py-3 ml-4  text-sm text-white font-DMSans transition-all transform inline-block bg-primary rounded-lg shadow cursor-pointer select-none min-w-min place-self-center active:shadow-sm active:translate-y-px;
+    @apply px-4 py-3 ml-4  text-sm text-white font-DMSans transition-all transform inline-block cursor-default bg-primary rounded-lg shadow sm:button-cursor select-none min-w-min place-self-center active:shadow-sm active:translate-y-px;
   }
   .btnLanguage {
-    @apply px-4 py-3 ml-4  text-lg font-light font-sans transition-all transform inline-block bg-white cursor-pointer select-none min-w-min active:border-0 active:mr-1 active:translate-y-px;
+    @apply px-4 py-3 ml-4  text-lg font-light font-sans transition-all transform inline-block bg-white sm:button-cursor select-none min-w-min active:border-0 active:mr-1 active:translate-y-px;
   }
   .btnStatus {
-    @apply pl-0 pr-2 px-4 py-3 ml-4 text-sm font-sans transition-all transform inline-block rounded-lg cursor-pointer select-none min-w-min place-self-center active:translate-y-px;
+    @apply pl-0 pr-2 px-4 py-3 ml-4 text-sm font-sans transition-all transform inline-block rounded-lg sm:button-cursor select-none min-w-min place-self-center active:translate-y-px;
   }
   .order {
     @apply mb-2 flex-col rounded-2xl mx-auto sm:flex-row items-center text-sm bg-white shadow-customShadow select-none min-w-min;
@@ -33,3 +33,11 @@ code {
     @apply absolute text-right w-full -left-0 rounded-none bg-white top-9 flex justify-center rounded-br-lg rounded-bl-lg shadow-md;
   }
 }
+
+@screen sm {
+  .sm\:button-cursor {
+    @apply cursor-pointer;
+  }
+}
+
+@tailwind screens;
