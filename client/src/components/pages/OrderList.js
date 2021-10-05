@@ -92,9 +92,6 @@ const OrderList = () => {
                         "Completed",
                         "Finished",
                       ]}
-                      refetchOrders={() =>
-                        refetch({ offset: page * PER_PAGE, limit: PER_PAGE })
-                      }
                       drpOptionSize={28}
                     />
                   </div>
@@ -109,7 +106,11 @@ const OrderList = () => {
               // }}
             ></div>
             <div className="relative bottom-10">
-            <div className={`${showContentId === orderId && "h-16"} bg-primary-bgLight absolute w-full -z-10`}></div>
+              <div
+                className={`${
+                  showContentId === orderId && "h-16"
+                } bg-primary-bgLight absolute w-full -z-10`}
+              ></div>
               {showContentId === orderId && (
                 <ItemList
                   items={[...data.orders[orderId].items]}

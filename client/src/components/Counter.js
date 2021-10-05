@@ -1,4 +1,5 @@
 import React from "react";
+import { RoundPlusIcon, RoundMinusIcon } from "./Icons";
 
 const Counter = (props) => {
   return (
@@ -7,47 +8,19 @@ const Counter = (props) => {
         Quantity{" "}
       </span>
 
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-10 w-10 inline"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="#018660"
-        onClick={(e) => {
-          e.stopPropagation();
-          if (props.quantity > 1) {
-            props.setQuantity(props.quantity - 1);
-          }
+      <RoundMinusIcon
+        func={() => {
+          if (props.quantity > 1) props.setQuantity(props.quantity - 1);
         }}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1}
-          d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
+      />
 
       <span className="px-2">{props.quantity}</span>
 
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-10 w-10 inline"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="#018660"
-        onClick={(e) => {
-          e.stopPropagation();
+      <RoundPlusIcon
+        func={() => {
           props.setQuantity(props.quantity + 1);
         }}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1}
-          d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
+      />
     </div>
   );
 };
