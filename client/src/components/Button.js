@@ -30,7 +30,7 @@ const PaginationBtn = (props) => {
   return (
     <button
       {...props}
-      className="p-2 rounded-lg text-black transition-colors font-DMSans hover:bg-gray-200 m-2"
+      className="p-2 rounded-lg text-black transition-colors cursor-default sm:button-cursor font-DMSans hover:bg-gray-200 m-2"
     >
       {props.children}
     </button>
@@ -48,8 +48,9 @@ function DropdownStatus(props) {
       limit: 5,
     },
   });
-  const [setStatus, { }] = useMutation(updateOrderStatusMutation, {
-    onCompleted: refetch,
+  const [setStatus, {}] = useMutation(updateOrderStatusMutation, {
+    refetchQueries: [ordersQuery],
+    awaitRefetchQueries: true,
   });
 
   const setTitle = (status, returnValue) => {
@@ -96,48 +97,48 @@ function DropdownStatus(props) {
   return (
     <div className={`${width < breakpoint ? "relative h-14" : ""}`}>
       <div
-        className={`btnStatus absolute ${showDropdown ? "z-50":""} ${
+        className={`btnStatus absolute ${showDropdown ? "z-50" : ""} ${
           width < 640 ? "top-2 right-0" : "right-6 top-6"
-          } text-${setTitle(
-            props.drpStatus,
-            "color"
-          )}-500 bg-white border-2 rounded-lg border-${setTitle(
-            props.drpStatus,
-            "color"
-          )}-300 text-right`}
+        } text-${setTitle(
+          props.drpStatus,
+          "color"
+        )}-500 bg-white border-2 rounded-lg border-${setTitle(
+          props.drpStatus,
+          "color"
+        )}-300 text-right`}
         onClick={(e) => {
           setShowDropdown(!showDropdown);
           e.stopPropagation();
         }}
       >
-          {(() => {
-            switch (props.drpStatus) {
-              case "NOT_STARTED":
-                return <span>Not Started</span>;
-              case "IN_PROGRESS":
-                return <span>In Progress</span>;
-              case "COMPLETED":
-                return <span>Completed</span>;
-              case "FINISHED":
-                return <span>Finished</span>;
-              default:
-                return <span>Status</span>;
-            }
-          })()}
-          <div
-            className="inline-block transition-all duration-500 transform"
-            style={{
-              transform: showDropdown ? "rotate(90deg)" : "rotate(-90deg)",
-            }}
-          >
-            <ChevronRight />
-          </div>
+        {(() => {
+          switch (props.drpStatus) {
+            case "NOT_STARTED":
+              return <span>Not Started</span>;
+            case "IN_PROGRESS":
+              return <span>In Progress</span>;
+            case "COMPLETED":
+              return <span>Completed</span>;
+            case "FINISHED":
+              return <span>Finished</span>;
+            default:
+              return <span>Status</span>;
+          }
+        })()}
+        <div
+          className="inline-block transition-all duration-500 transform"
+          style={{
+            transform: showDropdown ? "rotate(90deg)" : "rotate(-90deg)",
+          }}
+        >
+          <ChevronRight />
+        </div>
 
         <div className="">
           <ul
             className={`overflow-hidden text-right px-4 ${
               showDropdown && "py-1"
-              } w-full duration-300 transition-height`}
+            } w-full duration-300 transition-height`}
             style={{
               height: showDropdown
                 ? `${props.options.length * props.drpOptionSize + 8}px`
@@ -197,7 +198,6 @@ function DropdownStatus(props) {
                     updateOrderStatusId: props.orderId,
                     updateOrderStatusStatus: "FINISHED",
                   },
-                  onCompleted: refetch,
                 });
               }}
               key={props.orderId + 4}
@@ -250,7 +250,7 @@ function Dropdown(props) {
         <ul
           className={`overflow-hidden text-right px-4 ${
             showDropdown && "py-1"
-            } w-full duration-300 transition-height`}
+          } w-full duration-300 transition-height`}
           style={{
             height: showDropdown
               ? `${props.options.length * props.drpOptionSize + 8}px`
