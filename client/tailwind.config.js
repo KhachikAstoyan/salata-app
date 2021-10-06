@@ -1,8 +1,7 @@
 module.exports = {
-  purge: ["./src/**/*.html", "./src/**/*.js"],
+  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    
     boxShadow: {
       sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
       DEFAULT:
@@ -18,10 +17,9 @@ module.exports = {
     },
     extend: {
       zIndex: {
-        '-10': '-10',
-       },
+        "-10": "-10",
+      },
       colors: {
-        
         primary: {
           lighten: "#02d296",
           light: "#f1faf9",
@@ -41,16 +39,16 @@ module.exports = {
           DEFAULT: "#AEDAD5",
           dark: "",
         },
-        warning:{
-          DEFAULT:"#E06A6A",
-          light:"#e03838",
-          dark:"#c71f1f"
-        }
+        warning: {
+          DEFAULT: "#E06A6A",
+          light: "#e03838",
+          dark: "#c71f1f",
+        },
       },
       fontFamily: {
         Nunito: ['"Nunito"', '"Roboto"', "sans-serif"],
         Roboto: ['"Roboto"', '"Nunito"', "sans-serif"],
-        Comfortaa: ['"Comfortaa"', '"Roboto"', "sans-serif"],
+        // Comfortaa: ['"Comfortaa"', '"Roboto"', "sans-serif"],
         DMSans: ["DM Sans", "sans-serif"],
       },
       transitionProperty: {

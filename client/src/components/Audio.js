@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { PlayButton, PauseButton } from "./Icons.js";
 import PlaySvg from "../static/play.svg";
 import PauseSvg from "../static/pause.svg";
 
-const Audiolist = ({ audioSrc }) => {
-  const audio = new Audio("http://localhost:4000/" + audioSrc + ".mp3");
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+const Player = ({ audioSrc }) => {
+  const [audioStatus, changeAudioStatus] = useState(false);
+  const myRef = useRef();
 
   useEffect(() => {
-    audio.onended = () => {
-      setIsPlayingAudio(false);
+    myRef.current.onended = () => {
+      changeAudioStatus(false);
     };
   }, []);
 
-  const handlePauseButtonClick = () => {
-    setIsPlayingAudio(false);
-    audio.pause();
+  const startAudio = () => {
+    myRef.current.play();
+
+    changeAudioStatus(true);
   };
 
-  const handlePlayButtonClick = () => {
-    setIsPlayingAudio(true);
-    audio.play();
+  const pauseAudio = () => {
+    myRef.current.pause();
+    changeAudioStatus(false);
   };
 
   return (
-    <div className="font-DMSans text-primary items-center justify-end flex relative left-0 top-0">
-      {isPlayingAudio ? (
-        <img src={PauseSvg} alt="play" onClick={handlePauseButtonClick} />
+    <>
+      <audio ref={myRef} src={"http://localhost:4000/" + audioSrc + ".mp3"} />
+      {audioStatus ? (
+        <img src={PauseSvg} alt="play" onClick={pauseAudio} />
       ) : (
-        <img src={PlaySvg} alt="play" onClick={handlePlayButtonClick} />
+        <img src={PlaySvg} alt="play" onClick={startAudio} />
       )}
-    </div>
+    </>
   );
 };
 
-export default Audiolist;
+export default Player;
