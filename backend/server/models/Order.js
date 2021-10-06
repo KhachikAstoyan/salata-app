@@ -9,7 +9,6 @@ const OrderSchema = new Schema(
     //   type: Schema.Types.ObjectId,
     //   ref: "client",
     // },
-    startTime: { type: Date },
     dueTime: {
       type: Date,
     },
@@ -21,7 +20,6 @@ const OrderSchema = new Schema(
         extraInfo: String,
       },
     ],
-    orderNumber: { type: String },
     status: { type: Number },
   },
   { timestamps: true }
