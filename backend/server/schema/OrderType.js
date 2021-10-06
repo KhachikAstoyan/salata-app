@@ -37,23 +37,27 @@ module.exports = {
       const orders = await Order.find().sort({ orderNumber: -1 });
       const lastOrder = orders[0];
 
+      function addMinutes(minutes) {
+        return new Date(Date.now() + minutes * 60000)
+      }
+
       // Date.prototype.addHours = function (h) {
       //   this.setTime(this.getTime() + h * 60 * 60 * 1000);
       //   return this;
       // };
       var now = Date.now();
+      const dueTime = addMinutes(20)
       // var oneHourLater = now.addHours(1);
       let newOrderNumber;
       if (!lastOrder || !lastOrder.orderNumber) newOrderNumber = 1;
       else newOrderNumber = lastOrder.orderNumber++;
 
       const newOrder = new Order({
+
         // client: clientId,
-        startTime: now,
-        dueTime: now,
+        dueTime,
         isTakeout: isTakeout,
         items: items,
-        orderNumber: newOrderNumber,
         status: 0,
       });
 

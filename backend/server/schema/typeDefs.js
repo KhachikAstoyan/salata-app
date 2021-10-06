@@ -22,7 +22,7 @@ module.exports = gql`
 	type OrderType {
 		id: ID
 		# client: ClientType
-		dueTime: String
+		dueTime: Float
 		startTime: String
 		isTakeout: Boolean
 		items: [ItemType]
