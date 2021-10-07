@@ -13,6 +13,7 @@ module.exports = {
     ...clientResolvers.Mutation,
     ...orderResolvers.Mutation,
   },
+  Subscription: { ...orderResolvers.Subscription },
   OrderType: { ...orderResolvers.OrderType },
   ItemType: { ...itemResolvers.ItemType },
   IngredientType: { ...ingredientResolvers.IngredientType },

@@ -1,7 +1,11 @@
+const { PubSub } = require("graphql-subscriptions");
+
 const Client = require("../models/Client");
 const Item = require("../models/Item");
 const Order = require("../models/Order");
 const { generateAudio, removeAudio } = require("../utils/generateAudio.js");
+
+const pubsub = new PubSub();
 
 module.exports = {
   Query: {
@@ -32,13 +36,15 @@ module.exports = {
       }
     },
   },
+  Subscription: {
+    ordersChanged: {
+      subscribe: () => pubsub.asyncIterator("ORDERS_CHANGED"),
+    },
+  },
   Mutation: {
     async addOrder(_, { input: { isTakeout, items } }) {
-      const orders = await Order.find().sort({ orderNumber: -1 });
-      const lastOrder = orders[0];
-
       function addMinutes(minutes) {
-        return new Date(Date.now() + minutes * 60000)
+        return new Date(Date.now() + minutes * 60000);
       }
 
       // Date.prototype.addHours = function (h) {
@@ -46,14 +52,10 @@ module.exports = {
       //   return this;
       // };
       var now = Date.now();
-      const dueTime = addMinutes(20)
+      const dueTime = addMinutes(20);
       // var oneHourLater = now.addHours(1);
-      let newOrderNumber;
-      if (!lastOrder || !lastOrder.orderNumber) newOrderNumber = 1;
-      else newOrderNumber = lastOrder.orderNumber++;
 
       const newOrder = new Order({
-
         // client: clientId,
         dueTime,
         isTakeout: isTakeout,
@@ -61,15 +63,23 @@ module.exports = {
         status: 0,
       });
 
-      const audio = generateAudio(newOrder);
+      const audio = await generateAudio(newOrder);
       console.log(audio);
 
-      return await newOrder.save();
+      const submitOrder = await newOrder.save();
+
+      pubsub.publish("ORDERS_CHANGED", { ordersChanged: [submitOrder] });
+
+      return submitOrder;
     },
     async updateOrderStatus(_, { id, status }) {
       await Order.findByIdAndUpdate(id, { status });
       if (status == 3) removeAudio(id);
-      return Order.findById(id);
+
+      const order = await Order.findById(id);
+
+      pubsub.publish("ORDERS_CHANGED", { ordersChanged: [order] });
+      return order;
     },
     // async addItems(
     //   _,
