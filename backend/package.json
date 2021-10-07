@@ -13,13 +13,16 @@
     "@google-cloud/storage": "^5.14.4",
     "@google-cloud/text-to-speech": "^3.3.1",
     "@google-cloud/translate": "^6.3.0",
+    "@graphql-tools/schema": "^8.2.0",
     "apollo-server-express": "^3.3.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "graphql": "^15.5.1",
     "graphql-config": "^3.0.0-rc.3",
-    "mongoose": "^5.13.7"
+    "graphql-subscriptions": "^1.2.1",
+    "mongoose": "^5.13.7",
+    "subscriptions-transport-ws": "^0.9.19"
   },
   "devDependencies": {
     "graphql": "^15.5.1",
