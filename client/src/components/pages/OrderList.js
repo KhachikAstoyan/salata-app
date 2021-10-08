@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { ORDERS_QUERY, STATUS_SUBSCRIPTION } from "../../gql.js";
+import {
+  ORDERS_QUERY,
+  ORDER_ADDED_SUBSCRIPTION,
+  STATUS_SUBSCRIPTION,
+} from "../../gql.js";
 import { ChevronLeftPagination, ChevronRightPagination } from "../Icons.js";
 import { Dropdown, DropdownStatus, PaginationBtn } from "../Button";
 import ItemList from "../OrderList/ItemList.js";
@@ -45,6 +49,14 @@ const OrderList = () => {
 
           return { orders: prevOrders };
         }
+      },
+    });
+    subscribeToMore({
+      document: ORDER_ADDED_SUBSCRIPTION,
+      variables: {},
+      updateQuery: async (prev, { subscriptionData }) => {
+        if (prev.orders.length < 5)
+          fetchMore({ offset: page * PER_PAGE, limit: PER_PAGE });
       },
     });
   });

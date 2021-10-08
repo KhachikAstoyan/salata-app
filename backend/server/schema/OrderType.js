@@ -37,11 +37,9 @@ module.exports = {
     },
   },
   Subscription: {
-    ordersChanged: {
-      subscribe: () => pubsub.asyncIterator("ORDERS_CHANGED"),
+    orderAdded: {
+      subscribe: () => pubsub.asyncIterator("ORDER_ADDED"),
     },
-  },
-  Subscription: {
     statusChanged: {
       subscribe: () => pubsub.asyncIterator("STATUS_CHANGED"),
     },
@@ -73,8 +71,7 @@ module.exports = {
 
       const submitOrder = await newOrder.save();
 
-      pubsub.publish("ORDERS_CHANGED", { ordersChanged: [submitOrder] });
-
+      pubsub.publish("ORDER_ADDED", { orderAdded: submitOrder.id });
       return submitOrder;
     },
     async updateOrderStatus(_, { id, status }) {

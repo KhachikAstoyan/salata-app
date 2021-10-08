@@ -24,6 +24,12 @@ const ORDERS_QUERY = gql`
   }
 `;
 
+const ORDER_ADDED_SUBSCRIPTION = gql`
+  subscription orderAddedSub {
+    orderAdded
+  }
+`;
+
 const STATUS_SUBSCRIPTION = gql`
   subscription statusSub {
     statusChanged {
@@ -90,6 +96,7 @@ const ORDER_STATUS_MUTATION = gql`
 
 export {
   ORDERS_QUERY,
+  ORDER_ADDED_SUBSCRIPTION,
   STATUS_SUBSCRIPTION,
   ADD_ORDER_MUTATION,
   ORDER_STATUS_MUTATION,

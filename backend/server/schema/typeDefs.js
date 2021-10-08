@@ -17,7 +17,7 @@ module.exports = gql`
   }
 
   type Subscription {
-    ordersChanged: [OrderType]
+    orderAdded: ID
     statusChanged: OrderType
   }
 
