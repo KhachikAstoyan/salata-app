@@ -42,7 +42,7 @@ function DropdownStatus(props) {
   const breakpoint = 640;
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const [setStatus, {}] = useMutation(ORDER_STATUS_MUTATION, {
+  const [setStatus, { error }] = useMutation(ORDER_STATUS_MUTATION, {
     refetchQueries: [ORDERS_QUERY],
     awaitRefetchQueries: true,
   });
@@ -87,6 +87,8 @@ function DropdownStatus(props) {
     // Return a function from the effect that removes the event listener
     return () => window.removeEventListener("resize", handleWindowResize);
   }, []);
+
+  if (error) return `Submission error! ${error.message}`;
 
   return (
     <div className={`${width < breakpoint ? "relative h-14" : ""}`}>
@@ -206,56 +208,56 @@ function DropdownStatus(props) {
   );
 }
 
-function Dropdown(props) {
-  const [showDropdown, updateDropdown] = useState(false);
-  // const [selectedOption, UpdateOption] = useState();
+// function Dropdown(props) {
+//   const [showDropdown, updateDropdown] = useState(false);
+//   // const [selectedOption, UpdateOption] = useState();
 
-  const drpOptions = props.options.map((option, index) => {
-    if (option === "Not Started") {
-    } else {
-      return (
-        <li
-          key={index}
-          className="text-left px-1 mr-4 text-gray-400 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
-        >
-          {option}
-        </li>
-      );
-    }
-  });
+//   const drpOptions = props.options.map((option, index) => {
+//     if (option === "Not Started") {
+//     } else {
+//       return (
+//         <li
+//           key={index}
+//           className="text-left px-1 mr-4 text-gray-400 transition-colors duration-300 rounded-lg hover:bg-gray-50 hover:text-gray-600"
+//         >
+//           {option}
+//         </li>
+//       );
+//     }
+//   });
 
-  return (
-    <div
-      className={`btn${props.drpStyle}`}
-      onClick={() => updateDropdown(!showDropdown)}
-    >
-      <div className="dropdown-heading">
-        <span>{props.drpName}</span>
-        <div
-          className="inline-block transition-all duration-300 transform"
-          style={{
-            transform: showDropdown ? "rotate(-90deg)" : "rotate(0deg)",
-          }}
-        >
-          <ChevronRight />
-        </div>
-      </div>
-      <div className="heading-list">
-        <ul
-          className={`overflow-hidden text-right px-4 ${
-            showDropdown && "py-1"
-          } w-full duration-300 transition-height`}
-          style={{
-            height: showDropdown
-              ? `${props.options.length * props.drpOptionSize + 8}px`
-              : "0px",
-          }}
-        >
-          {drpOptions}
-        </ul>
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div
+//       className={`btn${props.drpStyle}`}
+//       onClick={() => updateDropdown(!showDropdown)}
+//     >
+//       <div className="dropdown-heading">
+//         <span>{props.drpName}</span>
+//         <div
+//           className="inline-block transition-all duration-300 transform"
+//           style={{
+//             transform: showDropdown ? "rotate(-90deg)" : "rotate(0deg)",
+//           }}
+//         >
+//           <ChevronRight />
+//         </div>
+//       </div>
+//       <div className="heading-list">
+//         <ul
+//           className={`overflow-hidden text-right px-4 ${
+//             showDropdown && "py-1"
+//           } w-full duration-300 transition-height`}
+//           style={{
+//             height: showDropdown
+//               ? `${props.options.length * props.drpOptionSize + 8}px`
+//               : "0px",
+//           }}
+//         >
+//           {drpOptions}
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// }
 
-export { Button, LinkButton, PaginationBtn, Dropdown, DropdownStatus };
+export { Button, LinkButton, PaginationBtn, DropdownStatus };

@@ -6,7 +6,7 @@ import {
   STATUS_SUBSCRIPTION,
 } from "../../gql.js";
 import { ChevronLeftPagination, ChevronRightPagination } from "../Icons.js";
-import { Dropdown, DropdownStatus, PaginationBtn } from "../Button";
+import { DropdownStatus, PaginationBtn } from "../Button";
 import ItemList from "../OrderList/ItemList.js";
 
 const PER_PAGE = 5;
@@ -79,6 +79,8 @@ const OrderList = () => {
         }
         break;
       }
+      default:
+        break;
     }
   };
 

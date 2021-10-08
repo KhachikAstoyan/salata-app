@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { PlayButton, PauseButton } from "./Icons.js";
 import PlaySvg from "../static/play.svg";
 import PauseSvg from "../static/pause.svg";
 

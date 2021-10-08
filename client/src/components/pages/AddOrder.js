@@ -96,7 +96,7 @@ const AddOrder = () => {
   };
 
   return (
-    <main className="container max-w-5xl mx-auto mb-40">
+    <main className="container max-w-5xl w-11/12 mx-auto mb-40">
       {Object.keys(orderState.items).map((uid) => {
         return (
           <NewSalad

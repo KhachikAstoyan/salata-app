@@ -1,4 +1,4 @@
-import { LinkButton, Dropdown } from "./Button";
+import { LinkButton } from "./Button";
 
 function Header(props) {
   return (
@@ -18,11 +18,11 @@ function Header(props) {
       </div>
       <div className="flex">
         <div>
-          <h1 className="font-bold font-DMSans ml-3 text-primary text-3xl">
+          <h1 className="font-bold font-DMSans text-primary text-3xl">
             {props.pageName}
           </h1>
         </div>
-        <div className="flex flex-1  mr-3 justify-end">
+        <div className="flex flex-1 justify-end">
           <LinkButton
             btnName={props.btnName}
             btnLink={props.btnLink}
