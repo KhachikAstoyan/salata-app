@@ -104,7 +104,8 @@ const OrderList = () => {
                     <span className="text-primary font-DMSans">
                       #{order.id.slice(-6)}
                     </span>{" "}
-                    - {order.items.length} Items
+                    - {order.items.length}{" "}
+                    {order.items.length > 1 ? "Items" : "Item"}
                   </h2>
                   <p className="text-secondary-light font-DMSans text-base font-medium">
                     Due by{" "}
