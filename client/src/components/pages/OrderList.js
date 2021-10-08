@@ -33,10 +33,10 @@ const OrderList = () => {
     subscribeToMore({
       document: STATUS_SUBSCRIPTION,
       variables: {},
-      updateQuery: async (prev, { subscriptionData }) => {
+      updateQuery: (prev, { subscriptionData }) => {
         let prevOrders = [...prev.orders];
         if (subscriptionData.data.statusChanged.status === "FINISHED") {
-          return fetchMore({ offset: page * PER_PAGE, limit: PER_PAGE });
+          fetchMore({ offset: page * PER_PAGE, limit: PER_PAGE });
         } else {
           const setOrderId = prev.orders.findIndex(
             (order) => order.id === subscriptionData.data.statusChanged.id
@@ -54,7 +54,7 @@ const OrderList = () => {
     subscribeToMore({
       document: ORDER_ADDED_SUBSCRIPTION,
       variables: {},
-      updateQuery: async (prev, { subscriptionData }) => {
+      updateQuery: (prev, { subscriptionData }) => {
         if (prev.orders.length < 5)
           fetchMore({ offset: page * PER_PAGE, limit: PER_PAGE });
       },
