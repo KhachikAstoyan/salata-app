@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronRight } from "./Icons";
 import { useMutation, useQuery } from "@apollo/client";
 
-import { updateOrderStatusMutation, ordersQuery } from "../gql.js";
+import { ORDER_STATUS_MUTATION, ORDERS_QUERY } from "../gql.js";
 
 function Button(props) {
   return (
@@ -42,14 +42,14 @@ function DropdownStatus(props) {
   const breakpoint = 640;
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const { loading, error, data, refetch } = useQuery(ordersQuery, {
+  const { loading, error, data, refetch } = useQuery(ORDERS_QUERY, {
     variables: {
       offset: 1 * 5,
       limit: 5,
     },
   });
-  const [setStatus, {}] = useMutation(updateOrderStatusMutation, {
-    refetchQueries: [ordersQuery],
+  const [setStatus, {}] = useMutation(ORDER_STATUS_MUTATION, {
+    refetchQueries: [ORDERS_QUERY],
     awaitRefetchQueries: true,
   });
 

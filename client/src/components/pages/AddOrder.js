@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { nanoid } from "nanoid";
 
-import { addOrderMutation, ordersQuery } from "../../gql.js";
+import { ADD_ORDER_MUTATION, ORDERS_QUERY } from "../../gql.js";
 import { PlusButton } from "../Icons.js";
 import { Button } from "../Button";
 import NewSalad from "../NewOrder/NewSalad";
@@ -15,8 +15,8 @@ const AddOrder = () => {
   });
   const [selectedItem, selectItem] = useState(0);
   const [submitOrder, { data, loading, error }] = useMutation(
-    addOrderMutation,
-    { refetchQueries: [{ query: ordersQuery }] }
+    ADD_ORDER_MUTATION,
+    { refetchQueries: [{ query: ORDERS_QUERY }] }
   );
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { ordersQuery } from "../../gql.js";
+import { ORDERS_QUERY, STATUS_SUBSCRIPTION } from "../../gql.js";
 import { ChevronLeftPagination, ChevronRightPagination } from "../Icons.js";
 import { Dropdown, DropdownStatus, PaginationBtn } from "../Button";
 import ItemList from "../OrderList/ItemList.js";
@@ -16,13 +16,41 @@ const OrderList = () => {
       }
     }
   `);
-  const { loading, error, data, refetch } = useQuery(ordersQuery, {
-    variables: {
-      offset: page * PER_PAGE,
-      limit: PER_PAGE,
-    },
-  });
+  const { loading, error, data, refetch, subscribeToMore } = useQuery(
+    ORDERS_QUERY,
+    {
+      variables: {
+        offset: page * PER_PAGE,
+        limit: PER_PAGE,
+      },
+    }
+  );
   const [showContentId, setContentId] = useState(0);
+
+  useEffect(() => {
+    subscribeToMore({
+      document: STATUS_SUBSCRIPTION,
+      variables: {},
+      updateQuery: (prev, { subscriptionData }) => {
+        let prevOrders = [...prev.orders];
+        const setOrderId = prev.orders.findIndex(
+          (order) => order.id === subscriptionData.data.statusChanged.id
+        );
+        let setOrder = prevOrders[setOrderId];
+        prevOrders[setOrderId] = {
+          ...setOrder,
+          status: subscriptionData.data.statusChanged.status,
+        };
+
+        const newOrders = [
+          ...prevOrders,
+          { ...setOrder, status: subscriptionData.data.statusChanged.status },
+        ];
+
+        return { orders: prevOrders };
+      },
+    });
+  });
 
   useEffect(() => {
     refetch({ offset: page * PER_PAGE, limit: PER_PAGE });
@@ -71,9 +99,10 @@ const OrderList = () => {
                   </h2>
                   <p className="text-secondary-light font-DMSans text-base font-medium">
                     Due by{" "}
-                    {new Date(
-                     order.dueTime
-                    ).toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})}
+                    {new Date(order.dueTime).toLocaleTimeString(
+                      navigator.language,
+                      { hour: "2-digit", minute: "2-digit" }
+                    )}
                   </p>
                   {order.isTakeout && (
                     <p className="text-secondary-light font-DMSans text-base font-medium">
