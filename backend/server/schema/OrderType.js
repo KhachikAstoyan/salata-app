@@ -41,6 +41,11 @@ module.exports = {
       subscribe: () => pubsub.asyncIterator("ORDERS_CHANGED"),
     },
   },
+  Subscription: {
+    statusChanged: {
+      subscribe: () => pubsub.asyncIterator("STATUS_CHANGED"),
+    },
+  },
   Mutation: {
     async addOrder(_, { input: { isTakeout, items } }) {
       function addMinutes(minutes) {
@@ -78,7 +83,7 @@ module.exports = {
 
       const order = await Order.findById(id);
 
-      pubsub.publish("ORDERS_CHANGED", { ordersChanged: [order] });
+      pubsub.publish("STATUS_CHANGED", { statusChanged: order });
       return order;
     },
     // async addItems(

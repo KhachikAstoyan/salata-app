@@ -18,6 +18,7 @@ module.exports = gql`
 
   type Subscription {
     ordersChanged: [OrderType]
+    statusChanged: OrderType
   }
 
   type OrderCount {
