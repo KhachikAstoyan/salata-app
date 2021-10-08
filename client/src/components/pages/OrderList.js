@@ -16,38 +16,35 @@ const OrderList = () => {
       }
     }
   `);
-  const { loading, error, data, refetch, subscribeToMore } = useQuery(
-    ORDERS_QUERY,
-    {
+  const { loading, error, data, refetch, subscribeToMore, fetchMore } =
+    useQuery(ORDERS_QUERY, {
       variables: {
         offset: page * PER_PAGE,
         limit: PER_PAGE,
       },
-    }
-  );
+    });
   const [showContentId, setContentId] = useState(0);
 
   useEffect(() => {
     subscribeToMore({
       document: STATUS_SUBSCRIPTION,
       variables: {},
-      updateQuery: (prev, { subscriptionData }) => {
+      updateQuery: async (prev, { subscriptionData }) => {
         let prevOrders = [...prev.orders];
-        const setOrderId = prev.orders.findIndex(
-          (order) => order.id === subscriptionData.data.statusChanged.id
-        );
-        let setOrder = prevOrders[setOrderId];
-        prevOrders[setOrderId] = {
-          ...setOrder,
-          status: subscriptionData.data.statusChanged.status,
-        };
+        if (subscriptionData.data.statusChanged.status === "FINISHED") {
+          return fetchMore({ offset: page * PER_PAGE, limit: PER_PAGE });
+        } else {
+          const setOrderId = prev.orders.findIndex(
+            (order) => order.id === subscriptionData.data.statusChanged.id
+          );
+          let setOrder = prevOrders[setOrderId];
+          prevOrders[setOrderId] = {
+            ...setOrder,
+            status: subscriptionData.data.statusChanged.status,
+          };
 
-        const newOrders = [
-          ...prevOrders,
-          { ...setOrder, status: subscriptionData.data.statusChanged.status },
-        ];
-
-        return { orders: prevOrders };
+          return { orders: prevOrders };
+        }
       },
     });
   });
