@@ -15,7 +15,10 @@
       href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Nunito&family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -32,14 +35,25 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <style>
-      body {
+      .bgImage {
         background-image: url("./pattern.svg");
-        background-attachment: fixed;
       }
     </style>
     <title>Salata App</title>
   </head>
   <body class="px-4 text-secondary font-semibold">
+    <div
+      class="
+        fixed
+        top-0
+        left-0
+        bgImage
+        w-full
+        h-full
+        -z-10
+        bg-repeat bg-contain
+      "
+    ></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
