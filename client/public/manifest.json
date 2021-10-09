@@ -3,43 +3,43 @@
   "name": "Salata App",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "./icons/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo48.png",
+      "src": "./icons/logo48.png",
       "type": "image/png",
       "sizes": "48x48"
     },
     {
-      "src": "logo72.png",
+      "src": "./icons/logo72.png",
       "type": "image/png",
       "sizes": "72x72"
     },
     {
-      "src": "logo96.png",
+      "src": "./icons/logo96.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "logo128.png",
+      "src": "./icons/logo128.png",
       "type": "image/png",
       "sizes": "128x128"
     },
     {
-      "src": "logo192.png",
+      "src": "./icons/logo192.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
-      "src": "logo384.png",
+      "src": "./icons/logo384.png",
       "type": "image/png",
       "sizes": "384x384"
     },
     {
-      "src": "logo512.png",
+      "src": "./icons/logo512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

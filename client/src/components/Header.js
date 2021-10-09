@@ -5,7 +5,7 @@ function Header(props) {
     <header className="container max-w-5xl py-4 mx-auto sm:flex-row">
       <div className="flex w-full">
         <div className="flex justify-start mb-10">
-          <img src="./salata.png" alt="Logo" className="w-40"></img>
+          <img src="./icons/salata.png" alt="Logo" className="w-40"></img>
         </div>
         <div className="flex flex-1 justify-end">
           {/* <Dropdown
