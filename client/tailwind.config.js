@@ -1,5 +1,13 @@
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  purge: {
+    content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+    safelist: [
+      "border-gray-300",
+      "border-yellow-300",
+      "border-green-300",
+      "border-red-300",
+    ],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     boxShadow: {

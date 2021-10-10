@@ -93,7 +93,7 @@ function DropdownStatus(props) {
   return (
     <div className={`${width < breakpoint ? "relative h-14" : ""}`}>
       <div
-        className={`btnStatus absolute ${showDropdown ? "z-50" : ""} ${
+        className={`btnStatus absolute ${showDropdown ? "z-50" : "z-40"} ${
           width < 640 ? "top-2 right-0" : "right-6 top-6"
         } text-${setTitle(
           props.drpStatus,
