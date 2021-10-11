@@ -5,6 +5,7 @@ const { makeExecutableSchema } = require("@graphql-tools/schema");
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const cors = require("cors");
+const path = require("path");
 
 const connect = require("./db");
 
@@ -47,8 +48,13 @@ const typeDefs = require("./schema/typeDefs");
   await server.start();
   server.applyMiddleware({ app });
 
-  app.use(express.static(__dirname + "/static"));
+  app.use("/static", express.static(__dirname + "/static"));
+  app.use(express.static(path.join(__dirname, "..", "..", "client", "build")));
   app.use(cors({ origin: "*" }));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
 
   const PORT = 4000 || process.env.PORT;
   httpServer.listen(PORT, () =>
