@@ -40,9 +40,11 @@ const typeDefs = require("./schema/typeDefs");
     ],
   });
 
+  console.log(server.graphqlPath);
+
   const subscriptionServer = SubscriptionServer.create(
     { schema, execute, subscribe },
-    { server: httpServer, path: server.graphqlPath }
+    { server: httpServer, path: "/subscriptions" }
   );
 
   await server.start();

@@ -15,12 +15,17 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import App from "./App";
 
+let wsHost = "";
+if (process.env.NODE_ENV === "production")
+  wsHost = window.location.origin.replace(/^http/, "ws") + "/subscriptions";
+else wsHost = "ws://localhost:4000/subscriptions";
+
 const httpLink = new HttpLink({
-  uri: "http://localhost:4000/graphql",
+  uri: "/graphql",
 });
 
 const wsLink = new WebSocketLink({
-  uri: "ws://localhost:4000/graphql",
+  uri: wsHost,
   options: {
     reconnect: true,
   },

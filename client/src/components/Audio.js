@@ -25,7 +25,7 @@ const Player = ({ audioSrc }) => {
 
   return (
     <>
-      <audio ref={myRef} src={"http://localhost:4000/" + audioSrc + ".mp3"} />
+      <audio ref={myRef} src={`${audioSrc}.mp3`} />
       {audioStatus ? (
         <img src={PauseSvg} alt="play" onClick={pauseAudio} />
       ) : (
