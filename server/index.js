@@ -49,11 +49,11 @@ const typeDefs = require("./schema/typeDefs");
   server.applyMiddleware({ app });
 
   app.use("/static", express.static(__dirname + "/static"));
-  app.use(express.static(path.join(__dirname, "..", "..", "client", "build")));
+  app.use(express.static(path.join(__dirname, "..", "client", "build")));
   app.use(cors({ origin: "*" }));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
   });
 
   const PORT = 4000 || process.env.PORT;
