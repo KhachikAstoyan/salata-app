@@ -12,6 +12,7 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Redirect exact from="/" to="/addOrder" />
         <Route path="/orders">
           <div className="App font-Comfortaa">
             <Header pageName="Orders" btnName="Add Order" btnLink="/addOrder" />
@@ -23,9 +24,6 @@ function App() {
             <Header pageName="Add Order" btnName="Orders" btnLink="orders" />
             <AddOrder />
           </div>
-        </Route>
-        <Route path="/">
-          <Redirect to="/addOrder" />
         </Route>
       </Switch>
     </Router>
