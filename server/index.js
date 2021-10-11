@@ -56,7 +56,7 @@ const typeDefs = require("./schema/typeDefs");
     res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
   });
 
-  const PORT = 4000 || process.env.PORT;
+  const PORT = process.env.PORT || 4000;
   httpServer.listen(PORT, () =>
     console.log(`Server is now running on http://localhost:${PORT}/graphql`)
   );
