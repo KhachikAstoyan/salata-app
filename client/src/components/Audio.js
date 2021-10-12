@@ -2,6 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import PlaySvg from "../static/play.svg";
 import PauseSvg from "../static/pause.svg";
 
+let wsHost = "";
+if (process.env.NODE_ENV === "production") wsHost = window.location.origin;
+else wsHost = "http://localhost:4000";
+
 const Player = ({ audioSrc }) => {
   const [audioStatus, changeAudioStatus] = useState(false);
   const myRef = useRef();
@@ -25,7 +29,7 @@ const Player = ({ audioSrc }) => {
 
   return (
     <>
-      <audio ref={myRef} src={`${audioSrc}.mp3`} />
+      <audio ref={myRef} src={`${wsHost}${audioSrc}.mp3`} />
       {audioStatus ? (
         <img src={PauseSvg} alt="play" onClick={pauseAudio} />
       ) : (
