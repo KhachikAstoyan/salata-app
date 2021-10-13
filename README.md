@@ -1,12 +1,12 @@
-![Salata Icon](./client/public/salata.png)
+![Salata Icon](./client/public/icons/salata.png)
 
 A web app to order salads
 
+You can try [here](https://salata-app.herokuapp.com/).
+
 ## Preview
 
-![Add Order](./readme_files/Web%20capture_30-9-2021_213021_localhost.jpeg)
-
-![Orders](./readme_files/Web%20capture_30-9-2021_214010_localhost.jpeg)
+<img width="320px" src="./readme_files/addOrder_page.jpeg" alt="addOrder page"/><img width="320px" src="./readme_files/orderList_page.jpeg" alt="addOrder page"/>
 
 <!-- ### [Figma mockup](https://www.figma.com/file/gvYTd9ZsGkEaEjTgtt7LyD/Untitled?node-id=0%3A1)
 
@@ -32,7 +32,6 @@ cd salata-app
 
 ```
 // install packages
-cd backend
 npm install
 ```
 
@@ -76,6 +75,6 @@ npm install
 npm run start
 ```
 
-## Technologies
+## Technologies and Services
 
-<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" style="display: inline;" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/google-cloud-1.svg" style="display: inline;" alt="drawing" width="50" height="50"/><img src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" style="display:inline;"  alt="drawing" width="50" height="50"/><img src="https://cdn.worldvectorlogo.com/logos/graphql.svg" style="display:inline;"  alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/apollo-graphql-compact.svg" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/react-2.svg" alt="drawing" width="50"/><img src="https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" alt="drawing" width="50" height="50"/>
+<a href="https://nodejs.org"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" style="display: inline;" alt="drawing" width="50"/></a><a href="https://cloud.google.com/"><img src="https://cdn.worldvectorlogo.com/logos/google-cloud-1.svg" style="display: inline;" alt="drawing" width="50" height="50"/></a><a href="https://www.heroku.com"><img src="https://cdn.worldvectorlogo.com/logos/heroku-4.svg" alt="drawing" width="50" height="50"/></a><a href="https://www.mongodb.com"><img src="https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" style="display:inline;" alt="drawing" width="50" height="50"/></a><a href="https://graphql.org"><img src="https://cdn.worldvectorlogo.com/logos/graphql.svg" style="display:inline" alt="drawing" width="50"/></a><a href="https://apollographql.com"><img src="https://cdn.worldvectorlogo.com/logos/apollo-graphql-compact.svg" alt="drawing" width="50"/></a><a href="https://reactjs.org"><img src="https://cdn.worldvectorlogo.com/logos/react-2.svg" alt="drawing" width="50"/></a><a href="https://tailwindcss.com"><img src="https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" alt="drawing" width="50" height="50"/></a>
